@@ -1,7 +1,0 @@
-brightness 30 box_blur 3
-rotation 45 scaling 0.5
-flipping 1
-rotation 90
-shearing 1
-flipping 45 shearing 2
-box_blur 5 gamma 1.2

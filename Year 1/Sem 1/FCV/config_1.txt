@@ -1,0 +1,4 @@
+gamma 1.5
+brightness 60
+rotation 90
+flipping 0

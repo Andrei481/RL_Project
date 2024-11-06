@@ -1,0 +1,10 @@
+gamma 1.1 brightness 10 rotation 5
+gamma 0.9 brightness -10 rotation -5
+box_blur 3 contrast 1.1 scaling 1.1
+box_blur 3 contrast 0.9 scaling 0.9
+# This is a comment
+
+rotation 45 scaling 1.2 contrast 1.2
+rotation -45 scaling 0.8 contrast 0.8
+flipping 1 shearing 0.2 brightness 20
+flipping 0 shearing -0.2 brightness -20
