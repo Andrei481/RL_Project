@@ -1,0 +1,75 @@
+Semantic segmentation involves dividing an image into regions, where each region corresponds to a specific object or class, like "sky," "tree," or "car."
+
+Zero-shot semantic segmentation goes further by identifying objects or classes that the model hasn’t been explicitly trained on, without needing labeled examples for those unseen classes.
+
+Both methods tackle the challenge of achieving accurate segmentation without the need for supervision or labeled datasets. The main obstacles in zero-shot semantic segmentation are:
+•	The absence of training annotations for classes that haven't been seen before.
+•	The ability to generalize across various domains and image styles.
+•	The challenge of obtaining meaningful segmentation masks directly from image data.
+
+DiffSeg (Diffuse, Attend, and Segment) is a method for unsupervised zero-shot segmentation using a pre-trained stable diffusion model.
+Introduced in the paper "Diffuse, Attend, and Segment: Unsupervised Zero-Shot Segmentation using Stable Diffusion" by Tian et al., published in CVPR 2024.
+
+The Stable Diffusion model generates attention maps that focus on important areas in an image, capturing relationships between different parts of the image.
+These attention maps are combined from multiple levels or layers, allowing the model to gather information about different object regions.
+The combined attention maps are merged repeatedly, grouping similar areas to improve the segmentation and refine the object boundaries.
+Non-Maximum Suppression (NMS) cleans up the segmentation by eliminating overlapping or redundant segments, ensuring that each region in the image is uniquely assigned to one object.
+The result is a clean segmentation map, where distinct regions represent different objects or classes in the image.
+
+It does not require any additional training or fine-tuning on specific segmentation datasets.
+Demonstrates state-of-the-art performance on various segmentation benchmarks, showcasing its effectiveness in zero-shot settings.
+
+Extracting Self-Attention Maps:
+Self-attention tensors from intermediate diffusion layers are analyzed.
+From these tensor the attention maps are derived, which represent semantic correlations and emphasize object boundaries and regions of shared context.
+Clustering Attention Maps:
+Attention maps are grouped using K-means clustering into 𝑘 clusters.
+Each corresponds to a segment representing similar semantic content.
+Iterative Merging with KL Divergence:
+Pairwise Kullback-Leibler (KL) divergence measures similarity between cluster distributions.
+Highly similar clusters are merged iteratively to refine segmentation masks.
+Multi-Resolution Fusion:
+Attention maps of varying resolutions are aggregated to ensure both coarse and fine-grained segmentation.
+
+Cityscapes is a benchmark dataset primarily designed for semantic segmentation tasks, specifically in urban street scenes. 
+It focuses on dense pixel-level annotations of images captured in cities across Germany and neighboring countries.
+COCO-Stuff-27 is a semantic segmentation subset of the larger COCO dataset (Common Objects in Context). 
+It focuses on stuff classes (e.g., grass, sky, road), in contrast to thing classes (e.g., people, cars).
+
+LD (Label Dependency): Whether the model relies on labeled data.
+AX (Auxiliary Image): Whether additional auxiliary/synthetic images are used.
+UA (Unsupervised Adaptation): Whether the model performs unsupervised segmentation without specific training for the task.
+
+UA (Unsupervised Adaptation):
+The method needs to be trained on the target dataset in an unsupervised way before performing segmentation.
+If a method does not require this training, it is considered zero-shot (works directly without training on the target dataset).
+
+LD Language Dependency):
+The method requires text input (like a descriptive sentence about the image) to help with segmentation.
+
+AX (Auxiliary Image):
+The method needs access to an extra set of reference images or synthetic images to perform segmentation.
+
+If LD, AX, or UA are marked with an "X," the method:
+
+Does not need labeled text inputs (LD)
+Does not need extra reference images (AX)
+Does not require unsupervised training on the target dataset (UA), making it a zero-shot method.
+
+Metrics:
+ACC. (Accuracy): Measures pixel-wise classification accuracy, i.e., the fraction of correctly segmented pixels.
+mIoU (Mean Intersection over Union): Measures overlap between predicted and ground-truth segments (a higher value indicates better segmentation quality)
+
+DiffSeg (512) outperforms all other methods with the highest mIoU (21.2) and accuracy (76.0), showing strong performance without requiring labeled data, auxiliary data, or unsupervised adaptation, 
+unlike other models like STEGO or ReCo.
+
+K-Means-C, K-Means-S, and DBSCAN are segmentation methods, but they are traditional clustering algorithms that have been adapted for the segmentation task.
+
+VOC (Pascal VOC): A widely used benchmark for object segmentation and recognition.
+Context (COCO-Stuff Context): Refers to segmenting context-related stuff in scenes, such as grass, sky, and water.
+COCO-Object: Focuses on segmenting distinct objects (things) from the COCO dataset.
+COCO-Stuff-27: A simplified version of COCO-Stuff with 27 classes, blending object (thing) and contextual segmentation.
+Cityscapes: A dataset for urban scene understanding, featuring road scenes with fine-grained pixel annotations.
+ADE20K: A challenging benchmark containing a wide variety of scenes and objects with dense, pixel-wise annotations.
+
+For DiffCut mIoU is used
