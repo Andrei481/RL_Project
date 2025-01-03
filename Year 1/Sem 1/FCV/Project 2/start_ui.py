@@ -8,9 +8,10 @@ import cv2
 import os
 from pathlib import Path
 import numpy as np
+import torch
 
 # Initialize YOLO model
-model = YOLO("runs-yolov11l-finetune-v3/runs/detect/train/weights/best.pt")
+model = YOLO("runs-session-1-100-epochs/runs-session-1/train/exp_1/weights/best.pt")
 
 RESULTS_DIR = "results"
 os.makedirs(RESULTS_DIR, exist_ok=True)
@@ -91,8 +92,9 @@ def start_webcam():
         nonlocal running
         running = False
     
-    # Set up window close callback
-    cv2.setWindowProperty(window_name, cv2.WND_PROP_TOPMOST, 1)
+    # Initialize previous detections for smoothing
+    prev_boxes = []
+    smooth_factor = 0.7  # Adjust this value between 0 and 1 (higher = more smoothing)
     
     try:
         while running and cap.isOpened():
@@ -100,15 +102,31 @@ def start_webcam():
             if not ret:
                 break
             
-            # Resize frame to square 640x640
             frame = cv2.resize(frame, (640, 640))
-                
-            results = model(frame)
-            annotated_frame = results[0].plot()
+            
+            # Run detection
+            results = model(frame, conf=0.5)  # Add confidence threshold
+            
+            # Get current boxes
+            current_boxes = results[0].boxes.xyxy.cpu().numpy()
+            
+            # Apply smoothing if we have previous boxes
+            if len(prev_boxes) > 0 and len(current_boxes) == len(prev_boxes):
+                smoothed_boxes = current_boxes * (1 - smooth_factor) + prev_boxes * smooth_factor
+                # Draw smoothed boxes manually
+                annotated_frame = frame.copy()
+                for box in smoothed_boxes:
+                    x1, y1, x2, y2 = map(int, box)
+                    cv2.rectangle(annotated_frame, (x1, y1), (x2, y2), (0, 255, 0), 2)
+            else:
+                # Use original annotations if smoothing isn't possible
+                annotated_frame = results[0].plot()
+            
+            # Store current boxes for next frame
+            prev_boxes = current_boxes.copy()
             
             cv2.imshow(window_name, annotated_frame)
             
-            # Check for 'q' key or window close
             key = cv2.waitKey(1) & 0xFF
             if key == ord('q') or cv2.getWindowProperty(window_name, cv2.WND_PROP_VISIBLE) < 1:
                 break
