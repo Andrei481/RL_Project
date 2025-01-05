@@ -1,183 +1,157 @@
-import os
-os.environ['KMP_DUPLICATE_LIB_OK']='TRUE'
-
-from ultralytics import YOLO
 import tkinter as tk
-from tkinter import filedialog
-import cv2
-import os
+from tkinter import filedialog, messagebox
+from ultralytics import YOLO
 from pathlib import Path
-import numpy as np
-import torch
+import cv2
+import datetime
+import os
 
-# Initialize YOLO model
-model = YOLO("runs-session-1-100-epochs/runs-session-1/train/exp_1/weights/best.pt")
-
-RESULTS_DIR = "results"
-os.makedirs(RESULTS_DIR, exist_ok=True)
-
-def process_image(image_path):
-    # Read image
-    img = cv2.imread(image_path)
-    
-    # Run detection
-    results = model(img)
-    annotated_frame = results[0].plot()
-    
-    # Save the annotated image
-    output_path = os.path.join(RESULTS_DIR, f"{Path(image_path).stem}_detection{Path(image_path).suffix}")
-    cv2.imwrite(output_path, annotated_frame)
-    
-    # Calculate window size while maintaining aspect ratio
-    max_width = 1200
-    max_height = 800
-    scale = min(max_width / img.shape[1], max_height / img.shape[0])
-    window_width = int(img.shape[1] * scale)
-    window_height = int(img.shape[0] * scale)
-    
-    # Create window with adjusted size
-    cv2.namedWindow("Detection", cv2.WINDOW_NORMAL)
-    cv2.resizeWindow("Detection", window_width, window_height)
-    
-    # Display the result
-    cv2.imshow("Detection", annotated_frame)
-    cv2.waitKey(0)
-    cv2.destroyAllWindows()
-
-def process_video(video_path):
-    cap = cv2.VideoCapture(video_path)
-    
-    # Get video properties
-    width = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
-    height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
-    fps = int(cap.get(cv2.CAP_PROP_FPS))
-    
-    # Create output video file in results directory
-    output_path = os.path.join(RESULTS_DIR, f"{Path(video_path).stem}_detection.mp4")
-    out = cv2.VideoWriter(output_path, cv2.VideoWriter_fourcc(*'mp4v'), fps, (width, height))
-    
-    while cap.isOpened():
-        ret, frame = cap.read()
-        if not ret:
-            break
-            
-        results = model(frame)
-        annotated_frame = results[0].plot()
-        out.write(annotated_frame)
+class YOLODetectionUI:
+    def __init__(self, root):
+        self.root = root
+        self.root.title("YOLO Detection Interface")
         
-        cv2.imshow("Detection", annotated_frame)
-        if cv2.waitKey(1) & 0xFF == ord('q'):
-            break
-            
-    cap.release()
-    out.release()
-    cv2.destroyAllWindows()
+        # Load the model
+        self.model = YOLO("runs-session-3-scratch/runs-session-3-scratch/train/exp_1/weights/best.pt")
+        
+        # Create buttons
+        tk.Button(root, text="Select File", command=self.select_file).pack(pady=5)
+        tk.Button(root, text="Select Directory", command=self.select_directory).pack(pady=5)
+        tk.Button(root, text="Use Webcam", command=self.use_webcam).pack(pady=5)
 
-def start_webcam():
-    cap = cv2.VideoCapture(0)
-    if not cap.isOpened():
-        tk.messagebox.showerror("Error", "Could not open webcam!")
-        return
+    def create_output_dir(self, type_dir):
+        # Create timestamped directory
+        timestamp = datetime.datetime.now().strftime("%d-%m-%Y-%H-%M-%S")
+        output_dir = Path("inference_results") / timestamp / type_dir
+        output_dir.mkdir(parents=True, exist_ok=True)
+        return output_dir
 
-    # Set resolution to 640x640
-    cap.set(cv2.CAP_PROP_FRAME_WIDTH, 640)
-    cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 640)
-
-    window_name = "Webcam Detection (Press 'q' to quit)"
-    cv2.namedWindow(window_name, cv2.WINDOW_NORMAL)
-    cv2.resizeWindow(window_name, 640, 640)
-    
-    running = True
-    def handle_window_close(event=None):
-        nonlocal running
-        running = False
-    
-    # Initialize previous detections for smoothing
-    prev_boxes = []
-    smooth_factor = 0.7  # Adjust this value between 0 and 1 (higher = more smoothing)
-    
-    try:
-        while running and cap.isOpened():
-            ret, frame = cap.read()
-            if not ret:
-                break
+    def process_image(self, image_path, output_dir):
+        try:
+            print(f"Processing {Path(image_path).name}...")
+            # Read the image
+            img = cv2.imread(str(image_path))
             
-            frame = cv2.resize(frame, (640, 640))
+            # Perform detection
+            results = self.model.predict(
+                source=img,
+                show=False,
+                stream=True
+            )
             
-            # Run detection
-            results = model(frame, conf=0.5)  # Add confidence threshold
-            
-            # Get current boxes
-            current_boxes = results[0].boxes.xyxy.cpu().numpy()
-            
-            # Apply smoothing if we have previous boxes
-            if len(prev_boxes) > 0 and len(current_boxes) == len(prev_boxes):
-                smoothed_boxes = current_boxes * (1 - smooth_factor) + prev_boxes * smooth_factor
-                # Draw smoothed boxes manually
-                annotated_frame = frame.copy()
-                for box in smoothed_boxes:
-                    x1, y1, x2, y2 = map(int, box)
-                    cv2.rectangle(annotated_frame, (x1, y1), (x2, y2), (0, 255, 0), 2)
-            else:
-                # Use original annotations if smoothing isn't possible
-                annotated_frame = results[0].plot()
-            
-            # Store current boxes for next frame
-            prev_boxes = current_boxes.copy()
-            
-            cv2.imshow(window_name, annotated_frame)
-            
-            key = cv2.waitKey(1) & 0xFF
-            if key == ord('q') or cv2.getWindowProperty(window_name, cv2.WND_PROP_VISIBLE) < 1:
-                break
+            # Save the plotted image directly to our output directory
+            for r in results:
+                plotted_img = r.plot()
+                output_path = str(output_dir / f'detected_{Path(image_path).name}')
+                cv2.imwrite(output_path, plotted_img)
                 
-    finally:
-        cap.release()
-        cv2.destroyAllWindows()
+            print(f"✓ Successfully processed {Path(image_path).name}")
+        except Exception as e:
+            print(f"❌ Error processing {Path(image_path).name}: {str(e)}")
 
-def browse_file():
-    path = filedialog.askopenfilename(
-        title="Select a file",
-        filetypes=[
-            ("All supported", "*.jpg *.jpeg *.png *.mp4 *.avi *.mov"),
-            ("Image files", "*.jpg *.jpeg *.png"),
-            ("Video files", "*.mp4 *.avi *.mov"),
-        ]
-    )
-    
-    if not path:
-        return
+    def process_video(self, video_path, output_dir):
+        try:
+            print(f"Processing {Path(video_path).name}...")
+            cap = cv2.VideoCapture(str(video_path))
+            
+            if not cap.isOpened():
+                raise Exception("Could not open video file")
+
+            # Get video properties
+            width = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
+            height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
+            fps = int(cap.get(cv2.CAP_PROP_FPS))
+            
+            # Create video writer
+            output_path = str(output_dir / f'detected_{Path(video_path).name}')
+            writer = cv2.VideoWriter(
+                output_path,
+                cv2.VideoWriter_fourcc(*'mp4v'),
+                fps,
+                (width, height)
+            )
+            
+            while cap.isOpened():
+                success, frame = cap.read()
+                if not success:
+                    break
+
+                # Perform detection on frame
+                results = self.model.predict(
+                    source=frame,
+                    show=False,  # Set to True if you want to see processing in real-time
+                    stream=True
+                )
+                
+                # Get the plotted frame with detections
+                for r in results:
+                    plotted_frame = r.plot()
+                    writer.write(plotted_frame)
+            
+            print(f"✓ Successfully processed {Path(video_path).name}")
+            
+        except Exception as e:
+            print(f"❌ Error processing {Path(video_path).name}: {str(e)}")
+        finally:
+            cap.release()
+            writer.release()
+            cv2.destroyAllWindows()
+
+    def select_file(self):
+        file_path = filedialog.askopenfilename(
+            filetypes=[("Media files", "*.jpg *.jpeg *.png *.mp4 *.avi *.mov")]
+        )
+        if file_path:
+            file_type = "videos" if file_path.lower().endswith(('.mp4', '.avi', '.mov')) else "images"
+            output_dir = self.create_output_dir(file_type)
+            
+            if file_type == "images":
+                self.process_image(file_path, output_dir)
+            else:
+                self.process_video(file_path, output_dir)
+            
+            messagebox.showinfo("Success", "Processing complete!")
+
+    def select_directory(self):
+        dir_path = filedialog.askdirectory()
+        if dir_path:
+            # Create output directories
+            images_output = self.create_output_dir("images")
+            videos_output = self.create_output_dir("videos")
+            
+            # Process all files
+            for ext in ['*.jpg', '*.jpeg', '*.png', '*.mp4', '*.avi', '*.mov']:
+                files = list(Path(dir_path).glob(ext))
+                for file_path in files:
+                    if file_path.suffix.lower() in ['.mp4', '.avi', '.mov']:
+                        self.process_video(file_path, videos_output)
+                    else:
+                        self.process_image(file_path, images_output)
+            
+            messagebox.showinfo("Success", "Directory processing complete!")
+
+    def use_webcam(self):
+        output_dir = self.create_output_dir("videos")
+        cap = cv2.VideoCapture(0)
         
-    if path.lower().endswith(('.png', '.jpg', '.jpeg')):
-        process_image(path)
-    elif path.lower().endswith(('.mp4', '.avi', '.mov')):
-        process_video(path)
-
-def browse_directory():
-    path = filedialog.askdirectory(title="Select Directory")
-    
-    if not path:
-        return
+        if not cap.isOpened():
+            messagebox.showerror("Error", "Could not open webcam!")
+            return
         
-    for file in os.listdir(path):
-        file_path = os.path.join(path, file)
-        if file.lower().endswith(('.png', '.jpg', '.jpeg')):
-            process_image(file_path)
-        elif file.lower().endswith(('.mp4', '.avi', '.mov')):
-            process_video(file_path)
+        try:
+            self.model.predict(
+                source=0,  # Use webcam
+                show=True,
+                save=True,
+                save_dir=str(output_dir)
+            )
+        except Exception as e:
+            messagebox.showerror("Error", f"Webcam processing error: {str(e)}")
+        finally:
+            cap.release()
+            cv2.destroyAllWindows()
 
-# Update GUI creation
-root = tk.Tk()
-root.title("YOLO Detection")
-root.geometry("300x200")
-
-file_button = tk.Button(root, text="Select File", command=browse_file)
-file_button.pack(pady=10)
-
-directory_button = tk.Button(root, text="Select Directory", command=browse_directory)
-directory_button.pack(pady=10)
-
-webcam_button = tk.Button(root, text="Webcam", command=start_webcam)
-webcam_button.pack(pady=10)
-
-root.mainloop()
+if __name__ == "__main__":
+    root = tk.Tk()
+    app = YOLODetectionUI(root)
+    root.mainloop()
