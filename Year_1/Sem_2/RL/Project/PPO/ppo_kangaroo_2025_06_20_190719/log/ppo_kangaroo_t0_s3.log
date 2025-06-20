@@ -1,0 +1,276 @@
+[2025-06-20 19:07:22,422 PID:1936 INFO openai.py __init__] OpenAIEnv:
+- env_spec = {'frame_op': 'concat',
+ 'frame_op_len': 4,
+ 'max_frame': 1000000,
+ 'max_t': None,
+ 'name': 'Kangaroo-v0',
+ 'num_envs': 8,
+ 'reward_scale': 'sign'}
+- eval_frequency = 25000
+- log_frequency = 10000
+- frame_op = concat
+- frame_op_len = 4
+- image_downsize = (84, 84)
+- normalize_state = False
+- reward_scale = sign
+- num_envs = 8
+- name = Kangaroo-v0
+- max_t = 10000
+- max_frame = 1000000
+- to_render = False
+- is_venv = True
+- clock_speed = 8
+- clock = <slm_lab.env.base.Clock object at 0x7f0542ed3c88>
+- done = False
+- total_reward = nan
+- u_env = <slm_lab.env.vec_env.VecFrameStack object at 0x7f053d9b1d30>
+- observation_space = Box(4, 84, 84)
+- action_space = Discrete(18)
+- observable_dim = {'state': (4, 84, 84)}
+- action_dim = 18
+- is_discrete = True
+[2025-06-20 19:07:26,729 PID:1936 INFO base.py end_init_nets] Initialized algorithm models for lab_mode: train
+[2025-06-20 19:07:26,734 PID:1936 INFO base.py __init__] PPO:
+- agent = <slm_lab.agent.Agent object at 0x7f053fcca0b8>
+- action_pdtype = default
+- action_policy = <function default at 0x7f05407197b8>
+- explore_var_spec = None
+- entropy_coef_spec = {'end_step': 1000000,
+ 'end_val': 0.001,
+ 'name': 'linear_decay',
+ 'start_step': 0,
+ 'start_val': 0.01}
+- minibatch_size = 256
+- val_loss_coef = 0.5
+- gamma = 0.99
+- lam = 0.9500000000000001
+- clip_eps_spec = {'end_step': 0,
+ 'end_val': 0.2,
+ 'name': 'no_decay',
+ 'start_step': 0,
+ 'start_val': 0.2}
+- time_horizon = 128
+- training_epoch = 4
+- to_train = 0
+- training_frequency = 128
+- explore_var_scheduler = <slm_lab.agent.algorithm.policy_util.VarScheduler object at 0x7f053d5d4550>
+- clip_eps_scheduler = <slm_lab.agent.algorithm.policy_util.VarScheduler object at 0x7f053d5d4588>
+- entropy_coef_scheduler = <slm_lab.agent.algorithm.policy_util.VarScheduler object at 0x7f053d5d46d8>
+- calc_advs_v_targets = <bound method ActorCritic.calc_gae_advs_v_targets of <slm_lab.agent.algorithm.ppo.PPO object at 0x7f053d5d4390>>
+- shared = True
+- net = ConvNet(
+  (conv_model): Sequential(
+    (0): Conv2d(4, 32, kernel_size=(8, 8), stride=(4, 4))
+    (1): ReLU()
+    (2): Conv2d(32, 64, kernel_size=(4, 4), stride=(2, 2))
+    (3): ReLU()
+    (4): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1))
+    (5): ReLU()
+  )
+  (fc_model): Sequential(
+    (0): Linear(in_features=3136, out_features=512, bias=True)
+    (1): ReLU()
+  )
+  (model_tails): ModuleList(
+    (0): Sequential(
+      (0): Linear(in_features=512, out_features=18, bias=True)
+    )
+    (1): Sequential(
+      (0): Linear(in_features=512, out_features=1, bias=True)
+    )
+  )
+  (loss_fn): MSELoss()
+)
+- net_names = ['net']
+- optim = Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    initial_lr: 0.0001
+    lr: 0.0001
+    weight_decay: 0
+)
+- lr_scheduler = <torch.optim.lr_scheduler.LambdaLR object at 0x7f053d5d42e8>
+- global_net = None
+- old_net = ConvNet(
+  (conv_model): Sequential(
+    (0): Conv2d(4, 32, kernel_size=(8, 8), stride=(4, 4))
+    (1): ReLU()
+    (2): Conv2d(32, 64, kernel_size=(4, 4), stride=(2, 2))
+    (3): ReLU()
+    (4): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1))
+    (5): ReLU()
+  )
+  (fc_model): Sequential(
+    (0): Linear(in_features=3136, out_features=512, bias=True)
+    (1): ReLU()
+  )
+  (model_tails): ModuleList(
+    (0): Sequential(
+      (0): Linear(in_features=512, out_features=18, bias=True)
+    )
+    (1): Sequential(
+      (0): Linear(in_features=512, out_features=1, bias=True)
+    )
+  )
+  (loss_fn): MSELoss()
+)
+[2025-06-20 19:07:26,736 PID:1936 INFO __init__.py __init__] Agent:
+- spec = {'cuda_offset': 0,
+ 'distributed': False,
+ 'eval_frequency': 25000,
+ 'experiment': 0,
+ 'experiment_ts': '2025_06_20_190719',
+ 'git_sha': 'cae945a294cb111ee8e568bb4465ee74c501478b',
+ 'graph_prepath': 'data/ppo_kangaroo_2025_06_20_190719/graph/ppo_kangaroo_t0_s3',
+ 'info_prepath': 'data/ppo_kangaroo_2025_06_20_190719/info/ppo_kangaroo_t0_s3',
+ 'log_frequency': 10000,
+ 'log_prepath': 'data/ppo_kangaroo_2025_06_20_190719/log/ppo_kangaroo_t0_s3',
+ 'max_session': 4,
+ 'max_trial': 1,
+ 'model_prepath': 'data/ppo_kangaroo_2025_06_20_190719/model/ppo_kangaroo_t0_s3',
+ 'prepath': 'data/ppo_kangaroo_2025_06_20_190719/ppo_kangaroo_t0_s3',
+ 'random_seed': 1750438642,
+ 'resume': False,
+ 'rigorous_eval': 1,
+ 'session': 3,
+ 'trial': 0}
+- agent_spec = {'algorithm': {'action_pdtype': 'default',
+               'action_policy': 'default',
+               'clip_eps_spec': {'end_step': 0,
+                                 'end_val': 0.2,
+                                 'name': 'no_decay',
+                                 'start_step': 0,
+                                 'start_val': 0.2},
+               'entropy_coef_spec': {'end_step': 1000000,
+                                     'end_val': 0.001,
+                                     'name': 'linear_decay',
+                                     'start_step': 0,
+                                     'start_val': 0.01},
+               'explore_var_spec': None,
+               'gamma': 0.99,
+               'lam': 0.9500000000000001,
+               'minibatch_size': 256,
+               'name': 'PPO',
+               'time_horizon': 128,
+               'training_epoch': 4,
+               'val_loss_coef': 0.5},
+ 'memory': {'name': 'OnPolicyBatchReplay'},
+ 'name': 'PPO',
+ 'net': {'actor_optim_spec': {'lr': 0.0001, 'name': 'Adam'},
+         'batch_norm': False,
+         'clip_grad_val': 0.5,
+         'conv_hid_layers': [[32, 8, 4, 0, 1],
+                             [64, 4, 2, 0, 1],
+                             [64, 3, 1, 0, 1]],
+         'critic_optim_spec': {'lr': 0.0001, 'name': 'Adam'},
+         'cuda_id': 0,
+         'fc_hid_layers': [512],
+         'gpu': True,
+         'hid_layers_activation': 'relu',
+         'init_fn': 'orthogonal_',
+         'loss_spec': {'name': 'MSELoss'},
+         'lr_scheduler_spec': {'frame': 1000000, 'name': 'LinearToZero'},
+         'normalize': True,
+         'shared': True,
+         'type': 'ConvNet',
+         'use_same_optim': False}}
+- name = PPO
+- body = body: {
+  "agent": "<slm_lab.agent.Agent object at 0x7f053fcca0b8>",
+  "env": "<slm_lab.env.openai.OpenAIEnv object at 0x7f05a8a8df28>",
+  "a": 0,
+  "e": 0,
+  "b": 0,
+  "aeb": "(0, 0, 0)",
+  "explore_var": NaN,
+  "entropy_coef": 0.01,
+  "loss": NaN,
+  "mean_entropy": NaN,
+  "mean_grad_norm": NaN,
+  "best_total_reward_ma": -Infinity,
+  "total_reward_ma": NaN,
+  "train_df": "Empty DataFrame\nColumns: [epi, t, wall_t, opt_step, frame, fps, total_reward, total_reward_ma, loss, lr, explore_var, entropy_coef, entropy, grad_norm]\nIndex: []",
+  "eval_df": "Empty DataFrame\nColumns: [epi, t, wall_t, opt_step, frame, fps, total_reward, total_reward_ma, loss, lr, explore_var, entropy_coef, entropy, grad_norm]\nIndex: []",
+  "observation_space": "Box(4, 84, 84)",
+  "action_space": "Discrete(18)",
+  "observable_dim": {
+    "state": [
+      4,
+      84,
+      84
+    ]
+  },
+  "state_dim": "(4, 84, 84)",
+  "action_dim": 18,
+  "is_discrete": true,
+  "action_type": "discrete",
+  "action_pdtype": "Categorical",
+  "ActionPD": "<class 'torch.distributions.categorical.Categorical'>",
+  "memory": "<slm_lab.agent.memory.onpolicy.OnPolicyBatchReplay object at 0x7f053d5d4198>",
+  "clip_eps": 0.2
+}
+- algorithm = <slm_lab.agent.algorithm.ppo.PPO object at 0x7f053d5d4390>
+[2025-06-20 19:07:26,988 PID:1936 INFO openai.py __init__] OpenAIEnv:
+- env_spec = {'frame_op': 'concat',
+ 'frame_op_len': 4,
+ 'max_frame': 1000000,
+ 'max_t': None,
+ 'name': 'Kangaroo-v0',
+ 'num_envs': 8,
+ 'reward_scale': 'sign'}
+- eval_frequency = 25000
+- log_frequency = 10000
+- frame_op = concat
+- frame_op_len = 4
+- image_downsize = (84, 84)
+- normalize_state = False
+- reward_scale = sign
+- num_envs = 1
+- name = Kangaroo-v0
+- max_t = 10000
+- max_frame = 1000000
+- to_render = False
+- is_venv = False
+- clock_speed = 1
+- clock = <slm_lab.env.base.Clock object at 0x7f053c9e4e48>
+- done = False
+- total_reward = nan
+- u_env = <ScaleRewardEnv<TrackReward<FrameStack<PreprocessImage<TimeLimit<AtariEnv<Kangaroo-v0>>>>>>>
+- observation_space = Box(4, 84, 84)
+- action_space = Discrete(18)
+- observable_dim = {'state': (4, 84, 84)}
+- action_dim = 18
+- is_discrete = True
+[2025-06-20 19:07:26,990 PID:1936 INFO logger.py info] Session:
+- spec = {'cuda_offset': 0,
+ 'distributed': False,
+ 'eval_frequency': 25000,
+ 'experiment': 0,
+ 'experiment_ts': '2025_06_20_190719',
+ 'git_sha': 'cae945a294cb111ee8e568bb4465ee74c501478b',
+ 'graph_prepath': 'data/ppo_kangaroo_2025_06_20_190719/graph/ppo_kangaroo_t0_s3',
+ 'info_prepath': 'data/ppo_kangaroo_2025_06_20_190719/info/ppo_kangaroo_t0_s3',
+ 'log_frequency': 10000,
+ 'log_prepath': 'data/ppo_kangaroo_2025_06_20_190719/log/ppo_kangaroo_t0_s3',
+ 'max_session': 4,
+ 'max_trial': 1,
+ 'model_prepath': 'data/ppo_kangaroo_2025_06_20_190719/model/ppo_kangaroo_t0_s3',
+ 'prepath': 'data/ppo_kangaroo_2025_06_20_190719/ppo_kangaroo_t0_s3',
+ 'random_seed': 1750438642,
+ 'resume': False,
+ 'rigorous_eval': 1,
+ 'session': 3,
+ 'trial': 0}
+- index = 3
+- agent = <slm_lab.agent.Agent object at 0x7f053fcca0b8>
+- env = <slm_lab.env.openai.OpenAIEnv object at 0x7f05a8a8df28>
+- eval_env = <slm_lab.env.openai.OpenAIEnv object at 0x7f053d5a5630>
+[2025-06-20 19:07:26,990 PID:1936 INFO logger.py info] Running RL loop for trial 0 session 3
+[2025-06-20 19:07:27,016 PID:1936 INFO __init__.py log_summary] Trial 0 session 3 ppo_kangaroo_t0_s3 [train_df] epi: 0  t: 0  wall_t: 0  opt_step: 0  frame: 0  fps: 0  total_reward: nan  total_reward_ma: nan  loss: nan  lr: 0.0001  explore_var: nan  entropy_coef: 0.01  entropy: nan  grad_norm: nan
+[2025-06-20 19:07:27,089 PID:1936 INFO logger.py info] Running eval ckpt
+[2025-06-20 19:07:34,014 PID:1936 INFO __init__.py log_summary] Trial 0 session 3 ppo_kangaroo_t0_s3 [eval_df] epi: 0  t: 0  wall_t: 0  opt_step: 0  frame: 0  fps: 0  total_reward: 0  total_reward_ma: 0  loss: nan  lr: 0.0001  explore_var: nan  entropy_coef: 0.01  entropy: nan  grad_norm: nan
+[2025-06-20 19:08:15,343 PID:1936 INFO __init__.py log_summary] Trial 0 session 3 ppo_kangaroo_t0_s3 [train_df] epi: 0  t: 10000  wall_t: 53  opt_step: 720  frame: 10000  fps: 188.679  total_reward: 25  total_reward_ma: 25  loss: -0.0357511  lr: 9.90784e-05  explore_var: nan  entropy_coef: 0.00991  entropy: 2.75403  grad_norm: nan
+[2025-06-20 19:08:52,247 PID:1936 INFO __init__.py log_summary] Trial 0 session 3 ppo_kangaroo_t0_s3 [train_df] epi: 0  t: 20000  wall_t: 90  opt_step: 1520  frame: 20000  fps: 222.222  total_reward: 50  total_reward_ma: 37.5  loss: -0.0308453  lr: 9.80544e-05  explore_var: nan  entropy_coef: 0.00982  entropy: 2.74427  grad_norm: nan
+[2025-06-20 19:08:53,385 PID:1936 INFO __init__.py log_metrics] Trial 0 session 3 ppo_kangaroo_t0_s3 [train_df metrics] final_return_ma: 37.5  strength: -10.5  max_strength: 2  final_strength: 2  sample_efficiency: 0.000104762  training_efficiency: 0.00145851  stability: 1

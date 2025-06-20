@@ -1,0 +1,3 @@
+[2025-06-20 19:07:19,548 PID:1921 INFO logger.py info] Running sessions
+[2025-06-20 19:53:51,831 PID:1921 INFO analysis.py analyze_trial] All trial data zipped to data/ppo_kangaroo_2025_06_20_190719.zip
+[2025-06-20 19:53:51,844 PID:1921 INFO logger.py info] Trial 0 done
