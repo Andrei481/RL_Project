@@ -1,0 +1,218 @@
+[2025-06-20 21:16:50,667 PID:3895 INFO openai.py __init__] OpenAIEnv:
+- env_spec = {'frame_op': 'concat',
+ 'frame_op_len': 4,
+ 'max_frame': 1000000,
+ 'max_t': None,
+ 'name': 'Kangaroo-v0',
+ 'num_envs': 8,
+ 'reward_scale': 'sign'}
+- eval_frequency = 25000
+- log_frequency = 10000
+- frame_op = concat
+- frame_op_len = 4
+- image_downsize = (84, 84)
+- normalize_state = False
+- reward_scale = sign
+- num_envs = 8
+- name = Kangaroo-v0
+- max_t = 10000
+- max_frame = 1000000
+- to_render = False
+- is_venv = True
+- clock_speed = 8
+- clock = <slm_lab.env.base.Clock object at 0x7fe5770a1fd0>
+- done = False
+- total_reward = nan
+- u_env = <slm_lab.env.vec_env.VecFrameStack object at 0x7fe576cfaf28>
+- observation_space = Box(4, 84, 84)
+- action_space = Discrete(18)
+- observable_dim = {'state': (4, 84, 84)}
+- action_dim = 18
+- is_discrete = True
+[2025-06-20 21:16:55,262 PID:3895 INFO base.py end_init_nets] Initialized algorithm models for lab_mode: train
+[2025-06-20 21:16:55,269 PID:3895 INFO base.py __init__] SARSA:
+- agent = <slm_lab.agent.Agent object at 0x7fe576d0d1d0>
+- action_pdtype = Argmax
+- action_policy = <function epsilon_greedy at 0x7fe57ac568c8>
+- explore_var_spec = {'end_step': 500000,
+ 'end_val': 0.1,
+ 'name': 'linear_decay',
+ 'start_step': 0,
+ 'start_val': 1.0}
+- gamma = 0.99
+- training_frequency = 128
+- to_train = 0
+- explore_var_scheduler = <slm_lab.agent.algorithm.policy_util.VarScheduler object at 0x7fe576d0d208>
+- net = ConvNet(
+  (conv_model): Sequential(
+    (0): Conv2d(4, 32, kernel_size=(8, 8), stride=(4, 4))
+    (1): ReLU()
+    (2): Conv2d(32, 64, kernel_size=(4, 4), stride=(2, 2))
+    (3): ReLU()
+    (4): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1))
+    (5): ReLU()
+  )
+  (fc_model): Sequential(
+    (0): Linear(in_features=3136, out_features=512, bias=True)
+    (1): ReLU()
+  )
+  (model_tail): Sequential(
+    (0): Linear(in_features=512, out_features=18, bias=True)
+  )
+  (loss_fn): MSELoss()
+)
+- net_names = ['net']
+- optim = RMSprop (
+Parameter Group 0
+    alpha: 0.99
+    centered: False
+    eps: 1e-08
+    lr: 0.00025
+    momentum: 0
+    weight_decay: 0
+)
+- lr_scheduler = <slm_lab.agent.net.net_util.NoOpLRScheduler object at 0x7fe577068320>
+- global_net = None
+[2025-06-20 21:16:55,272 PID:3895 INFO __init__.py __init__] Agent:
+- spec = {'cuda_offset': 0,
+ 'distributed': False,
+ 'eval_frequency': 25000,
+ 'experiment': 0,
+ 'experiment_ts': '2025_06_20_211644',
+ 'git_sha': 'cae945a294cb111ee8e568bb4465ee74c501478b',
+ 'graph_prepath': 'data/sarsa_kangaroo_2025_06_20_211644/graph/sarsa_kangaroo_t0_s2',
+ 'info_prepath': 'data/sarsa_kangaroo_2025_06_20_211644/info/sarsa_kangaroo_t0_s2',
+ 'log_frequency': 10000,
+ 'log_prepath': 'data/sarsa_kangaroo_2025_06_20_211644/log/sarsa_kangaroo_t0_s2',
+ 'max_session': 4,
+ 'max_trial': 1,
+ 'model_prepath': 'data/sarsa_kangaroo_2025_06_20_211644/model/sarsa_kangaroo_t0_s2',
+ 'prepath': 'data/sarsa_kangaroo_2025_06_20_211644/sarsa_kangaroo_t0_s2',
+ 'random_seed': 1750445409,
+ 'resume': False,
+ 'rigorous_eval': 1,
+ 'session': 2,
+ 'trial': 0}
+- agent_spec = {'algorithm': {'action_pdtype': 'Argmax',
+               'action_policy': 'epsilon_greedy',
+               'explore_var_spec': {'end_step': 500000,
+                                    'end_val': 0.1,
+                                    'name': 'linear_decay',
+                                    'start_step': 0,
+                                    'start_val': 1.0},
+               'gamma': 0.99,
+               'name': 'SARSA',
+               'time_horizon': 128,
+               'training_frequency': 128},
+ 'memory': {'name': 'OnPolicyBatchReplay'},
+ 'name': 'SARSA',
+ 'net': {'batch_norm': False,
+         'clip_grad_val': 0.5,
+         'conv_hid_layers': [[32, 8, 4, 0, 1],
+                             [64, 4, 2, 0, 1],
+                             [64, 3, 1, 0, 1]],
+         'cuda_id': 0,
+         'fc_hid_layers': [512],
+         'gpu': True,
+         'hid_layers_activation': 'relu',
+         'init_fn': 'orthogonal_',
+         'loss_spec': {'name': 'MSELoss'},
+         'lr_scheduler_spec': None,
+         'normalize': True,
+         'optim_spec': {'lr': 0.00025, 'name': 'RMSprop'},
+         'shared': True,
+         'type': 'ConvNet'}}
+- name = SARSA
+- body = body: {
+  "agent": "<slm_lab.agent.Agent object at 0x7fe576d0d1d0>",
+  "env": "<slm_lab.env.openai.OpenAIEnv object at 0x7fe57adb3b70>",
+  "a": 0,
+  "e": 0,
+  "b": 0,
+  "aeb": "(0, 0, 0)",
+  "explore_var": 1.0,
+  "entropy_coef": NaN,
+  "loss": NaN,
+  "mean_entropy": NaN,
+  "mean_grad_norm": NaN,
+  "best_total_reward_ma": -Infinity,
+  "total_reward_ma": NaN,
+  "train_df": "Empty DataFrame\nColumns: [epi, t, wall_t, opt_step, frame, fps, total_reward, total_reward_ma, loss, lr, explore_var, entropy_coef, entropy, grad_norm]\nIndex: []",
+  "eval_df": "Empty DataFrame\nColumns: [epi, t, wall_t, opt_step, frame, fps, total_reward, total_reward_ma, loss, lr, explore_var, entropy_coef, entropy, grad_norm]\nIndex: []",
+  "observation_space": "Box(4, 84, 84)",
+  "action_space": "Discrete(18)",
+  "observable_dim": {
+    "state": [
+      4,
+      84,
+      84
+    ]
+  },
+  "state_dim": "(4, 84, 84)",
+  "action_dim": 18,
+  "is_discrete": true,
+  "action_type": "discrete",
+  "action_pdtype": "Argmax",
+  "ActionPD": "<class 'slm_lab.lib.distribution.Argmax'>",
+  "memory": "<slm_lab.agent.memory.onpolicy.OnPolicyBatchReplay object at 0x7fe576d0d3c8>"
+}
+- algorithm = <slm_lab.agent.algorithm.sarsa.SARSA object at 0x7fe576d0d358>
+[2025-06-20 21:16:55,581 PID:3895 INFO openai.py __init__] OpenAIEnv:
+- env_spec = {'frame_op': 'concat',
+ 'frame_op_len': 4,
+ 'max_frame': 1000000,
+ 'max_t': None,
+ 'name': 'Kangaroo-v0',
+ 'num_envs': 8,
+ 'reward_scale': 'sign'}
+- eval_frequency = 25000
+- log_frequency = 10000
+- frame_op = concat
+- frame_op_len = 4
+- image_downsize = (84, 84)
+- normalize_state = False
+- reward_scale = sign
+- num_envs = 1
+- name = Kangaroo-v0
+- max_t = 10000
+- max_frame = 1000000
+- to_render = False
+- is_venv = False
+- clock_speed = 1
+- clock = <slm_lab.env.base.Clock object at 0x7fe57610d550>
+- done = False
+- total_reward = nan
+- u_env = <ScaleRewardEnv<TrackReward<FrameStack<PreprocessImage<TimeLimit<AtariEnv<Kangaroo-v0>>>>>>>
+- observation_space = Box(4, 84, 84)
+- action_space = Discrete(18)
+- observable_dim = {'state': (4, 84, 84)}
+- action_dim = 18
+- is_discrete = True
+[2025-06-20 21:16:55,582 PID:3895 INFO logger.py info] Session:
+- spec = {'cuda_offset': 0,
+ 'distributed': False,
+ 'eval_frequency': 25000,
+ 'experiment': 0,
+ 'experiment_ts': '2025_06_20_211644',
+ 'git_sha': 'cae945a294cb111ee8e568bb4465ee74c501478b',
+ 'graph_prepath': 'data/sarsa_kangaroo_2025_06_20_211644/graph/sarsa_kangaroo_t0_s2',
+ 'info_prepath': 'data/sarsa_kangaroo_2025_06_20_211644/info/sarsa_kangaroo_t0_s2',
+ 'log_frequency': 10000,
+ 'log_prepath': 'data/sarsa_kangaroo_2025_06_20_211644/log/sarsa_kangaroo_t0_s2',
+ 'max_session': 4,
+ 'max_trial': 1,
+ 'model_prepath': 'data/sarsa_kangaroo_2025_06_20_211644/model/sarsa_kangaroo_t0_s2',
+ 'prepath': 'data/sarsa_kangaroo_2025_06_20_211644/sarsa_kangaroo_t0_s2',
+ 'random_seed': 1750445409,
+ 'resume': False,
+ 'rigorous_eval': 1,
+ 'session': 2,
+ 'trial': 0}
+- index = 2
+- agent = <slm_lab.agent.Agent object at 0x7fe576d0d1d0>
+- env = <slm_lab.env.openai.OpenAIEnv object at 0x7fe57adb3b70>
+- eval_env = <slm_lab.env.openai.OpenAIEnv object at 0x7fe576d0dac8>
+[2025-06-20 21:16:55,582 PID:3895 INFO logger.py info] Running RL loop for trial 0 session 2
+[2025-06-20 21:16:55,601 PID:3895 INFO __init__.py log_summary] Trial 0 session 2 sarsa_kangaroo_t0_s2 [train_df] epi: 0  t: 0  wall_t: 0  opt_step: 0  frame: 0  fps: 0  total_reward: nan  total_reward_ma: nan  loss: nan  lr: 0.00025  explore_var: 1  entropy_coef: nan  entropy: nan  grad_norm: nan
+[2025-06-20 21:16:55,681 PID:3895 INFO logger.py info] Running eval ckpt
+[2025-06-20 21:17:01,737 PID:3895 INFO __init__.py log_summary] Trial 0 session 2 sarsa_kangaroo_t0_s2 [eval_df] epi: 0  t: 0  wall_t: 0  opt_step: 0  frame: 0  fps: 0  total_reward: 0  total_reward_ma: 0  loss: nan  lr: 0.00025  explore_var: 1  entropy_coef: nan  entropy: nan  grad_norm: nan
