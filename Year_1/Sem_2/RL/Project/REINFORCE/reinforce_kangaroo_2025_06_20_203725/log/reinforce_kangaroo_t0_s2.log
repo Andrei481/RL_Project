@@ -1,0 +1,542 @@
+[2025-06-20 20:37:28,013 PID:3447 INFO openai.py __init__] OpenAIEnv:
+- env_spec = {'frame_op': 'concat',
+ 'frame_op_len': 4,
+ 'max_frame': 1000000,
+ 'max_t': None,
+ 'name': 'Kangaroo-v0',
+ 'num_envs': 8,
+ 'reward_scale': 'sign'}
+- eval_frequency = 25000
+- log_frequency = 10000
+- frame_op = concat
+- frame_op_len = 4
+- image_downsize = (84, 84)
+- normalize_state = False
+- reward_scale = sign
+- num_envs = 8
+- name = Kangaroo-v0
+- max_t = 10000
+- max_frame = 1000000
+- to_render = False
+- is_venv = True
+- clock_speed = 8
+- clock = <slm_lab.env.base.Clock object at 0x7f9b10783fd0>
+- done = False
+- total_reward = nan
+- u_env = <slm_lab.env.vec_env.VecFrameStack object at 0x7f9b107b7a58>
+- observation_space = Box(4, 84, 84)
+- action_space = Discrete(18)
+- observable_dim = {'state': (4, 84, 84)}
+- action_dim = 18
+- is_discrete = True
+[2025-06-20 20:37:32,548 PID:3447 INFO base.py end_init_nets] Initialized algorithm models for lab_mode: train
+[2025-06-20 20:37:32,565 PID:3447 INFO base.py __init__] Reinforce:
+- agent = <slm_lab.agent.Agent object at 0x7f9b103dc080>
+- action_pdtype = default
+- action_policy = <function default at 0x7f9b1351a7b8>
+- center_return = True
+- explore_var_spec = None
+- entropy_coef_spec = {'end_step': 1000000,
+ 'end_val': 0.001,
+ 'name': 'linear_decay',
+ 'start_step': 0,
+ 'start_val': 0.02}
+- policy_loss_coef = 1.0
+- gamma = 0.99
+- training_frequency = 128
+- to_train = 0
+- explore_var_scheduler = <slm_lab.agent.algorithm.policy_util.VarScheduler object at 0x7f9b103dc240>
+- entropy_coef_scheduler = <slm_lab.agent.algorithm.policy_util.VarScheduler object at 0x7f9b103dc3c8>
+- net = ConvNet(
+  (conv_model): Sequential(
+    (0): Conv2d(4, 32, kernel_size=(8, 8), stride=(4, 4))
+    (1): ReLU()
+    (2): Conv2d(32, 64, kernel_size=(4, 4), stride=(2, 2))
+    (3): ReLU()
+    (4): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1))
+    (5): ReLU()
+  )
+  (fc_model): Sequential(
+    (0): Linear(in_features=3136, out_features=512, bias=True)
+    (1): ReLU()
+  )
+  (model_tail): Sequential(
+    (0): Linear(in_features=512, out_features=18, bias=True)
+  )
+  (loss_fn): MSELoss()
+)
+- net_names = ['net']
+- optim = Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    initial_lr: 0.0001
+    lr: 0.0001
+    weight_decay: 0
+)
+- lr_scheduler = <torch.optim.lr_scheduler.LambdaLR object at 0x7f9b103dca20>
+- global_net = None
+[2025-06-20 20:37:32,568 PID:3447 INFO __init__.py __init__] Agent:
+- spec = {'cuda_offset': 0,
+ 'distributed': False,
+ 'eval_frequency': 25000,
+ 'experiment': 0,
+ 'experiment_ts': '2025_06_20_203725',
+ 'git_sha': 'cae945a294cb111ee8e568bb4465ee74c501478b',
+ 'graph_prepath': 'data/reinforce_kangaroo_2025_06_20_203725/graph/reinforce_kangaroo_t0_s2',
+ 'info_prepath': 'data/reinforce_kangaroo_2025_06_20_203725/info/reinforce_kangaroo_t0_s2',
+ 'log_frequency': 10000,
+ 'log_prepath': 'data/reinforce_kangaroo_2025_06_20_203725/log/reinforce_kangaroo_t0_s2',
+ 'max_session': 4,
+ 'max_trial': 1,
+ 'model_prepath': 'data/reinforce_kangaroo_2025_06_20_203725/model/reinforce_kangaroo_t0_s2',
+ 'prepath': 'data/reinforce_kangaroo_2025_06_20_203725/reinforce_kangaroo_t0_s2',
+ 'random_seed': 1750443047,
+ 'resume': False,
+ 'rigorous_eval': 1,
+ 'session': 2,
+ 'trial': 0}
+- agent_spec = {'algorithm': {'action_pdtype': 'default',
+               'action_policy': 'default',
+               'center_return': True,
+               'entropy_coef_spec': {'end_step': 1000000,
+                                     'end_val': 0.001,
+                                     'name': 'linear_decay',
+                                     'start_step': 0,
+                                     'start_val': 0.02},
+               'gamma': 0.99,
+               'name': 'Reinforce',
+               'time_horizon': 128,
+               'training_frequency': 128},
+ 'memory': {'name': 'OnPolicyBatchReplay'},
+ 'name': 'Reinforce',
+ 'net': {'batch_norm': False,
+         'clip_grad_val': 0.5,
+         'conv_hid_layers': [[32, 8, 4, 0, 1],
+                             [64, 4, 2, 0, 1],
+                             [64, 3, 1, 0, 1]],
+         'cuda_id': 0,
+         'fc_hid_layers': [512],
+         'gpu': True,
+         'hid_layers_activation': 'relu',
+         'init_fn': 'orthogonal_',
+         'lr_scheduler_spec': {'frame': 1000000, 'name': 'LinearToZero'},
+         'normalize': True,
+         'optim_spec': {'lr': 0.0001, 'name': 'Adam'},
+         'shared': True,
+         'type': 'ConvNet'}}
+- name = Reinforce
+- body = body: {
+  "agent": "<slm_lab.agent.Agent object at 0x7f9b103dc080>",
+  "env": "<slm_lab.env.openai.OpenAIEnv object at 0x7f9b107dc978>",
+  "a": 0,
+  "e": 0,
+  "b": 0,
+  "aeb": "(0, 0, 0)",
+  "explore_var": NaN,
+  "entropy_coef": 0.02,
+  "loss": NaN,
+  "mean_entropy": NaN,
+  "mean_grad_norm": NaN,
+  "best_total_reward_ma": -Infinity,
+  "total_reward_ma": NaN,
+  "train_df": "Empty DataFrame\nColumns: [epi, t, wall_t, opt_step, frame, fps, total_reward, total_reward_ma, loss, lr, explore_var, entropy_coef, entropy, grad_norm]\nIndex: []",
+  "eval_df": "Empty DataFrame\nColumns: [epi, t, wall_t, opt_step, frame, fps, total_reward, total_reward_ma, loss, lr, explore_var, entropy_coef, entropy, grad_norm]\nIndex: []",
+  "observation_space": "Box(4, 84, 84)",
+  "action_space": "Discrete(18)",
+  "observable_dim": {
+    "state": [
+      4,
+      84,
+      84
+    ]
+  },
+  "state_dim": "(4, 84, 84)",
+  "action_dim": 18,
+  "is_discrete": true,
+  "action_type": "discrete",
+  "action_pdtype": "Categorical",
+  "ActionPD": "<class 'torch.distributions.categorical.Categorical'>",
+  "memory": "<slm_lab.agent.memory.onpolicy.OnPolicyBatchReplay object at 0x7f9b103dc2b0>"
+}
+- algorithm = <slm_lab.agent.algorithm.reinforce.Reinforce object at 0x7f9b103dc5f8>
+[2025-06-20 20:37:32,851 PID:3447 INFO openai.py __init__] OpenAIEnv:
+- env_spec = {'frame_op': 'concat',
+ 'frame_op_len': 4,
+ 'max_frame': 1000000,
+ 'max_t': None,
+ 'name': 'Kangaroo-v0',
+ 'num_envs': 8,
+ 'reward_scale': 'sign'}
+- eval_frequency = 25000
+- log_frequency = 10000
+- frame_op = concat
+- frame_op_len = 4
+- image_downsize = (84, 84)
+- normalize_state = False
+- reward_scale = sign
+- num_envs = 1
+- name = Kangaroo-v0
+- max_t = 10000
+- max_frame = 1000000
+- to_render = False
+- is_venv = False
+- clock_speed = 1
+- clock = <slm_lab.env.base.Clock object at 0x7f9b0f7cf6d8>
+- done = False
+- total_reward = nan
+- u_env = <ScaleRewardEnv<TrackReward<FrameStack<PreprocessImage<TimeLimit<AtariEnv<Kangaroo-v0>>>>>>>
+- observation_space = Box(4, 84, 84)
+- action_space = Discrete(18)
+- observable_dim = {'state': (4, 84, 84)}
+- action_dim = 18
+- is_discrete = True
+[2025-06-20 20:37:32,851 PID:3447 INFO logger.py info] Session:
+- spec = {'cuda_offset': 0,
+ 'distributed': False,
+ 'eval_frequency': 25000,
+ 'experiment': 0,
+ 'experiment_ts': '2025_06_20_203725',
+ 'git_sha': 'cae945a294cb111ee8e568bb4465ee74c501478b',
+ 'graph_prepath': 'data/reinforce_kangaroo_2025_06_20_203725/graph/reinforce_kangaroo_t0_s2',
+ 'info_prepath': 'data/reinforce_kangaroo_2025_06_20_203725/info/reinforce_kangaroo_t0_s2',
+ 'log_frequency': 10000,
+ 'log_prepath': 'data/reinforce_kangaroo_2025_06_20_203725/log/reinforce_kangaroo_t0_s2',
+ 'max_session': 4,
+ 'max_trial': 1,
+ 'model_prepath': 'data/reinforce_kangaroo_2025_06_20_203725/model/reinforce_kangaroo_t0_s2',
+ 'prepath': 'data/reinforce_kangaroo_2025_06_20_203725/reinforce_kangaroo_t0_s2',
+ 'random_seed': 1750443047,
+ 'resume': False,
+ 'rigorous_eval': 1,
+ 'session': 2,
+ 'trial': 0}
+- index = 2
+- agent = <slm_lab.agent.Agent object at 0x7f9b103dc080>
+- env = <slm_lab.env.openai.OpenAIEnv object at 0x7f9b107dc978>
+- eval_env = <slm_lab.env.openai.OpenAIEnv object at 0x7f9b0f7cf5f8>
+[2025-06-20 20:37:32,852 PID:3447 INFO logger.py info] Running RL loop for trial 0 session 2
+[2025-06-20 20:37:32,868 PID:3447 INFO __init__.py log_summary] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df] epi: 0  t: 0  wall_t: 0  opt_step: 0  frame: 0  fps: 0  total_reward: nan  total_reward_ma: nan  loss: nan  lr: 0.0001  explore_var: nan  entropy_coef: 0.02  entropy: nan  grad_norm: nan
+[2025-06-20 20:37:32,923 PID:3447 INFO logger.py info] Running eval ckpt
+[2025-06-20 20:37:39,647 PID:3447 INFO __init__.py log_summary] Trial 0 session 2 reinforce_kangaroo_t0_s2 [eval_df] epi: 0  t: 0  wall_t: 0  opt_step: 0  frame: 0  fps: 0  total_reward: 0  total_reward_ma: 0  loss: nan  lr: 0.0001  explore_var: nan  entropy_coef: 0.02  entropy: nan  grad_norm: nan
+[2025-06-20 20:38:00,900 PID:3447 INFO __init__.py log_summary] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df] epi: 0  t: 10000  wall_t: 33  opt_step: 45  frame: 10000  fps: 303.03  total_reward: 25  total_reward_ma: 25  loss: -0.0569008  lr: 9.90784e-05  explore_var: nan  entropy_coef: 0.01981  entropy: 2.87015  grad_norm: nan
+[2025-06-20 20:38:11,999 PID:3447 INFO __init__.py log_summary] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df] epi: 0  t: 20000  wall_t: 44  opt_step: 95  frame: 20000  fps: 454.545  total_reward: 25  total_reward_ma: 25  loss: -0.0562857  lr: 9.80544e-05  explore_var: nan  entropy_coef: 0.01962  entropy: 2.87879  grad_norm: nan
+[2025-06-20 20:38:12,601 PID:3447 INFO __init__.py log_metrics] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df metrics] final_return_ma: 25  strength: -23  max_strength: -23  final_strength: -23  sample_efficiency: 7.5e-05  training_efficiency: 0.0163743  stability: 1
+[2025-06-20 20:38:18,252 PID:3447 INFO logger.py info] Running eval ckpt
+[2025-06-20 20:38:20,335 PID:3447 INFO __init__.py log_summary] Trial 0 session 2 reinforce_kangaroo_t0_s2 [eval_df] epi: 0  t: 0  wall_t: 50  opt_step: 120  frame: 25000  fps: 500  total_reward: 0  total_reward_ma: 0  loss: -0.056526  lr: 9.75424e-05  explore_var: nan  entropy_coef: 0.019525  entropy: 2.88042  grad_norm: nan
+[2025-06-20 20:38:25,695 PID:3447 INFO __init__.py log_summary] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df] epi: 0  t: 30000  wall_t: 57  opt_step: 145  frame: 30000  fps: 526.316  total_reward: 50  total_reward_ma: 33.3333  loss: -0.0559601  lr: 9.70304e-05  explore_var: nan  entropy_coef: 0.01943  entropy: 2.87921  grad_norm: nan
+[2025-06-20 20:38:26,060 PID:3447 INFO __init__.py log_metrics] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df metrics] final_return_ma: 33.3333  strength: -14.6667  max_strength: 2  final_strength: 2  sample_efficiency: 7.68939e-05  training_efficiency: 0.0168051  stability: 1
+[2025-06-20 20:38:36,959 PID:3447 INFO __init__.py log_summary] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df] epi: 0  t: 40000  wall_t: 69  opt_step: 195  frame: 40000  fps: 579.71  total_reward: 50  total_reward_ma: 37.5  loss: -0.055424  lr: 9.60064e-05  explore_var: nan  entropy_coef: 0.01924  entropy: 2.88046  grad_norm: nan
+[2025-06-20 20:38:37,377 PID:3447 INFO __init__.py log_metrics] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df metrics] final_return_ma: 37.5  strength: -10.5  max_strength: 2  final_strength: 2  sample_efficiency: 7.93651e-05  training_efficiency: 0.0173611  stability: 1
+[2025-06-20 20:38:47,298 PID:3447 INFO __init__.py log_summary] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df] epi: 0  t: 50000  wall_t: 79  opt_step: 240  frame: 50000  fps: 632.911  total_reward: 25  total_reward_ma: 35  loss: -0.054915  lr: 9.50848e-05  explore_var: nan  entropy_coef: 0.01905  entropy: 2.88022  grad_norm: nan
+[2025-06-20 20:38:47,488 PID:3447 INFO __init__.py log_metrics] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df metrics] final_return_ma: 35  strength: -13  max_strength: 2  final_strength: -23  sample_efficiency: 5.8359e-05  training_efficiency: 0.0126923  stability: 0.404762
+[2025-06-20 20:38:47,489 PID:3447 INFO logger.py info] Running eval ckpt
+[2025-06-20 20:38:50,976 PID:3447 INFO __init__.py log_summary] Trial 0 session 2 reinforce_kangaroo_t0_s2 [eval_df] epi: 0  t: 0  wall_t: 79  opt_step: 240  frame: 50000  fps: 632.911  total_reward: 200  total_reward_ma: 66.6667  loss: -0.054915  lr: 9.50848e-05  explore_var: nan  entropy_coef: 0.01905  entropy: 2.88022  grad_norm: nan
+[2025-06-20 20:38:51,024 PID:3447 INFO __init__.py log_metrics] Trial 0 session 2 reinforce_kangaroo_t0_s2 [eval_df metrics] final_return_ma: 66.6667  strength: 18.6667  max_strength: 152  final_strength: 152  sample_efficiency: 2e-05  training_efficiency: 0.00416667  stability: 1
+[2025-06-20 20:39:02,465 PID:3447 INFO __init__.py log_summary] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df] epi: 0  t: 60000  wall_t: 94  opt_step: 290  frame: 60000  fps: 638.298  total_reward: 50  total_reward_ma: 37.5  loss: -0.0539158  lr: 9.40608e-05  explore_var: nan  entropy_coef: 0.01886  entropy: 2.88385  grad_norm: nan
+[2025-06-20 20:39:02,838 PID:3447 INFO __init__.py log_metrics] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df metrics] final_return_ma: 37.5  strength: -10.5  max_strength: 2  final_strength: 2  sample_efficiency: 5.96825e-05  training_efficiency: 0.0129858  stability: 0.615385
+[2025-06-20 20:39:13,494 PID:3447 INFO __init__.py log_summary] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df] epi: 0  t: 70000  wall_t: 105  opt_step: 340  frame: 70000  fps: 666.667  total_reward: 0  total_reward_ma: 32.1429  loss: -0.0538911  lr: 9.30368e-05  explore_var: nan  entropy_coef: 0.01867  entropy: 2.8854  grad_norm: nan
+[2025-06-20 20:39:13,686 PID:3447 INFO __init__.py log_metrics] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df metrics] final_return_ma: 32.1429  strength: -15.8571  max_strength: 2  final_strength: -48  sample_efficiency: 4.00515e-05  training_efficiency: 0.00864216  stability: -0.190476
+[2025-06-20 20:39:18,998 PID:3447 INFO logger.py info] Running eval ckpt
+[2025-06-20 20:39:20,633 PID:3447 INFO __init__.py log_summary] Trial 0 session 2 reinforce_kangaroo_t0_s2 [eval_df] epi: 0  t: 0  wall_t: 111  opt_step: 365  frame: 75000  fps: 675.676  total_reward: 0  total_reward_ma: 50  loss: -0.0535725  lr: 9.25248e-05  explore_var: nan  entropy_coef: 0.018575  entropy: 2.88336  grad_norm: nan
+[2025-06-20 20:39:20,663 PID:3447 INFO __init__.py log_metrics] Trial 0 session 2 reinforce_kangaroo_t0_s2 [eval_df metrics] final_return_ma: 50  strength: 2  max_strength: 152  final_strength: -48  sample_efficiency: 6e-05  training_efficiency: 0.0127283  stability: -2.57143
+[2025-06-20 20:39:26,062 PID:3447 INFO __init__.py log_summary] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df] epi: 0  t: 80000  wall_t: 118  opt_step: 390  frame: 80000  fps: 677.966  total_reward: 0  total_reward_ma: 28.125  loss: -0.0532574  lr: 9.20128e-05  explore_var: nan  entropy_coef: 0.01848  entropy: 2.88149  grad_norm: nan
+[2025-06-20 20:39:26,305 PID:3447 INFO __init__.py log_metrics] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df metrics] final_return_ma: 28.125  strength: -19.875  max_strength: 2  final_strength: -48  sample_efficiency: 3.17341e-05  training_efficiency: 0.00680728  stability: 0.324324
+[2025-06-20 20:39:36,840 PID:3447 INFO __init__.py log_summary] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df] epi: 0  t: 90000  wall_t: 129  opt_step: 435  frame: 90000  fps: 697.674  total_reward: 25  total_reward_ma: 27.7778  loss: -0.0527378  lr: 9.10912e-05  explore_var: nan  entropy_coef: 0.01829  entropy: 2.88067  grad_norm: nan
+[2025-06-20 20:39:37,039 PID:3447 INFO __init__.py log_metrics] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df metrics] final_return_ma: 27.7778  strength: -20.2222  max_strength: 2  final_strength: -23  sample_efficiency: 2.91279e-05  training_efficiency: 0.00623753  stability: 0.528302
+[2025-06-20 20:39:47,717 PID:3447 INFO __init__.py log_summary] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df] epi: 0  t: 100000  wall_t: 140  opt_step: 485  frame: 100000  fps: 714.286  total_reward: 75  total_reward_ma: 32.5  loss: -0.0522334  lr: 9.00672e-05  explore_var: nan  entropy_coef: 0.0181  entropy: 2.88377  grad_norm: nan
+[2025-06-20 20:39:47,934 PID:3447 INFO __init__.py log_metrics] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df metrics] final_return_ma: 32.5  strength: -15.5  max_strength: 27  final_strength: 27  sample_efficiency: 3.24598e-05  training_efficiency: 0.00696491  stability: 0.587912
+[2025-06-20 20:39:47,935 PID:3447 INFO logger.py info] Running eval ckpt
+[2025-06-20 20:39:51,413 PID:3447 INFO __init__.py log_summary] Trial 0 session 2 reinforce_kangaroo_t0_s2 [eval_df] epi: 0  t: 0  wall_t: 140  opt_step: 485  frame: 100000  fps: 714.286  total_reward: 0  total_reward_ma: 40  loss: -0.0522334  lr: 9.00672e-05  explore_var: nan  entropy_coef: 0.0181  entropy: 2.88377  grad_norm: nan
+[2025-06-20 20:39:51,443 PID:3447 INFO __init__.py log_metrics] Trial 0 session 2 reinforce_kangaroo_t0_s2 [eval_df metrics] final_return_ma: 40  strength: -8  max_strength: 152  final_strength: -48  sample_efficiency: -4.36557e-12  training_efficiency: -7.1435e-05  stability: -24
+[2025-06-20 20:40:02,278 PID:3447 INFO __init__.py log_summary] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df] epi: 0  t: 110000  wall_t: 154  opt_step: 535  frame: 110000  fps: 714.286  total_reward: 25  total_reward_ma: 31.8182  loss: -0.0516808  lr: 8.90432e-05  explore_var: nan  entropy_coef: 0.01791  entropy: 2.88424  grad_norm: nan
+[2025-06-20 20:40:02,482 PID:3447 INFO __init__.py log_metrics] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df metrics] final_return_ma: 31.8182  strength: -16.1818  max_strength: 27  final_strength: -23  sample_efficiency: 2.94402e-05  training_efficiency: 0.00630647  stability: 0.193548
+[2025-06-20 20:40:13,167 PID:3447 INFO __init__.py log_summary] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df] epi: 0  t: 120000  wall_t: 165  opt_step: 585  frame: 120000  fps: 727.273  total_reward: 0  total_reward_ma: 29.1667  loss: -0.0511665  lr: 8.80192e-05  explore_var: nan  entropy_coef: 0.01772  entropy: 2.88688  grad_norm: nan
+[2025-06-20 20:40:13,372 PID:3447 INFO __init__.py log_metrics] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df metrics] final_return_ma: 29.1667  strength: -18.8333  max_strength: 27  final_strength: -48  sample_efficiency: 2.49573e-05  training_efficiency: 0.0053301  stability: 0.157303
+[2025-06-20 20:40:18,916 PID:3447 INFO logger.py info] Running eval ckpt
+[2025-06-20 20:40:22,348 PID:3447 INFO __init__.py log_summary] Trial 0 session 2 reinforce_kangaroo_t0_s2 [eval_df] epi: 0  t: 0  wall_t: 171  opt_step: 610  frame: 125000  fps: 730.994  total_reward: 0  total_reward_ma: 33.3333  loss: -0.0509098  lr: 8.75072e-05  explore_var: nan  entropy_coef: 0.017625  entropy: 2.88825  grad_norm: nan
+[2025-06-20 20:40:22,385 PID:3447 INFO __init__.py log_metrics] Trial 0 session 2 reinforce_kangaroo_t0_s2 [eval_df metrics] final_return_ma: 33.3333  strength: -14.6667  max_strength: 152  final_strength: -48  sample_efficiency: 4.36363e-06  training_efficiency: 0.000861717  stability: -4
+[2025-06-20 20:40:27,524 PID:3447 INFO __init__.py log_summary] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df] epi: 0  t: 130000  wall_t: 179  opt_step: 630  frame: 130000  fps: 726.257  total_reward: 25  total_reward_ma: 28.8462  loss: -0.0506957  lr: 8.70976e-05  explore_var: nan  entropy_coef: 0.01753  entropy: 2.88886  grad_norm: nan
+[2025-06-20 20:40:27,753 PID:3447 INFO __init__.py log_metrics] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df metrics] final_return_ma: 28.8462  strength: -19.1538  max_strength: 27  final_strength: -23  sample_efficiency: 2.33626e-05  training_efficiency: 0.00498438  stability: 0.336283
+[2025-06-20 20:40:39,088 PID:3447 INFO __init__.py log_summary] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df] epi: 0  t: 140000  wall_t: 191  opt_step: 680  frame: 140000  fps: 732.984  total_reward: 25  total_reward_ma: 28.5714  loss: -0.0501318  lr: 8.60736e-05  explore_var: nan  entropy_coef: 0.01734  entropy: 2.88876  grad_norm: nan
+[2025-06-20 20:40:39,290 PID:3447 INFO __init__.py log_metrics] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df metrics] final_return_ma: 28.5714  strength: -19.4286  max_strength: 27  final_strength: -23  sample_efficiency: 2.19911e-05  training_efficiency: 0.00468726  stability: 0.39759
+[2025-06-20 20:40:49,907 PID:3447 INFO __init__.py log_summary] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df] epi: 0  t: 150000  wall_t: 202  opt_step: 730  frame: 150000  fps: 742.574  total_reward: 25  total_reward_ma: 28.3333  loss: -0.0495232  lr: 8.50496e-05  explore_var: nan  entropy_coef: 0.01715  entropy: 2.88783  grad_norm: nan
+[2025-06-20 20:40:50,146 PID:3447 INFO __init__.py log_metrics] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df metrics] final_return_ma: 28.3333  strength: -19.6667  max_strength: 27  final_strength: -23  sample_efficiency: 2.07963e-05  training_efficiency: 0.00442861  stability: 0.448529
+[2025-06-20 20:40:50,147 PID:3447 INFO logger.py info] Running eval ckpt
+[2025-06-20 20:40:52,752 PID:3447 INFO __init__.py log_summary] Trial 0 session 2 reinforce_kangaroo_t0_s2 [eval_df] epi: 0  t: 0  wall_t: 202  opt_step: 730  frame: 150000  fps: 742.574  total_reward: 200  total_reward_ma: 57.1429  loss: -0.0495232  lr: 8.50496e-05  explore_var: nan  entropy_coef: 0.01715  entropy: 2.88783  grad_norm: nan
+[2025-06-20 20:40:52,789 PID:3447 INFO __init__.py log_metrics] Trial 0 session 2 reinforce_kangaroo_t0_s2 [eval_df metrics] final_return_ma: 57.1429  strength: 9.14286  max_strength: 152  final_strength: 152  sample_efficiency: 9.83334e-06  training_efficiency: 0.00206856  stability: -1.27273
+[2025-06-20 20:41:03,562 PID:3447 INFO __init__.py log_summary] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df] epi: 0  t: 160000  wall_t: 215  opt_step: 780  frame: 160000  fps: 744.186  total_reward: 50  total_reward_ma: 29.6875  loss: -0.048991  lr: 8.40256e-05  explore_var: nan  entropy_coef: 0.01696  entropy: 2.88777  grad_norm: nan
+[2025-06-20 20:41:03,790 PID:3447 INFO __init__.py log_metrics] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df metrics] final_return_ma: 29.6875  strength: -18.3125  max_strength: 27  final_strength: 2  sample_efficiency: 2.08956e-05  training_efficiency: 0.00445009  stability: 0.491525
+[2025-06-20 20:41:14,759 PID:3447 INFO __init__.py log_summary] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df] epi: 0  t: 170000  wall_t: 227  opt_step: 830  frame: 170000  fps: 748.899  total_reward: 25  total_reward_ma: 29.4118  loss: -0.0488135  lr: 8.30016e-05  explore_var: nan  entropy_coef: 0.01677  entropy: 2.88857  grad_norm: nan
+[2025-06-20 20:41:14,992 PID:3447 INFO __init__.py log_metrics] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df metrics] final_return_ma: 29.4118  strength: -18.5882  max_strength: 27  final_strength: -23  sample_efficiency: 1.98028e-05  training_efficiency: 0.00421388  stability: 0.40273
+[2025-06-20 20:41:19,402 PID:3447 INFO logger.py info] Running eval ckpt
+[2025-06-20 20:41:21,987 PID:3447 INFO __init__.py log_summary] Trial 0 session 2 reinforce_kangaroo_t0_s2 [eval_df] epi: 0  t: 0  wall_t: 231  opt_step: 850  frame: 175000  fps: 757.576  total_reward: 0  total_reward_ma: 50  loss: -0.0482113  lr: 8.2592e-05  explore_var: nan  entropy_coef: 0.016675  entropy: 2.88818  grad_norm: nan
+[2025-06-20 20:41:22,022 PID:3447 INFO __init__.py log_metrics] Trial 0 session 2 reinforce_kangaroo_t0_s2 [eval_df metrics] final_return_ma: 50  strength: 2  max_strength: 152  final_strength: -48  sample_efficiency: 2.21905e-05  training_efficiency: 0.00474484  stability: -5.25
+[2025-06-20 20:41:27,568 PID:3447 INFO __init__.py log_summary] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df] epi: 0  t: 180000  wall_t: 239  opt_step: 875  frame: 180000  fps: 753.138  total_reward: 50  total_reward_ma: 30.5556  loss: -0.0479252  lr: 8.208e-05  explore_var: nan  entropy_coef: 0.01658  entropy: 2.88787  grad_norm: nan
+[2025-06-20 20:41:27,759 PID:3447 INFO __init__.py log_metrics] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df metrics] final_return_ma: 30.5556  strength: -17.4444  max_strength: 27  final_strength: 2  sample_efficiency: 1.98936e-05  training_efficiency: 0.00423345  stability: 0.446203
+[2025-06-20 20:41:38,530 PID:3447 INFO __init__.py log_summary] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df] epi: 0  t: 190000  wall_t: 250  opt_step: 925  frame: 190000  fps: 760  total_reward: 25  total_reward_ma: 30.2632  loss: -0.0473619  lr: 8.1056e-05  explore_var: nan  entropy_coef: 0.01639  entropy: 2.88778  grad_norm: nan
+[2025-06-20 20:41:38,748 PID:3447 INFO __init__.py log_metrics] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df metrics] final_return_ma: 30.2632  strength: -17.7368  max_strength: 27  final_strength: -23  sample_efficiency: 1.88951e-05  training_efficiency: 0.0040183  stability: 0.363057
+[2025-06-20 20:41:48,969 PID:3447 INFO __init__.py log_summary] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df] epi: 0  t: 200000  wall_t: 261  opt_step: 975  frame: 200000  fps: 766.284  total_reward: 50  total_reward_ma: 31.25  loss: -0.0468039  lr: 8.0032e-05  explore_var: nan  entropy_coef: 0.0162  entropy: 2.88802  grad_norm: nan
+[2025-06-20 20:41:49,173 PID:3447 INFO __init__.py log_metrics] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df metrics] final_return_ma: 31.25  strength: -16.75  max_strength: 27  final_strength: 2  sample_efficiency: 1.8978e-05  training_efficiency: 0.00403617  stability: 0.406528
+[2025-06-20 20:41:49,173 PID:3447 INFO logger.py info] Running eval ckpt
+[2025-06-20 20:41:52,377 PID:3447 INFO __init__.py log_summary] Trial 0 session 2 reinforce_kangaroo_t0_s2 [eval_df] epi: 0  t: 0  wall_t: 261  opt_step: 975  frame: 200000  fps: 766.284  total_reward: 0  total_reward_ma: 44.4444  loss: -0.0468039  lr: 8.0032e-05  explore_var: nan  entropy_coef: 0.0162  entropy: 2.88802  grad_norm: nan
+[2025-06-20 20:41:52,423 PID:3447 INFO __init__.py log_metrics] Trial 0 session 2 reinforce_kangaroo_t0_s2 [eval_df metrics] final_return_ma: 44.4444  strength: -3.55556  max_strength: 152  final_strength: -48  sample_efficiency: -3.59525e-06  training_efficiency: -0.00083396  stability: -24
+[2025-06-20 20:42:03,254 PID:3447 INFO __init__.py log_summary] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df] epi: 0  t: 210000  wall_t: 275  opt_step: 1025  frame: 210000  fps: 763.636  total_reward: 25  total_reward_ma: 30.9524  loss: -0.0461605  lr: 7.9008e-05  explore_var: nan  entropy_coef: 0.01601  entropy: 2.88888  grad_norm: nan
+[2025-06-20 20:42:03,450 PID:3447 INFO __init__.py log_metrics] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df metrics] final_return_ma: 30.9524  strength: -17.0476  max_strength: 27  final_strength: -23  sample_efficiency: 1.80647e-05  training_efficiency: 0.00383954  stability: 0.328358
+[2025-06-20 20:42:13,916 PID:3447 INFO __init__.py log_summary] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df] epi: 0  t: 220000  wall_t: 286  opt_step: 1070  frame: 220000  fps: 769.231  total_reward: 50  total_reward_ma: 31.8182  loss: -0.0457502  lr: 7.80864e-05  explore_var: nan  entropy_coef: 0.01582  entropy: 2.8889  grad_norm: nan
+[2025-06-20 20:42:14,115 PID:3447 INFO __init__.py log_metrics] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df metrics] final_return_ma: 31.8182  strength: -16.1818  max_strength: 27  final_strength: 2  sample_efficiency: 1.81407e-05  training_efficiency: 0.00385586  stability: 0.371508
+[2025-06-20 20:42:18,752 PID:3447 INFO logger.py info] Running eval ckpt
+[2025-06-20 20:42:21,272 PID:3447 INFO __init__.py log_summary] Trial 0 session 2 reinforce_kangaroo_t0_s2 [eval_df] epi: 0  t: 0  wall_t: 291  opt_step: 1095  frame: 225000  fps: 773.196  total_reward: 0  total_reward_ma: 40  loss: -0.0454687  lr: 7.75744e-05  explore_var: nan  entropy_coef: 0.015725  entropy: 2.88887  grad_norm: nan
+[2025-06-20 20:42:21,303 PID:3447 INFO __init__.py log_metrics] Trial 0 session 2 reinforce_kangaroo_t0_s2 [eval_df metrics] final_return_ma: 40  strength: -8  max_strength: 152  final_strength: -48  sample_efficiency: 1.22857e-06  training_efficiency: 0.000214361  stability: -11.5
+[2025-06-20 20:42:26,679 PID:3447 INFO __init__.py log_summary] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df] epi: 0  t: 230000  wall_t: 298  opt_step: 1120  frame: 230000  fps: 771.812  total_reward: 25  total_reward_ma: 31.5217  loss: -0.0450045  lr: 7.70624e-05  explore_var: nan  entropy_coef: 0.01563  entropy: 2.889  grad_norm: nan
+[2025-06-20 20:42:26,880 PID:3447 INFO __init__.py log_metrics] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df metrics] final_return_ma: 31.5217  strength: -16.4783  max_strength: 27  final_strength: -23  sample_efficiency: 1.73036e-05  training_efficiency: 0.00367604  stability: 0.297753
+[2025-06-20 20:42:37,791 PID:3447 INFO __init__.py log_summary] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df] epi: 0  t: 240000  wall_t: 310  opt_step: 1170  frame: 240000  fps: 774.194  total_reward: 75  total_reward_ma: 33.3333  loss: -0.0446276  lr: 7.60384e-05  explore_var: nan  entropy_coef: 0.01544  entropy: 2.889  grad_norm: nan
+[2025-06-20 20:42:37,984 PID:3447 INFO __init__.py log_metrics] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df metrics] final_return_ma: 33.3333  strength: -14.6667  max_strength: 27  final_strength: 27  sample_efficiency: 1.83113e-05  training_efficiency: 0.00389245  stability: 0.340369
+[2025-06-20 20:42:48,637 PID:3447 INFO __init__.py log_summary] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df] epi: 0  t: 250000  wall_t: 320  opt_step: 1220  frame: 250000  fps: 781.25  total_reward: 125  total_reward_ma: 37  loss: -0.0440537  lr: 7.50144e-05  explore_var: nan  entropy_coef: 0.01525  entropy: 2.88822  grad_norm: nan
+[2025-06-20 20:42:48,822 PID:3447 INFO __init__.py log_metrics] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df metrics] final_return_ma: 37  strength: -11  max_strength: 77  final_strength: 77  sample_efficiency: 2.23184e-05  training_efficiency: 0.00475283  stability: 0.289773
+[2025-06-20 20:42:48,822 PID:3447 INFO logger.py info] Running eval ckpt
+[2025-06-20 20:42:50,580 PID:3447 INFO __init__.py log_summary] Trial 0 session 2 reinforce_kangaroo_t0_s2 [eval_df] epi: 0  t: 0  wall_t: 320  opt_step: 1220  frame: 250000  fps: 781.25  total_reward: 200  total_reward_ma: 54.5455  loss: -0.0440537  lr: 7.50144e-05  explore_var: nan  entropy_coef: 0.01525  entropy: 2.88822  grad_norm: nan
+[2025-06-20 20:42:50,621 PID:3447 INFO __init__.py log_metrics] Trial 0 session 2 reinforce_kangaroo_t0_s2 [eval_df metrics] final_return_ma: 54.5455  strength: 6.54545  max_strength: 152  final_strength: 152  sample_efficiency: 7.07937e-06  training_efficiency: 0.00149224  stability: -4
+[2025-06-20 20:43:01,386 PID:3447 INFO __init__.py log_summary] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df] epi: 0  t: 260000  wall_t: 333  opt_step: 1265  frame: 260000  fps: 780.781  total_reward: 125  total_reward_ma: 40.3846  loss: -0.0435384  lr: 7.40928e-05  explore_var: nan  entropy_coef: 0.01506  entropy: 2.88759  grad_norm: nan
+[2025-06-20 20:43:01,746 PID:3447 INFO __init__.py log_metrics] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df metrics] final_return_ma: 40.3846  strength: -7.61538  max_strength: 77  final_strength: 77  sample_efficiency: 2.95021e-05  training_efficiency: 0.00629374  stability: 0.0909091
+[2025-06-20 20:43:12,833 PID:3447 INFO __init__.py log_summary] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df] epi: 0  t: 270000  wall_t: 345  opt_step: 1315  frame: 270000  fps: 782.609  total_reward: 125  total_reward_ma: 43.5185  loss: -0.0430511  lr: 7.30688e-05  explore_var: nan  entropy_coef: 0.01487  entropy: 2.88666  grad_norm: nan
+[2025-06-20 20:43:13,195 PID:3447 INFO __init__.py log_metrics] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df metrics] final_return_ma: 43.5185  strength: -4.48148  max_strength: 77  final_strength: 77  sample_efficiency: 4.59193e-05  training_efficiency: 0.00981491  stability: -0.262626
+[2025-06-20 20:43:18,637 PID:3447 INFO logger.py info] Running eval ckpt
+[2025-06-20 20:43:22,017 PID:3447 INFO __init__.py log_summary] Trial 0 session 2 reinforce_kangaroo_t0_s2 [eval_df] epi: 0  t: 0  wall_t: 350  opt_step: 1340  frame: 275000  fps: 785.714  total_reward: 0  total_reward_ma: 50  loss: -0.0420244  lr: 7.25568e-05  explore_var: nan  entropy_coef: 0.014775  entropy: 2.88625  grad_norm: nan
+[2025-06-20 20:43:22,046 PID:3447 INFO __init__.py log_metrics] Trial 0 session 2 reinforce_kangaroo_t0_s2 [eval_df metrics] final_return_ma: 50  strength: 2  max_strength: 152  final_strength: -48  sample_efficiency: 1.39654e-05  training_efficiency: 0.00298418  stability: -7.33333
+[2025-06-20 20:43:27,429 PID:3447 INFO __init__.py log_summary] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df] epi: 0  t: 280000  wall_t: 359  opt_step: 1365  frame: 280000  fps: 779.944  total_reward: 25  total_reward_ma: 42.8571  loss: -0.0423988  lr: 7.20448e-05  explore_var: nan  entropy_coef: 0.01468  entropy: 2.8865  grad_norm: nan
+[2025-06-20 20:43:27,617 PID:3447 INFO __init__.py log_metrics] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df metrics] final_return_ma: 42.8571  strength: -5.14286  max_strength: 77  final_strength: -23  sample_efficiency: 3.91554e-05  training_efficiency: 0.00836427  stability: -1.89256
+[2025-06-20 20:43:38,319 PID:3447 INFO __init__.py log_summary] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df] epi: 0  t: 290000  wall_t: 370  opt_step: 1415  frame: 290000  fps: 783.784  total_reward: 50  total_reward_ma: 43.1034  loss: -0.0418018  lr: 7.10208e-05  explore_var: nan  entropy_coef: 0.01449  entropy: 2.88738  grad_norm: nan
+[2025-06-20 20:43:38,526 PID:3447 INFO __init__.py log_metrics] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df metrics] final_return_ma: 43.1034  strength: -4.89655  max_strength: 77  final_strength: 2  sample_efficiency: 3.96583e-05  training_efficiency: 0.00847212  stability: -1.43056
+[2025-06-20 20:43:48,827 PID:3447 INFO __init__.py log_summary] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df] epi: 0  t: 300000  wall_t: 381  opt_step: 1460  frame: 300000  fps: 787.402  total_reward: 25  total_reward_ma: 42.5  loss: -0.0413537  lr: 7.00992e-05  explore_var: nan  entropy_coef: 0.0143  entropy: 2.88803  grad_norm: nan
+[2025-06-20 20:43:49,030 PID:3447 INFO __init__.py log_metrics] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df metrics] final_return_ma: 42.5  strength: -5.5  max_strength: 77  final_strength: -23  sample_efficiency: 3.45948e-05  training_efficiency: 0.00738663  stability: -1.64085
+[2025-06-20 20:43:49,030 PID:3447 INFO logger.py info] Running eval ckpt
+[2025-06-20 20:43:51,114 PID:3447 INFO __init__.py log_summary] Trial 0 session 2 reinforce_kangaroo_t0_s2 [eval_df] epi: 0  t: 0  wall_t: 381  opt_step: 1460  frame: 300000  fps: 787.402  total_reward: 0  total_reward_ma: 46.1538  loss: -0.0413537  lr: 7.00992e-05  explore_var: nan  entropy_coef: 0.0143  entropy: 2.88803  grad_norm: nan
+[2025-06-20 20:43:51,167 PID:3447 INFO __init__.py log_metrics] Trial 0 session 2 reinforce_kangaroo_t0_s2 [eval_df metrics] final_return_ma: 46.1538  strength: -1.84615  max_strength: 152  final_strength: -48  sample_efficiency: -7.29871e-06  training_efficiency: -0.00161432  stability: -24
+[2025-06-20 20:44:01,252 PID:3447 INFO __init__.py log_summary] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df] epi: 0  t: 310000  wall_t: 393  opt_step: 1510  frame: 310000  fps: 788.804  total_reward: 50  total_reward_ma: 42.7419  loss: -0.0407963  lr: 6.90752e-05  explore_var: nan  entropy_coef: 0.01411  entropy: 2.88835  grad_norm: nan
+[2025-06-20 20:44:01,450 PID:3447 INFO __init__.py log_metrics] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df metrics] final_return_ma: 42.7419  strength: -5.25806  max_strength: 77  final_strength: 2  sample_efficiency: 3.49797e-05  training_efficiency: 0.00746914  stability: -1.27273
+[2025-06-20 20:44:12,335 PID:3447 INFO __init__.py log_summary] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df] epi: 0  t: 320000  wall_t: 404  opt_step: 1560  frame: 320000  fps: 792.079  total_reward: 0  total_reward_ma: 41.4062  loss: -0.0402361  lr: 6.80512e-05  explore_var: nan  entropy_coef: 0.01392  entropy: 2.88847  grad_norm: nan
+[2025-06-20 20:44:12,556 PID:3447 INFO __init__.py log_metrics] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df metrics] final_return_ma: 41.4062  strength: -6.59375  max_strength: 77  final_strength: -48  sample_efficiency: 2.77331e-05  training_efficiency: 0.00591582  stability: -1.60736
+[2025-06-20 20:44:17,828 PID:3447 INFO logger.py info] Running eval ckpt
+[2025-06-20 20:44:20,630 PID:3447 INFO __init__.py log_summary] Trial 0 session 2 reinforce_kangaroo_t0_s2 [eval_df] epi: 0  t: 0  wall_t: 410  opt_step: 1585  frame: 325000  fps: 792.683  total_reward: 0  total_reward_ma: 42.8571  loss: -0.0399578  lr: 6.75392e-05  explore_var: nan  entropy_coef: 0.013825  entropy: 2.88867  grad_norm: nan
+[2025-06-20 20:44:20,672 PID:3447 INFO __init__.py log_metrics] Trial 0 session 2 reinforce_kangaroo_t0_s2 [eval_df metrics] final_return_ma: 42.8571  strength: -5.14286  max_strength: 152  final_strength: -48  sample_efficiency: -3.81621e-07  training_efficiency: -0.000117496  stability: -24
+[2025-06-20 20:44:25,612 PID:3447 INFO __init__.py log_summary] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df] epi: 0  t: 330000  wall_t: 417  opt_step: 1610  frame: 330000  fps: 791.367  total_reward: 50  total_reward_ma: 41.6667  loss: -0.0396769  lr: 6.70272e-05  explore_var: nan  entropy_coef: 0.01373  entropy: 2.88868  grad_norm: nan
+[2025-06-20 20:44:25,811 PID:3447 INFO __init__.py log_metrics] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df metrics] final_return_ma: 41.6667  strength: -6.33333  max_strength: 77  final_strength: 2  sample_efficiency: 2.79695e-05  training_efficiency: 0.00596649  stability: -1.01422
+[2025-06-20 20:44:36,611 PID:3447 INFO __init__.py log_summary] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df] epi: 0  t: 340000  wall_t: 428  opt_step: 1660  frame: 340000  fps: 794.393  total_reward: 50  total_reward_ma: 41.9118  loss: -0.0391161  lr: 6.60032e-05  explore_var: nan  entropy_coef: 0.01354  entropy: 2.88877  grad_norm: nan
+[2025-06-20 20:44:36,801 PID:3447 INFO __init__.py log_metrics] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df metrics] final_return_ma: 41.9118  strength: -6.08824  max_strength: 77  final_strength: 2  sample_efficiency: 2.82114e-05  training_efficiency: 0.00601832  stability: -1.03349
+[2025-06-20 20:44:47,428 PID:3447 INFO __init__.py log_summary] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df] epi: 0  t: 350000  wall_t: 439  opt_step: 1705  frame: 350000  fps: 797.267  total_reward: 0  total_reward_ma: 40.7143  loss: -0.0386085  lr: 6.50816e-05  explore_var: nan  entropy_coef: 0.01335  entropy: 2.88864  grad_norm: nan
+[2025-06-20 20:44:47,621 PID:3447 INFO __init__.py log_metrics] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df metrics] final_return_ma: 40.7143  strength: -7.28571  max_strength: 77  final_strength: -48  sample_efficiency: 2.34388e-05  training_efficiency: 0.00499586  stability: -1.29469
+[2025-06-20 20:44:47,622 PID:3447 INFO logger.py info] Running eval ckpt
+[2025-06-20 20:44:50,164 PID:3447 INFO __init__.py log_summary] Trial 0 session 2 reinforce_kangaroo_t0_s2 [eval_df] epi: 0  t: 0  wall_t: 439  opt_step: 1705  frame: 350000  fps: 797.267  total_reward: 0  total_reward_ma: 40  loss: -0.0386085  lr: 6.50816e-05  explore_var: nan  entropy_coef: 0.01335  entropy: 2.88864  grad_norm: nan
+[2025-06-20 20:44:50,200 PID:3447 INFO __init__.py log_metrics] Trial 0 session 2 reinforce_kangaroo_t0_s2 [eval_df metrics] final_return_ma: 40  strength: -8  max_strength: 152  final_strength: -48  sample_efficiency: 9.13884e-07  training_efficiency: 0.000164106  stability: -7.33333
+[2025-06-20 20:45:00,341 PID:3447 INFO __init__.py log_summary] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df] epi: 0  t: 360000  wall_t: 452  opt_step: 1755  frame: 360000  fps: 796.46  total_reward: 75  total_reward_ma: 41.6667  loss: -0.0380498  lr: 6.40576e-05  explore_var: nan  entropy_coef: 0.01316  entropy: 2.88889  grad_norm: nan
+[2025-06-20 20:45:00,591 PID:3447 INFO __init__.py log_metrics] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df metrics] final_return_ma: 41.6667  strength: -6.33333  max_strength: 77  final_strength: 27  sample_efficiency: 2.58855e-05  training_efficiency: 0.00552  stability: -0.862745
+[2025-06-20 20:45:11,640 PID:3447 INFO __init__.py log_summary] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df] epi: 0  t: 370000  wall_t: 463  opt_step: 1805  frame: 370000  fps: 799.136  total_reward: 25  total_reward_ma: 41.2162  loss: -0.0374849  lr: 6.30336e-05  explore_var: nan  entropy_coef: 0.01297  entropy: 2.88867  grad_norm: nan
+[2025-06-20 20:45:11,825 PID:3447 INFO __init__.py log_metrics] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df metrics] final_return_ma: 41.2162  strength: -6.78378  max_strength: 77  final_strength: -23  sample_efficiency: 2.37612e-05  training_efficiency: 0.00506495  stability: -1.30263
+[2025-06-20 20:45:17,342 PID:3447 INFO logger.py info] Running eval ckpt
+[2025-06-20 20:45:20,179 PID:3447 INFO __init__.py log_summary] Trial 0 session 2 reinforce_kangaroo_t0_s2 [eval_df] epi: 0  t: 0  wall_t: 469  opt_step: 1830  frame: 375000  fps: 799.574  total_reward: 0  total_reward_ma: 37.5  loss: -0.0373812  lr: 6.25216e-05  explore_var: nan  entropy_coef: 0.012875  entropy: 2.88901  grad_norm: nan
+[2025-06-20 20:45:20,207 PID:3447 INFO __init__.py log_metrics] Trial 0 session 2 reinforce_kangaroo_t0_s2 [eval_df metrics] final_return_ma: 37.5  strength: -10.5  max_strength: 152  final_strength: -48  sample_efficiency: 1.41468e-06  training_efficiency: 0.000273347  stability: -4
+[2025-06-20 20:45:25,716 PID:3447 INFO __init__.py log_summary] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df] epi: 0  t: 380000  wall_t: 478  opt_step: 1855  frame: 380000  fps: 794.979  total_reward: 50  total_reward_ma: 41.4474  loss: -0.0369289  lr: 6.20096e-05  explore_var: nan  entropy_coef: 0.01278  entropy: 2.88914  grad_norm: nan
+[2025-06-20 20:45:25,917 PID:3447 INFO __init__.py log_metrics] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df metrics] final_return_ma: 41.4474  strength: -6.55263  max_strength: 77  final_strength: 2  sample_efficiency: 2.39309e-05  training_efficiency: 0.0051013  stability: -1.09163
+[2025-06-20 20:45:36,254 PID:3447 INFO __init__.py log_summary] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df] epi: 0  t: 390000  wall_t: 488  opt_step: 1900  frame: 390000  fps: 799.18  total_reward: 50  total_reward_ma: 41.6667  loss: -0.0364277  lr: 6.1088e-05  explore_var: nan  entropy_coef: 0.01259  entropy: 2.88951  grad_norm: nan
+[2025-06-20 20:45:36,475 PID:3447 INFO __init__.py log_metrics] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df metrics] final_return_ma: 41.6667  strength: -6.33333  max_strength: 77  final_strength: 2  sample_efficiency: 2.41039e-05  training_efficiency: 0.00513835  stability: -1.10843
+[2025-06-20 20:45:47,395 PID:3447 INFO __init__.py log_summary] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df] epi: 0  t: 400000  wall_t: 499  opt_step: 1950  frame: 400000  fps: 801.603  total_reward: 25  total_reward_ma: 41.25  loss: -0.0358669  lr: 6.0064e-05  explore_var: nan  entropy_coef: 0.0124  entropy: 2.88962  grad_norm: nan
+[2025-06-20 20:45:47,612 PID:3447 INFO __init__.py log_metrics] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df metrics] final_return_ma: 41.25  strength: -6.75  max_strength: 77  final_strength: -23  sample_efficiency: 2.22636e-05  training_efficiency: 0.00474432  stability: -1.22672
+[2025-06-20 20:45:47,613 PID:3447 INFO logger.py info] Running eval ckpt
+[2025-06-20 20:45:50,511 PID:3447 INFO __init__.py log_summary] Trial 0 session 2 reinforce_kangaroo_t0_s2 [eval_df] epi: 0  t: 0  wall_t: 499  opt_step: 1950  frame: 400000  fps: 801.603  total_reward: 200  total_reward_ma: 47.0588  loss: -0.0358669  lr: 6.0064e-05  explore_var: nan  entropy_coef: 0.0124  entropy: 2.88962  grad_norm: nan
+[2025-06-20 20:45:50,545 PID:3447 INFO __init__.py log_metrics] Trial 0 session 2 reinforce_kangaroo_t0_s2 [eval_df metrics] final_return_ma: 47.0588  strength: -0.941176  max_strength: 152  final_strength: 152  sample_efficiency: -8.89586e-06  training_efficiency: -0.00200165  stability: -2.57143
+[2025-06-20 20:46:00,618 PID:3447 INFO __init__.py log_summary] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df] epi: 0  t: 410000  wall_t: 512  opt_step: 2000  frame: 410000  fps: 800.781  total_reward: 50  total_reward_ma: 41.4634  loss: -0.0354738  lr: 5.904e-05  explore_var: nan  entropy_coef: 0.01221  entropy: 2.8893  grad_norm: nan
+[2025-06-20 20:46:00,851 PID:3447 INFO __init__.py log_metrics] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df metrics] final_return_ma: 41.4634  strength: -6.53659  max_strength: 77  final_strength: 2  sample_efficiency: 2.24115e-05  training_efficiency: 0.00477599  stability: -1.03704
+[2025-06-20 20:46:11,584 PID:3447 INFO __init__.py log_summary] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df] epi: 0  t: 420000  wall_t: 523  opt_step: 2050  frame: 420000  fps: 803.059  total_reward: 0  total_reward_ma: 40.4762  loss: -0.0347331  lr: 5.8016e-05  explore_var: nan  entropy_coef: 0.01202  entropy: 2.88884  grad_norm: nan
+[2025-06-20 20:46:11,868 PID:3447 INFO __init__.py log_metrics] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df metrics] final_return_ma: 40.4762  strength: -7.52381  max_strength: 77  final_strength: -48  sample_efficiency: 1.93689e-05  training_efficiency: 0.00412462  stability: -1.23881
+[2025-06-20 20:46:17,201 PID:3447 INFO logger.py info] Running eval ckpt
+[2025-06-20 20:46:19,907 PID:3447 INFO __init__.py log_summary] Trial 0 session 2 reinforce_kangaroo_t0_s2 [eval_df] epi: 0  t: 0  wall_t: 529  opt_step: 2075  frame: 425000  fps: 803.403  total_reward: 0  total_reward_ma: 44.4444  loss: -0.0337662  lr: 5.7504e-05  explore_var: nan  entropy_coef: 0.011925  entropy: 2.88874  grad_norm: nan
+[2025-06-20 20:46:19,942 PID:3447 INFO __init__.py log_metrics] Trial 0 session 2 reinforce_kangaroo_t0_s2 [eval_df metrics] final_return_ma: 44.4444  strength: -3.55556  max_strength: 152  final_strength: -48  sample_efficiency: -4.5926e-07  training_efficiency: -0.000138967  stability: -49
+[2025-06-20 20:46:25,014 PID:3447 INFO __init__.py log_summary] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df] epi: 0  t: 430000  wall_t: 537  opt_step: 2095  frame: 430000  fps: 800.745  total_reward: 75  total_reward_ma: 41.2791  loss: -0.034226  lr: 5.70944e-05  explore_var: nan  entropy_coef: 0.01183  entropy: 2.88874  grad_norm: nan
+[2025-06-20 20:46:25,205 PID:3447 INFO __init__.py log_metrics] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df metrics] final_return_ma: 41.2791  strength: -6.72093  max_strength: 77  final_strength: 27  sample_efficiency: 2.09612e-05  training_efficiency: 0.00446537  stability: -0.898734
+[2025-06-20 20:46:35,369 PID:3447 INFO __init__.py log_summary] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df] epi: 0  t: 440000  wall_t: 547  opt_step: 2145  frame: 440000  fps: 804.388  total_reward: 0  total_reward_ma: 40.3409  loss: -0.0336585  lr: 5.60704e-05  explore_var: nan  entropy_coef: 0.01164  entropy: 2.88827  grad_norm: nan
+[2025-06-20 20:46:35,536 PID:3447 INFO __init__.py log_metrics] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df metrics] final_return_ma: 40.3409  strength: -7.65909  max_strength: 77  final_strength: -48  sample_efficiency: 1.82993e-05  training_efficiency: 0.00389576  stability: -1.33564
+[2025-06-20 20:46:46,502 PID:3447 INFO __init__.py log_summary] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df] epi: 0  t: 450000  wall_t: 558  opt_step: 2195  frame: 450000  fps: 806.452  total_reward: 75  total_reward_ma: 41.1111  loss: -0.0331012  lr: 5.50464e-05  explore_var: nan  entropy_coef: 0.01145  entropy: 2.88867  grad_norm: nan
+[2025-06-20 20:46:46,677 PID:3447 INFO __init__.py log_metrics] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df metrics] final_return_ma: 41.1111  strength: -6.88889  max_strength: 77  final_strength: 27  sample_efficiency: 1.96996e-05  training_efficiency: 0.00419539  stability: -1.00297
+[2025-06-20 20:46:46,677 PID:3447 INFO logger.py info] Running eval ckpt
+[2025-06-20 20:46:49,203 PID:3447 INFO __init__.py log_summary] Trial 0 session 2 reinforce_kangaroo_t0_s2 [eval_df] epi: 0  t: 0  wall_t: 558  opt_step: 2195  frame: 450000  fps: 806.452  total_reward: 0  total_reward_ma: 42.1053  loss: -0.0331012  lr: 5.50464e-05  explore_var: nan  entropy_coef: 0.01145  entropy: 2.88867  grad_norm: nan
+[2025-06-20 20:46:49,239 PID:3447 INFO __init__.py log_metrics] Trial 0 session 2 reinforce_kangaroo_t0_s2 [eval_df metrics] final_return_ma: 42.1053  strength: -5.89474  max_strength: 152  final_strength: -48  sample_efficiency: 6.89947e-07  training_efficiency: 0.000115839  stability: -11.5
+[2025-06-20 20:47:00,435 PID:3447 INFO __init__.py log_summary] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df] epi: 0  t: 460000  wall_t: 572  opt_step: 2245  frame: 460000  fps: 804.196  total_reward: 100  total_reward_ma: 42.3913  loss: -0.0325391  lr: 5.40224e-05  explore_var: nan  entropy_coef: 0.01126  entropy: 2.88866  grad_norm: nan
+[2025-06-20 20:47:00,642 PID:3447 INFO __init__.py log_metrics] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df metrics] final_return_ma: 42.3913  strength: -5.6087  max_strength: 77  final_strength: 52  sample_efficiency: 2.32319e-05  training_efficiency: 0.00495119  stability: -1.17742
+[2025-06-20 20:47:10,406 PID:3447 INFO __init__.py log_summary] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df] epi: 0  t: 470000  wall_t: 582  opt_step: 2290  frame: 470000  fps: 807.56  total_reward: 50  total_reward_ma: 42.5532  loss: -0.0320294  lr: 5.31008e-05  explore_var: nan  entropy_coef: 0.01107  entropy: 2.88832  grad_norm: nan
+[2025-06-20 20:47:10,597 PID:3447 INFO __init__.py log_metrics] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df metrics] final_return_ma: 42.5532  strength: -5.44681  max_strength: 77  final_strength: 2  sample_efficiency: 2.33968e-05  training_efficiency: 0.00498646  stability: -1.81008
+[2025-06-20 20:47:16,084 PID:3447 INFO logger.py info] Running eval ckpt
+[2025-06-20 20:47:19,252 PID:3447 INFO __init__.py log_summary] Trial 0 session 2 reinforce_kangaroo_t0_s2 [eval_df] epi: 0  t: 0  wall_t: 588  opt_step: 2315  frame: 475000  fps: 807.823  total_reward: 0  total_reward_ma: 40  loss: -0.0314116  lr: 5.25888e-05  explore_var: nan  entropy_coef: 0.010975  entropy: 2.88823  grad_norm: nan
+[2025-06-20 20:47:19,286 PID:3447 INFO __init__.py log_metrics] Trial 0 session 2 reinforce_kangaroo_t0_s2 [eval_df metrics] final_return_ma: 40  strength: -8  max_strength: 152  final_strength: -48  sample_efficiency: 1.11454e-06  training_efficiency: 0.000210677  stability: -6.14286
+[2025-06-20 20:47:24,648 PID:3447 INFO __init__.py log_summary] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df] epi: 0  t: 480000  wall_t: 596  opt_step: 2340  frame: 480000  fps: 805.369  total_reward: 100  total_reward_ma: 43.75  loss: -0.0313168  lr: 5.20768e-05  explore_var: nan  entropy_coef: 0.01088  entropy: 2.88851  grad_norm: nan
+[2025-06-20 20:47:25,048 PID:3447 INFO __init__.py log_metrics] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df metrics] final_return_ma: 43.75  strength: -4.25  max_strength: 77  final_strength: 52  sample_efficiency: 2.88296e-05  training_efficiency: 0.00614859  stability: -1.83203
+[2025-06-20 20:47:35,230 PID:3447 INFO __init__.py log_summary] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df] epi: 0  t: 490000  wall_t: 607  opt_step: 2390  frame: 490000  fps: 807.249  total_reward: 0  total_reward_ma: 42.8571  loss: -0.0309109  lr: 5.10528e-05  explore_var: nan  entropy_coef: 0.01069  entropy: 2.88882  grad_norm: nan
+[2025-06-20 20:47:35,462 PID:3447 INFO __init__.py log_metrics] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df metrics] final_return_ma: 42.8571  strength: -5.14286  max_strength: 77  final_strength: -48  sample_efficiency: 2.3727e-05  training_efficiency: 0.00505713  stability: -3.04412
+[2025-06-20 20:47:45,924 PID:3447 INFO __init__.py log_summary] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df] epi: 0  t: 500000  wall_t: 618  opt_step: 2440  frame: 500000  fps: 809.061  total_reward: 0  total_reward_ma: 42  loss: -0.0303514  lr: 5.00288e-05  explore_var: nan  entropy_coef: 0.0105  entropy: 2.88907  grad_norm: nan
+[2025-06-20 20:47:46,151 PID:3447 INFO __init__.py log_metrics] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df metrics] final_return_ma: 42  strength: -6  max_strength: 77  final_strength: -48  sample_efficiency: 2.02507e-05  training_efficiency: 0.00431356  stability: -2.27381
+[2025-06-20 20:47:46,152 PID:3447 INFO logger.py info] Running eval ckpt
+[2025-06-20 20:47:48,130 PID:3447 INFO __init__.py log_summary] Trial 0 session 2 reinforce_kangaroo_t0_s2 [eval_df] epi: 0  t: 0  wall_t: 618  opt_step: 2440  frame: 500000  fps: 809.061  total_reward: 0  total_reward_ma: 38.0952  loss: -0.0303514  lr: 5.00288e-05  explore_var: nan  entropy_coef: 0.0105  entropy: 2.88907  grad_norm: nan
+[2025-06-20 20:47:48,168 PID:3447 INFO __init__.py log_metrics] Trial 0 session 2 reinforce_kangaroo_t0_s2 [eval_df metrics] final_return_ma: 38.0952  strength: -9.90476  max_strength: 152  final_strength: -48  sample_efficiency: 1.31888e-06  training_efficiency: 0.000256637  stability: -4
+[2025-06-20 20:47:58,957 PID:3447 INFO __init__.py log_summary] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df] epi: 0  t: 510000  wall_t: 631  opt_step: 2490  frame: 510000  fps: 808.241  total_reward: 25  total_reward_ma: 41.6667  loss: -0.0297915  lr: 4.90048e-05  explore_var: nan  entropy_coef: 0.01031  entropy: 2.88928  grad_norm: nan
+[2025-06-20 20:47:59,163 PID:3447 INFO __init__.py log_metrics] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df metrics] final_return_ma: 41.6667  strength: -6.33333  max_strength: 77  final_strength: -23  sample_efficiency: 1.89483e-05  training_efficiency: 0.004035  stability: -1.75
+[2025-06-20 20:48:09,344 PID:3447 INFO __init__.py log_summary] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df] epi: 0  t: 520000  wall_t: 641  opt_step: 2535  frame: 520000  fps: 811.232  total_reward: 0  total_reward_ma: 40.8654  loss: -0.0292855  lr: 4.80832e-05  explore_var: nan  entropy_coef: 0.01012  entropy: 2.88927  grad_norm: nan
+[2025-06-20 20:48:09,539 PID:3447 INFO __init__.py log_metrics] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df metrics] final_return_ma: 40.8654  strength: -7.13462  max_strength: 77  final_strength: -48  sample_efficiency: 1.67456e-05  training_efficiency: 0.00356399  stability: -1.63158
+[2025-06-20 20:48:15,006 PID:3447 INFO logger.py info] Running eval ckpt
+[2025-06-20 20:48:16,616 PID:3447 INFO __init__.py log_summary] Trial 0 session 2 reinforce_kangaroo_t0_s2 [eval_df] epi: 0  t: 0  wall_t: 647  opt_step: 2560  frame: 525000  fps: 811.437  total_reward: 0  total_reward_ma: 36.3636  loss: -0.0286947  lr: 4.75712e-05  explore_var: nan  entropy_coef: 0.010025  entropy: 2.88919  grad_norm: nan
+[2025-06-20 20:48:16,649 PID:3447 INFO __init__.py log_metrics] Trial 0 session 2 reinforce_kangaroo_t0_s2 [eval_df metrics] final_return_ma: 36.3636  strength: -11.6364  max_strength: 152  final_strength: -48  sample_efficiency: 1.42873e-06  training_efficiency: 0.00028176  stability: -2.84615
+[2025-06-20 20:48:21,937 PID:3447 INFO __init__.py log_summary] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df] epi: 0  t: 530000  wall_t: 654  opt_step: 2585  frame: 530000  fps: 810.398  total_reward: 100  total_reward_ma: 41.9811  loss: -0.0287242  lr: 4.70592e-05  explore_var: nan  entropy_coef: 0.00993  entropy: 2.88935  grad_norm: nan
+[2025-06-20 20:48:22,138 PID:3447 INFO __init__.py log_metrics] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df metrics] final_return_ma: 41.9811  strength: -6.01887  max_strength: 77  final_strength: 52  sample_efficiency: 1.91677e-05  training_efficiency: 0.00408189  stability: -1.29111
+[2025-06-20 20:48:33,055 PID:3447 INFO __init__.py log_summary] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df] epi: 0  t: 540000  wall_t: 665  opt_step: 2635  frame: 540000  fps: 812.03  total_reward: 25  total_reward_ma: 41.6667  loss: -0.0281648  lr: 4.60352e-05  explore_var: nan  entropy_coef: 0.00974  entropy: 2.88963  grad_norm: nan
+[2025-06-20 20:48:33,256 PID:3447 INFO __init__.py log_metrics] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df metrics] final_return_ma: 41.6667  strength: -6.33333  max_strength: 77  final_strength: -23  sample_efficiency: 1.80032e-05  training_efficiency: 0.0038329  stability: -1.89969
+[2025-06-20 20:48:43,179 PID:3447 INFO __init__.py log_summary] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df] epi: 0  t: 550000  wall_t: 675  opt_step: 2685  frame: 550000  fps: 814.815  total_reward: 25  total_reward_ma: 41.3636  loss: -0.0276034  lr: 4.50112e-05  explore_var: nan  entropy_coef: 0.00955  entropy: 2.88971  grad_norm: nan
+[2025-06-20 20:48:43,370 PID:3447 INFO __init__.py log_metrics] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df metrics] final_return_ma: 41.3636  strength: -6.63636  max_strength: 77  final_strength: -23  sample_efficiency: 1.69833e-05  training_efficiency: 0.00361484  stability: -1.70468
+[2025-06-20 20:48:43,372 PID:3447 INFO logger.py info] Running eval ckpt
+[2025-06-20 20:48:45,596 PID:3447 INFO __init__.py log_summary] Trial 0 session 2 reinforce_kangaroo_t0_s2 [eval_df] epi: 0  t: 0  wall_t: 675  opt_step: 2685  frame: 550000  fps: 814.815  total_reward: 0  total_reward_ma: 34.7826  loss: -0.0276034  lr: 4.50112e-05  explore_var: nan  entropy_coef: 0.00955  entropy: 2.88971  grad_norm: nan
+[2025-06-20 20:48:45,629 PID:3447 INFO __init__.py log_metrics] Trial 0 session 2 reinforce_kangaroo_t0_s2 [eval_df metrics] final_return_ma: 34.7826  strength: -13.2174  max_strength: 152  final_strength: -48  sample_efficiency: 1.49022e-06  training_efficiency: 0.000296077  stability: -2.125
+[2025-06-20 20:48:56,269 PID:3447 INFO __init__.py log_summary] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df] epi: 0  t: 560000  wall_t: 688  opt_step: 2730  frame: 560000  fps: 813.953  total_reward: 100  total_reward_ma: 42.4107  loss: -0.0267819  lr: 4.40896e-05  explore_var: nan  entropy_coef: 0.00936  entropy: 2.88972  grad_norm: nan
+[2025-06-20 20:48:56,476 PID:3447 INFO __init__.py log_metrics] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df metrics] final_return_ma: 42.4107  strength: -5.58929  max_strength: 77  final_strength: 52  sample_efficiency: 1.95081e-05  training_efficiency: 0.00415454  stability: -1.53425
+[2025-06-20 20:49:07,485 PID:3447 INFO __init__.py log_summary] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df] epi: 0  t: 570000  wall_t: 699  opt_step: 2780  frame: 570000  fps: 815.451  total_reward: 75  total_reward_ma: 42.9825  loss: -0.0265366  lr: 4.30656e-05  explore_var: nan  entropy_coef: 0.00917  entropy: 2.88988  grad_norm: nan
+[2025-06-20 20:49:07,740 PID:3447 INFO __init__.py log_metrics] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df metrics] final_return_ma: 42.9825  strength: -5.01754  max_strength: 77  final_strength: 27  sample_efficiency: 2.11842e-05  training_efficiency: 0.00451279  stability: -2.03514
+[2025-06-20 20:49:12,289 PID:3447 INFO logger.py info] Running eval ckpt
+[2025-06-20 20:49:14,001 PID:3447 INFO __init__.py log_summary] Trial 0 session 2 reinforce_kangaroo_t0_s2 [eval_df] epi: 0  t: 0  wall_t: 704  opt_step: 2805  frame: 575000  fps: 816.761  total_reward: 0  total_reward_ma: 33.3333  loss: -0.0262561  lr: 4.25536e-05  explore_var: nan  entropy_coef: 0.009075  entropy: 2.88994  grad_norm: nan
+[2025-06-20 20:49:14,035 PID:3447 INFO __init__.py log_metrics] Trial 0 session 2 reinforce_kangaroo_t0_s2 [eval_df metrics] final_return_ma: 33.3333  strength: -14.6667  max_strength: 152  final_strength: -48  sample_efficiency: 1.52417e-06  training_efficiency: 0.000304318  stability: -1.63158
+[2025-06-20 20:49:19,429 PID:3447 INFO __init__.py log_summary] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df] epi: 0  t: 580000  wall_t: 711  opt_step: 2830  frame: 580000  fps: 815.752  total_reward: 25  total_reward_ma: 42.6724  loss: -0.0259756  lr: 4.20416e-05  explore_var: nan  entropy_coef: 0.00898  entropy: 2.89001  grad_norm: nan
+[2025-06-20 20:49:19,654 PID:3447 INFO __init__.py log_metrics] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df metrics] final_return_ma: 42.6724  strength: -5.32759  max_strength: 77  final_strength: -23  sample_efficiency: 1.97357e-05  training_efficiency: 0.00420319  stability: -2.4965
+[2025-06-20 20:49:30,411 PID:3447 INFO __init__.py log_summary] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df] epi: 0  t: 590000  wall_t: 722  opt_step: 2880  frame: 590000  fps: 817.174  total_reward: 75  total_reward_ma: 43.2203  loss: -0.0254137  lr: 4.10176e-05  explore_var: nan  entropy_coef: 0.00879  entropy: 2.89006  grad_norm: nan
+[2025-06-20 20:49:30,595 PID:3447 INFO __init__.py log_metrics] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df metrics] final_return_ma: 43.2203  strength: -4.77966  max_strength: 77  final_strength: 27  sample_efficiency: 2.1463e-05  training_efficiency: 0.00457238  stability: -2.23625
+[2025-06-20 20:49:41,174 PID:3447 INFO __init__.py log_summary] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df] epi: 0  t: 600000  wall_t: 733  opt_step: 2925  frame: 600000  fps: 818.554  total_reward: 50  total_reward_ma: 43.3333  loss: -0.0250251  lr: 4.0096e-05  explore_var: nan  entropy_coef: 0.0086  entropy: 2.89007  grad_norm: nan
+[2025-06-20 20:49:40,745 PID:3447 INFO __init__.py log_metrics] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df metrics] final_return_ma: 43.3333  strength: -4.66667  max_strength: 77  final_strength: 2  sample_efficiency: 2.16044e-05  training_efficiency: 0.0046026  stability: -2.63475
+[2025-06-20 20:49:40,746 PID:3447 INFO logger.py info] Running eval ckpt
+[2025-06-20 20:49:44,042 PID:3447 INFO __init__.py log_summary] Trial 0 session 2 reinforce_kangaroo_t0_s2 [eval_df] epi: 0  t: 0  wall_t: 733  opt_step: 2925  frame: 600000  fps: 818.554  total_reward: 200  total_reward_ma: 40  loss: -0.0250251  lr: 4.0096e-05  explore_var: nan  entropy_coef: 0.0086  entropy: 2.89007  grad_norm: nan
+[2025-06-20 20:49:44,083 PID:3447 INFO __init__.py log_metrics] Trial 0 session 2 reinforce_kangaroo_t0_s2 [eval_df metrics] final_return_ma: 40  strength: -8  max_strength: 152  final_strength: 152  sample_efficiency: 1.41587e-06  training_efficiency: 0.00027577  stability: -1.27273
+[2025-06-20 20:49:54,739 PID:3447 INFO __init__.py log_summary] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df] epi: 0  t: 610000  wall_t: 747  opt_step: 2975  frame: 610000  fps: 816.6  total_reward: 0  total_reward_ma: 42.623  loss: -0.0243453  lr: 3.9072e-05  explore_var: nan  entropy_coef: 0.00841  entropy: 2.89005  grad_norm: nan
+[2025-06-20 20:49:54,961 PID:3447 INFO __init__.py log_metrics] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df metrics] final_return_ma: 42.623  strength: -5.37705  max_strength: 77  final_strength: -48  sample_efficiency: 1.86827e-05  training_efficiency: 0.00397824  stability: -2.83929
+[2025-06-20 20:50:05,977 PID:3447 INFO __init__.py log_summary] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df] epi: 0  t: 620000  wall_t: 758  opt_step: 3025  frame: 620000  fps: 817.942  total_reward: 50  total_reward_ma: 42.7419  loss: -0.0237827  lr: 3.8048e-05  explore_var: nan  entropy_coef: 0.00822  entropy: 2.89002  grad_norm: nan
+[2025-06-20 20:50:06,172 PID:3447 INFO __init__.py log_metrics] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df metrics] final_return_ma: 42.7419  strength: -5.25806  max_strength: 77  final_strength: 2  sample_efficiency: 1.87874e-05  training_efficiency: 0.00400061  stability: -2.27744
+[2025-06-20 20:50:11,403 PID:3447 INFO logger.py info] Running eval ckpt
+[2025-06-20 20:50:12,323 PID:3447 INFO __init__.py log_summary] Trial 0 session 2 reinforce_kangaroo_t0_s2 [eval_df] epi: 0  t: 0  wall_t: 763  opt_step: 3050  frame: 625000  fps: 819.135  total_reward: 0  total_reward_ma: 38.4615  loss: -0.0232471  lr: 3.7536e-05  explore_var: nan  entropy_coef: 0.008125  entropy: 2.89  grad_norm: nan
+[2025-06-20 20:50:12,358 PID:3447 INFO __init__.py log_metrics] Trial 0 session 2 reinforce_kangaroo_t0_s2 [eval_df metrics] final_return_ma: 38.4615  strength: -9.53846  max_strength: 152  final_strength: -48  sample_efficiency: 1.4515e-06  training_efficiency: 0.000285854  stability: -4
+[2025-06-20 20:50:17,533 PID:3447 INFO __init__.py log_summary] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df] epi: 0  t: 630000  wall_t: 769  opt_step: 3075  frame: 630000  fps: 819.246  total_reward: 50  total_reward_ma: 42.8571  loss: -0.0231703  lr: 3.7024e-05  explore_var: nan  entropy_coef: 0.00803  entropy: 2.88998  grad_norm: nan
+[2025-06-20 20:50:17,739 PID:3447 INFO __init__.py log_metrics] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df metrics] final_return_ma: 42.8571  strength: -5.14286  max_strength: 77  final_strength: 2  sample_efficiency: 1.88936e-05  training_efficiency: 0.0040233  stability: -2.29755
+[2025-06-20 20:50:28,690 PID:3447 INFO __init__.py log_summary] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df] epi: 0  t: 640000  wall_t: 780  opt_step: 3125  frame: 640000  fps: 820.513  total_reward: 50  total_reward_ma: 42.9688  loss: -0.0226578  lr: 3.6e-05  explore_var: nan  entropy_coef: 0.00784  entropy: 2.88997  grad_norm: nan
+[2025-06-20 20:50:28,880 PID:3447 INFO __init__.py log_metrics] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df metrics] final_return_ma: 42.9688  strength: -5.03125  max_strength: 77  final_strength: 2  sample_efficiency: 1.90012e-05  training_efficiency: 0.0040463  stability: -2.3179
+[2025-06-20 20:50:39,444 PID:3447 INFO __init__.py log_summary] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df] epi: 0  t: 650000  wall_t: 791  opt_step: 3170  frame: 650000  fps: 821.745  total_reward: 0  total_reward_ma: 42.3077  loss: -0.0221511  lr: 3.50784e-05  explore_var: nan  entropy_coef: 0.00765  entropy: 2.88989  grad_norm: nan
+[2025-06-20 20:50:39,635 PID:3447 INFO __init__.py log_metrics] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df metrics] final_return_ma: 42.3077  strength: -5.69231  max_strength: 77  final_strength: -48  sample_efficiency: 1.67358e-05  training_efficiency: 0.0035623  stability: -2.49379
+[2025-06-20 20:50:39,636 PID:3447 INFO logger.py info] Running eval ckpt
+[2025-06-20 20:50:41,555 PID:3447 INFO __init__.py log_summary] Trial 0 session 2 reinforce_kangaroo_t0_s2 [eval_df] epi: 0  t: 0  wall_t: 791  opt_step: 3170  frame: 650000  fps: 821.745  total_reward: 0  total_reward_ma: 37.037  loss: -0.0221511  lr: 3.50784e-05  explore_var: nan  entropy_coef: 0.00765  entropy: 2.88989  grad_norm: nan
+[2025-06-20 20:50:41,588 PID:3447 INFO __init__.py log_metrics] Trial 0 session 2 reinforce_kangaroo_t0_s2 [eval_df metrics] final_return_ma: 37.037  strength: -10.963  max_strength: 152  final_strength: -48  sample_efficiency: 1.46561e-06  training_efficiency: 0.000290654  stability: -3.03226
+[2025-06-20 20:50:51,999 PID:3447 INFO __init__.py log_summary] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df] epi: 0  t: 660000  wall_t: 804  opt_step: 3220  frame: 660000  fps: 820.896  total_reward: 75  total_reward_ma: 42.803  loss: -0.0215888  lr: 3.40544e-05  explore_var: nan  entropy_coef: 0.00746  entropy: 2.88987  grad_norm: nan
+[2025-06-20 20:50:52,222 PID:3447 INFO __init__.py log_metrics] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df metrics] final_return_ma: 42.803  strength: -5.19697  max_strength: 77  final_strength: 27  sample_efficiency: 1.79339e-05  training_efficiency: 0.00381827  stability: -2.04054
+[2025-06-20 20:51:03,830 PID:3447 INFO __init__.py log_summary] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df] epi: 0  t: 670000  wall_t: 816  opt_step: 3270  frame: 670000  fps: 821.078  total_reward: 0  total_reward_ma: 42.1642  loss: -0.0210262  lr: 3.30304e-05  explore_var: nan  entropy_coef: 0.00727  entropy: 2.88983  grad_norm: nan
+[2025-06-20 20:51:04,019 PID:3447 INFO __init__.py log_metrics] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df metrics] final_return_ma: 42.1642  strength: -5.83582  max_strength: 77  final_strength: -48  sample_efficiency: 1.59155e-05  training_efficiency: 0.00338707  stability: -2.49854
+[2025-06-20 20:51:09,666 PID:3447 INFO logger.py info] Running eval ckpt
+[2025-06-20 20:51:11,918 PID:3447 INFO __init__.py log_summary] Trial 0 session 2 reinforce_kangaroo_t0_s2 [eval_df] epi: 0  t: 0  wall_t: 821  opt_step: 3295  frame: 675000  fps: 822.168  total_reward: 0  total_reward_ma: 35.7143  loss: -0.020745  lr: 3.25184e-05  explore_var: nan  entropy_coef: 0.007175  entropy: 2.88982  grad_norm: nan
+[2025-06-20 20:51:11,964 PID:3447 INFO __init__.py log_metrics] Trial 0 session 2 reinforce_kangaroo_t0_s2 [eval_df metrics] final_return_ma: 35.7143  strength: -12.2857  max_strength: 152  final_strength: -48  sample_efficiency: 1.46782e-06  training_efficiency: 0.000292445  stability: -2.37838
+[2025-06-20 20:51:16,785 PID:3447 INFO __init__.py log_summary] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df] epi: 0  t: 680000  wall_t: 829  opt_step: 3320  frame: 680000  fps: 820.265  total_reward: 50  total_reward_ma: 42.2794  loss: -0.0204639  lr: 3.20064e-05  explore_var: nan  entropy_coef: 0.00708  entropy: 2.88982  grad_norm: nan
+[2025-06-20 20:51:16,983 PID:3447 INFO __init__.py log_metrics] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df metrics] final_return_ma: 42.2794  strength: -5.72059  max_strength: 77  final_strength: 2  sample_efficiency: 1.59898e-05  training_efficiency: 0.00340294  stability: -2.06905
+[2025-06-20 20:51:27,565 PID:3447 INFO __init__.py log_summary] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df] epi: 0  t: 690000  wall_t: 839  opt_step: 3365  frame: 690000  fps: 822.408  total_reward: 50  total_reward_ma: 42.3913  loss: -0.020003  lr: 3.10848e-05  explore_var: nan  entropy_coef: 0.00689  entropy: 2.88968  grad_norm: nan
+[2025-06-20 20:51:27,785 PID:3447 INFO __init__.py log_metrics] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df metrics] final_return_ma: 42.3913  strength: -5.6087  max_strength: 77  final_strength: 2  sample_efficiency: 1.6065e-05  training_efficiency: 0.00341899  stability: -2.08483
+[2025-06-20 20:51:39,094 PID:3447 INFO __init__.py log_summary] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df] epi: 0  t: 700000  wall_t: 851  opt_step: 3415  frame: 700000  fps: 822.562  total_reward: 25  total_reward_ma: 42.1429  loss: -0.0192877  lr: 3.00608e-05  explore_var: nan  entropy_coef: 0.0067  entropy: 2.88972  grad_norm: nan
+[2025-06-20 20:51:39,298 PID:3447 INFO __init__.py log_metrics] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df metrics] final_return_ma: 42.1429  strength: -5.85714  max_strength: 77  final_strength: -23  sample_efficiency: 1.52439e-05  training_efficiency: 0.00324362  stability: -2.16537
+[2025-06-20 20:51:39,299 PID:3447 INFO logger.py info] Running eval ckpt
+[2025-06-20 20:51:42,566 PID:3447 INFO __init__.py log_summary] Trial 0 session 2 reinforce_kangaroo_t0_s2 [eval_df] epi: 0  t: 0  wall_t: 851  opt_step: 3415  frame: 700000  fps: 822.562  total_reward: 0  total_reward_ma: 34.4828  loss: -0.0192877  lr: 3.00608e-05  explore_var: nan  entropy_coef: 0.0067  entropy: 2.88972  grad_norm: nan
+[2025-06-20 20:51:42,601 PID:3447 INFO __init__.py log_metrics] Trial 0 session 2 reinforce_kangaroo_t0_s2 [eval_df metrics] final_return_ma: 34.4828  strength: -13.5172  max_strength: 152  final_strength: -48  sample_efficiency: 1.46301e-06  training_efficiency: 0.000292492  stability: -1.90698
+[2025-06-20 20:51:52,962 PID:3447 INFO __init__.py log_summary] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df] epi: 0  t: 710000  wall_t: 865  opt_step: 3465  frame: 710000  fps: 820.809  total_reward: 75  total_reward_ma: 42.6056  loss: -0.0188332  lr: 2.90368e-05  explore_var: nan  entropy_coef: 0.00651  entropy: 2.88979  grad_norm: nan
+[2025-06-20 20:51:53,200 PID:3447 INFO __init__.py log_metrics] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df metrics] final_return_ma: 42.6056  strength: -5.39437  max_strength: 77  final_strength: 27  sample_efficiency: 1.62192e-05  training_efficiency: 0.00345194  stability: -1.9878
+[2025-06-20 20:52:04,573 PID:3447 INFO __init__.py log_summary] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df] epi: 0  t: 720000  wall_t: 876  opt_step: 3515  frame: 720000  fps: 821.918  total_reward: 0  total_reward_ma: 42.0139  loss: -0.0185663  lr: 2.80128e-05  explore_var: nan  entropy_coef: 0.00632  entropy: 2.88975  grad_norm: nan
+[2025-06-20 20:52:04,789 PID:3447 INFO __init__.py log_metrics] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df metrics] final_return_ma: 42.0139  strength: -5.98611  max_strength: 77  final_strength: -48  sample_efficiency: 1.45676e-05  training_efficiency: 0.00309918  stability: -2.39426
+[2025-06-20 20:52:10,088 PID:3447 INFO logger.py info] Running eval ckpt
+[2025-06-20 20:52:12,410 PID:3447 INFO __init__.py log_summary] Trial 0 session 2 reinforce_kangaroo_t0_s2 [eval_df] epi: 0  t: 0  wall_t: 882  opt_step: 3540  frame: 725000  fps: 821.995  total_reward: 200  total_reward_ma: 40  loss: -0.0179894  lr: 2.75008e-05  explore_var: nan  entropy_coef: 0.006225  entropy: 2.88973  grad_norm: nan
+[2025-06-20 20:52:12,441 PID:3447 INFO __init__.py log_metrics] Trial 0 session 2 reinforce_kangaroo_t0_s2 [eval_df metrics] final_return_ma: 40  strength: -8  max_strength: 152  final_strength: 152  sample_efficiency: 1.51603e-06  training_efficiency: 0.000298829  stability: -1.55102
+[2025-06-20 20:52:17,508 PID:3447 INFO __init__.py log_summary] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df] epi: 0  t: 730000  wall_t: 889  opt_step: 3560  frame: 730000  fps: 821.147  total_reward: 25  total_reward_ma: 41.7808  loss: -0.0178315  lr: 2.70912e-05  explore_var: nan  entropy_coef: 0.00613  entropy: 2.88972  grad_norm: nan
+[2025-06-20 20:52:17,734 PID:3447 INFO __init__.py log_metrics] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df metrics] final_return_ma: 41.7808  strength: -6.21918  max_strength: 77  final_strength: -23  sample_efficiency: 1.3899e-05  training_efficiency: 0.00295641  stability: -2.01624
+[2025-06-20 20:52:28,326 PID:3447 INFO __init__.py log_summary] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df] epi: 0  t: 740000  wall_t: 900  opt_step: 3610  frame: 740000  fps: 822.222  total_reward: 50  total_reward_ma: 41.8919  loss: -0.0172019  lr: 2.60672e-05  explore_var: nan  entropy_coef: 0.00594  entropy: 2.88966  grad_norm: nan
+[2025-06-20 20:52:28,536 PID:3447 INFO __init__.py log_metrics] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df metrics] final_return_ma: 41.8919  strength: -6.10811  max_strength: 77  final_strength: 2  sample_efficiency: 1.39545e-05  training_efficiency: 0.00296826  stability: -1.86344
+[2025-06-20 20:52:39,561 PID:3447 INFO __init__.py log_summary] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df] epi: 0  t: 750000  wall_t: 911  opt_step: 3660  frame: 750000  fps: 823.271  total_reward: 50  total_reward_ma: 42  loss: -0.0167335  lr: 2.50432e-05  explore_var: nan  entropy_coef: 0.00575  entropy: 2.88963  grad_norm: nan
+[2025-06-20 20:52:39,769 PID:3447 INFO __init__.py log_metrics] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df metrics] final_return_ma: 42  strength: -6  max_strength: 77  final_strength: 2  sample_efficiency: 1.40106e-05  training_efficiency: 0.00298024  stability: -1.87611
+[2025-06-20 20:52:39,769 PID:3447 INFO logger.py info] Running eval ckpt
+[2025-06-20 20:52:42,394 PID:3447 INFO __init__.py log_summary] Trial 0 session 2 reinforce_kangaroo_t0_s2 [eval_df] epi: 0  t: 0  wall_t: 911  opt_step: 3660  frame: 750000  fps: 823.271  total_reward: 0  total_reward_ma: 38.7097  loss: -0.0167335  lr: 2.50432e-05  explore_var: nan  entropy_coef: 0.00575  entropy: 2.88963  grad_norm: nan
+[2025-06-20 20:52:42,428 PID:3447 INFO __init__.py log_metrics] Trial 0 session 2 reinforce_kangaroo_t0_s2 [eval_df metrics] final_return_ma: 38.7097  strength: -9.29032  max_strength: 152  final_strength: -48  sample_efficiency: 1.48558e-06  training_efficiency: 0.000294562  stability: -4
+[2025-06-20 20:52:52,895 PID:3447 INFO __init__.py log_summary] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df] epi: 0  t: 760000  wall_t: 925  opt_step: 3710  frame: 760000  fps: 821.622  total_reward: 75  total_reward_ma: 42.4342  loss: -0.015936  lr: 2.40192e-05  explore_var: nan  entropy_coef: 0.00556  entropy: 2.88964  grad_norm: nan
+[2025-06-20 20:52:53,089 PID:3447 INFO __init__.py log_metrics] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df metrics] final_return_ma: 42.4342  strength: -5.56579  max_strength: 77  final_strength: 27  sample_efficiency: 1.48209e-05  training_efficiency: 0.00315326  stability: -1.88889
+[2025-06-20 20:53:03,966 PID:3447 INFO __init__.py log_summary] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df] epi: 0  t: 770000  wall_t: 936  opt_step: 3755  frame: 770000  fps: 822.65  total_reward: 75  total_reward_ma: 42.8571  loss: -0.0155887  lr: 2.30976e-05  explore_var: nan  entropy_coef: 0.00537  entropy: 2.88964  grad_norm: nan
+[2025-06-20 20:53:04,187 PID:3447 INFO __init__.py log_metrics] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df metrics] final_return_ma: 42.8571  strength: -5.14286  max_strength: 77  final_strength: 27  sample_efficiency: 1.57429e-05  training_efficiency: 0.0033501  stability: -2.07329
+[2025-06-20 20:53:09,806 PID:3447 INFO logger.py info] Running eval ckpt
+[2025-06-20 20:53:11,956 PID:3447 INFO __init__.py log_summary] Trial 0 session 2 reinforce_kangaroo_t0_s2 [eval_df] epi: 0  t: 0  wall_t: 942  opt_step: 3780  frame: 775000  fps: 822.718  total_reward: 0  total_reward_ma: 37.5  loss: -0.0150857  lr: 2.25856e-05  explore_var: nan  entropy_coef: 0.005275  entropy: 2.88957  grad_norm: nan
+[2025-06-20 20:53:11,992 PID:3447 INFO __init__.py log_metrics] Trial 0 session 2 reinforce_kangaroo_t0_s2 [eval_df metrics] final_return_ma: 37.5  strength: -10.5  max_strength: 152  final_strength: -48  sample_efficiency: 1.45768e-06  training_efficiency: 0.000290274  stability: -3.16667
+[2025-06-20 20:53:17,548 PID:3447 INFO __init__.py log_summary] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df] epi: 0  t: 780000  wall_t: 949  opt_step: 3805  frame: 780000  fps: 821.918  total_reward: 25  total_reward_ma: 42.6282  loss: -0.0150091  lr: 2.20736e-05  explore_var: nan  entropy_coef: 0.00518  entropy: 2.88962  grad_norm: nan
+[2025-06-20 20:53:17,760 PID:3447 INFO __init__.py log_metrics] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df metrics] final_return_ma: 42.6282  strength: -5.37179  max_strength: 77  final_strength: -23  sample_efficiency: 1.49491e-05  training_efficiency: 0.00318063  stability: -2.40909
+[2025-06-20 20:53:27,743 PID:3447 INFO __init__.py log_summary] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df] epi: 0  t: 790000  wall_t: 960  opt_step: 3855  frame: 790000  fps: 822.917  total_reward: 0  total_reward_ma: 42.0886  loss: -0.0145208  lr: 2.10496e-05  explore_var: nan  entropy_coef: 0.00499  entropy: 2.88963  grad_norm: nan
+[2025-06-20 20:53:27,935 PID:3447 INFO __init__.py log_metrics] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df metrics] final_return_ma: 42.0886  strength: -5.91139  max_strength: 77  final_strength: -48  sample_efficiency: 1.35427e-05  training_efficiency: 0.00288038  stability: -2.28162
+[2025-06-20 20:53:38,661 PID:3447 INFO __init__.py log_summary] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df] epi: 0  t: 800000  wall_t: 970  opt_step: 3905  frame: 800000  fps: 824.742  total_reward: 75  total_reward_ma: 42.5  loss: -0.0138852  lr: 2.00256e-05  explore_var: nan  entropy_coef: 0.0048  entropy: 2.88972  grad_norm: nan
+[2025-06-20 20:53:38,867 PID:3447 INFO __init__.py log_metrics] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df metrics] final_return_ma: 42.5  strength: -5.5  max_strength: 77  final_strength: 27  sample_efficiency: 1.4297e-05  training_efficiency: 0.00304141  stability: -1.94433
+[2025-06-20 20:53:38,868 PID:3447 INFO logger.py info] Running eval ckpt
+[2025-06-20 20:53:40,948 PID:3447 INFO __init__.py log_summary] Trial 0 session 2 reinforce_kangaroo_t0_s2 [eval_df] epi: 0  t: 0  wall_t: 970  opt_step: 3905  frame: 800000  fps: 824.742  total_reward: 0  total_reward_ma: 36.3636  loss: -0.0138852  lr: 2.00256e-05  explore_var: nan  entropy_coef: 0.0048  entropy: 2.88972  grad_norm: nan
+[2025-06-20 20:53:41,009 PID:3447 INFO __init__.py log_metrics] Trial 0 session 2 reinforce_kangaroo_t0_s2 [eval_df metrics] final_return_ma: 36.3636  strength: -11.6364  max_strength: 152  final_strength: -48  sample_efficiency: 1.43172e-06  training_efficiency: 0.000286  stability: -2.57143
+[2025-06-20 20:53:52,002 PID:3447 INFO __init__.py log_summary] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df] epi: 0  t: 810000  wall_t: 984  opt_step: 3955  frame: 810000  fps: 823.171  total_reward: 0  total_reward_ma: 41.9753  loss: -0.0133229  lr: 1.90016e-05  explore_var: nan  entropy_coef: 0.00461  entropy: 2.88972  grad_norm: nan
+[2025-06-20 20:53:52,185 PID:3447 INFO __init__.py log_metrics] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df metrics] final_return_ma: 41.9753  strength: -6.02469  max_strength: 77  final_strength: -48  sample_efficiency: 1.30122e-05  training_efficiency: 0.00276713  stability: -2.29545
+[2025-06-20 20:54:01,940 PID:3447 INFO __init__.py log_summary] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df] epi: 0  t: 820000  wall_t: 994  opt_step: 4000  frame: 820000  fps: 824.95  total_reward: 50  total_reward_ma: 42.0732  loss: -0.0126266  lr: 1.808e-05  explore_var: nan  entropy_coef: 0.00442  entropy: 2.88974  grad_norm: nan
+[2025-06-20 20:54:02,160 PID:3447 INFO __init__.py log_metrics] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df metrics] final_return_ma: 42.0732  strength: -5.92683  max_strength: 77  final_strength: 2  sample_efficiency: 1.30607e-05  training_efficiency: 0.00277749  stability: -1.97131
+[2025-06-20 20:54:07,724 PID:3447 INFO logger.py info] Running eval ckpt
+[2025-06-20 20:54:10,315 PID:3447 INFO __init__.py log_summary] Trial 0 session 2 reinforce_kangaroo_t0_s2 [eval_df] epi: 0  t: 0  wall_t: 1000  opt_step: 4025  frame: 825000  fps: 825  total_reward: 0  total_reward_ma: 35.2941  loss: -0.0126986  lr: 1.7568e-05  explore_var: nan  entropy_coef: 0.004325  entropy: 2.88971  grad_norm: nan
+[2025-06-20 20:54:10,344 PID:3447 INFO __init__.py log_metrics] Trial 0 session 2 reinforce_kangaroo_t0_s2 [eval_df metrics] final_return_ma: 35.2941  strength: -12.7059  max_strength: 152  final_strength: -48  sample_efficiency: 1.40732e-06  training_efficiency: 0.000281828  stability: -2.125
+[2025-06-20 20:54:15,553 PID:3447 INFO __init__.py log_summary] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df] epi: 0  t: 830000  wall_t: 1007  opt_step: 4050  frame: 830000  fps: 824.23  total_reward: 175  total_reward_ma: 43.6747  loss: -0.0122549  lr: 1.7056e-05  explore_var: nan  entropy_coef: 0.00423  entropy: 2.88976  grad_norm: nan
+[2025-06-20 20:54:15,795 PID:3447 INFO __init__.py log_metrics] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df metrics] final_return_ma: 43.6747  strength: -4.3253  max_strength: 127  final_strength: 127  sample_efficiency: 1.72548e-05  training_efficiency: 0.0036727  stability: -1.98354
+[2025-06-20 20:54:25,895 PID:3447 INFO __init__.py log_summary] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df] epi: 0  t: 840000  wall_t: 1018  opt_step: 4100  frame: 840000  fps: 825.147  total_reward: 25  total_reward_ma: 43.4524  loss: -0.0116927  lr: 1.6032e-05  explore_var: nan  entropy_coef: 0.00404  entropy: 2.88976  grad_norm: nan
+[2025-06-20 20:54:26,089 PID:3447 INFO __init__.py log_metrics] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df metrics] final_return_ma: 43.4524  strength: -4.54762  max_strength: 127  final_strength: -23  sample_efficiency: 1.62876e-05  training_efficiency: 0.00346626  stability: -3.45682
+[2025-06-20 20:54:37,099 PID:3447 INFO __init__.py log_summary] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df] epi: 0  t: 850000  wall_t: 1029  opt_step: 4150  frame: 850000  fps: 826.045  total_reward: 50  total_reward_ma: 43.5294  loss: -0.0111303  lr: 1.5008e-05  explore_var: nan  entropy_coef: 0.00385  entropy: 2.88974  grad_norm: nan
+[2025-06-20 20:54:37,282 PID:3447 INFO __init__.py log_metrics] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df metrics] final_return_ma: 43.5294  strength: -4.47059  max_strength: 127  final_strength: 2  sample_efficiency: 1.63671e-05  training_efficiency: 0.00348323  stability: -3.18848
+[2025-06-20 20:54:37,283 PID:3447 INFO logger.py info] Running eval ckpt
+[2025-06-20 20:54:38,895 PID:3447 INFO __init__.py log_summary] Trial 0 session 2 reinforce_kangaroo_t0_s2 [eval_df] epi: 0  t: 0  wall_t: 1029  opt_step: 4150  frame: 850000  fps: 826.045  total_reward: 0  total_reward_ma: 34.2857  loss: -0.0111303  lr: 1.5008e-05  explore_var: nan  entropy_coef: 0.00385  entropy: 2.88974  grad_norm: nan
+[2025-06-20 20:54:38,931 PID:3447 INFO __init__.py log_metrics] Trial 0 session 2 reinforce_kangaroo_t0_s2 [eval_df metrics] final_return_ma: 34.2857  strength: -13.7143  max_strength: 152  final_strength: -48  sample_efficiency: 1.38424e-06  training_efficiency: 0.000277741  stability: -1.77778
+[2025-06-20 20:54:49,505 PID:3447 INFO __init__.py log_summary] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df] epi: 0  t: 860000  wall_t: 1041  opt_step: 4195  frame: 860000  fps: 826.129  total_reward: 75  total_reward_ma: 43.8953  loss: -0.0106244  lr: 1.40864e-05  explore_var: nan  entropy_coef: 0.00366  entropy: 2.88975  grad_norm: nan
+[2025-06-20 20:54:49,847 PID:3447 INFO __init__.py log_metrics] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df metrics] final_return_ma: 43.8953  strength: -4.10465  max_strength: 127  final_strength: 27  sample_efficiency: 1.75301e-05  training_efficiency: 0.00373142  stability: -3.21053
+[2025-06-20 20:55:00,229 PID:3447 INFO __init__.py log_summary] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df] epi: 0  t: 870000  wall_t: 1052  opt_step: 4245  frame: 870000  fps: 826.996  total_reward: 25  total_reward_ma: 43.6782  loss: -0.0104034  lr: 1.30624e-05  explore_var: nan  entropy_coef: 0.00347  entropy: 2.88975  grad_norm: nan
+[2025-06-20 20:55:00,432 PID:3447 INFO __init__.py log_metrics] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df metrics] final_return_ma: 43.6782  strength: -4.32184  max_strength: 127  final_strength: -23  sample_efficiency: 1.65281e-05  training_efficiency: 0.00351758  stability: -3.67422
+[2025-06-20 20:55:06,069 PID:3447 INFO logger.py info] Running eval ckpt
+[2025-06-20 20:55:08,151 PID:3447 INFO __init__.py log_summary] Trial 0 session 2 reinforce_kangaroo_t0_s2 [eval_df] epi: 0  t: 0  wall_t: 1058  opt_step: 4270  frame: 875000  fps: 827.032  total_reward: 0  total_reward_ma: 33.3333  loss: -0.00978112  lr: 1.25504e-05  explore_var: nan  entropy_coef: 0.003375  entropy: 2.88978  grad_norm: nan
+[2025-06-20 20:55:08,189 PID:3447 INFO __init__.py log_metrics] Trial 0 session 2 reinforce_kangaroo_t0_s2 [eval_df metrics] final_return_ma: 33.3333  strength: -14.6667  max_strength: 152  final_strength: -48  sample_efficiency: 1.36229e-06  training_efficiency: 0.000273782  stability: -1.5
+[2025-06-20 20:55:13,900 PID:3447 INFO __init__.py log_summary] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df] epi: 0  t: 880000  wall_t: 1066  opt_step: 4295  frame: 880000  fps: 825.516  total_reward: 0  total_reward_ma: 43.1818  loss: -0.00967317  lr: 1.20384e-05  explore_var: nan  entropy_coef: 0.00328  entropy: 2.88973  grad_norm: nan
+[2025-06-20 20:55:14,112 PID:3447 INFO __init__.py log_metrics] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df metrics] final_return_ma: 43.1818  strength: -4.81818  max_strength: 127  final_strength: -48  sample_efficiency: 1.47856e-05  training_efficiency: 0.00314572  stability: -3.45479
+[2025-06-20 20:55:25,411 PID:3447 INFO __init__.py log_summary] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df] epi: 0  t: 890000  wall_t: 1077  opt_step: 4345  frame: 890000  fps: 826.37  total_reward: 25  total_reward_ma: 42.9775  loss: -0.00893746  lr: 1.10144e-05  explore_var: nan  entropy_coef: 0.00309  entropy: 2.88968  grad_norm: nan
+[2025-06-20 20:55:25,613 PID:3447 INFO __init__.py log_metrics] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df metrics] final_return_ma: 42.9775  strength: -5.02247  max_strength: 127  final_strength: -23  sample_efficiency: 1.40826e-05  training_efficiency: 0.0029957  stability: -2.95047
+[2025-06-20 20:55:35,506 PID:3447 INFO __init__.py log_summary] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df] epi: 0  t: 900000  wall_t: 1087  opt_step: 4390  frame: 900000  fps: 827.967  total_reward: 0  total_reward_ma: 42.5  loss: -0.00843145  lr: 1.00928e-05  explore_var: nan  entropy_coef: 0.0029  entropy: 2.88968  grad_norm: nan
+[2025-06-20 20:55:35,720 PID:3447 INFO __init__.py log_metrics] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df metrics] final_return_ma: 42.5  strength: -5.5  max_strength: 127  final_strength: -48  sample_efficiency: 1.28248e-05  training_efficiency: 0.0027273  stability: -2.80313
+[2025-06-20 20:55:35,721 PID:3447 INFO logger.py info] Running eval ckpt
+[2025-06-20 20:55:38,497 PID:3447 INFO __init__.py log_summary] Trial 0 session 2 reinforce_kangaroo_t0_s2 [eval_df] epi: 0  t: 0  wall_t: 1087  opt_step: 4390  frame: 900000  fps: 827.967  total_reward: 0  total_reward_ma: 32.4324  loss: -0.00843145  lr: 1.00928e-05  explore_var: nan  entropy_coef: 0.0029  entropy: 2.88968  grad_norm: nan
+[2025-06-20 20:55:38,530 PID:3447 INFO __init__.py log_metrics] Trial 0 session 2 reinforce_kangaroo_t0_s2 [eval_df metrics] final_return_ma: 32.4324  strength: -15.5676  max_strength: 152  final_strength: -48  sample_efficiency: 1.34136e-06  training_efficiency: 0.00026995  stability: -1.27273
+[2025-06-20 20:55:49,760 PID:3447 INFO __init__.py log_summary] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df] epi: 0  t: 910000  wall_t: 1102  opt_step: 4440  frame: 910000  fps: 825.771  total_reward: 75  total_reward_ma: 42.8571  loss: -0.00786928  lr: 9.0688e-06  explore_var: nan  entropy_coef: 0.00271  entropy: 2.88969  grad_norm: nan
+[2025-06-20 20:55:50,059 PID:3447 INFO __init__.py log_metrics] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df metrics] final_return_ma: 42.8571  strength: -5.14286  max_strength: 127  final_strength: 27  sample_efficiency: 1.35013e-05  training_efficiency: 0.00287165  stability: -2.43434
+[2025-06-20 20:56:00,405 PID:3447 INFO __init__.py log_summary] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df] epi: 0  t: 920000  wall_t: 1112  opt_step: 4490  frame: 920000  fps: 827.338  total_reward: 50  total_reward_ma: 42.9348  loss: -0.00730703  lr: 8.0448e-06  explore_var: nan  entropy_coef: 0.00252  entropy: 2.88968  grad_norm: nan
+[2025-06-20 20:56:00,627 PID:3447 INFO __init__.py log_metrics] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df metrics] final_return_ma: 42.9348  strength: -5.06522  max_strength: 127  final_strength: 2  sample_efficiency: 1.35546e-05  training_efficiency: 0.00288302  stability: -2.6859
+[2025-06-20 20:56:06,115 PID:3447 INFO logger.py info] Running eval ckpt
+[2025-06-20 20:56:08,015 PID:3447 INFO __init__.py log_summary] Trial 0 session 2 reinforce_kangaroo_t0_s2 [eval_df] epi: 0  t: 0  wall_t: 1118  opt_step: 4515  frame: 925000  fps: 827.37  total_reward: 0  total_reward_ma: 31.5789  loss: -0.00702596  lr: 7.5328e-06  explore_var: nan  entropy_coef: 0.002425  entropy: 2.88969  grad_norm: nan
+[2025-06-20 20:56:08,053 PID:3447 INFO __init__.py log_metrics] Trial 0 session 2 reinforce_kangaroo_t0_s2 [eval_df metrics] final_return_ma: 31.5789  strength: -16.4211  max_strength: 152  final_strength: -48  sample_efficiency: 1.32134e-06  training_efficiency: 0.000266221  stability: -1.08333
+[2025-06-20 20:56:13,523 PID:3447 INFO __init__.py log_summary] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df] epi: 0  t: 930000  wall_t: 1125  opt_step: 4540  frame: 930000  fps: 826.667  total_reward: 75  total_reward_ma: 43.2796  loss: -0.00674479  lr: 7.0208e-06  explore_var: nan  entropy_coef: 0.00233  entropy: 2.88967  grad_norm: nan
+[2025-06-20 20:56:13,711 PID:3447 INFO __init__.py log_metrics] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df metrics] final_return_ma: 43.2796  strength: -4.72043  max_strength: 127  final_strength: 27  sample_efficiency: 1.43221e-05  training_efficiency: 0.00304679  stability: -2.70172
+[2025-06-20 20:56:24,360 PID:3447 INFO __init__.py log_summary] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df] epi: 0  t: 940000  wall_t: 1136  opt_step: 4585  frame: 940000  fps: 827.465  total_reward: 150  total_reward_ma: 44.4149  loss: -0.00623869  lr: 6.0992e-06  explore_var: nan  entropy_coef: 0.00214  entropy: 2.88962  grad_norm: nan
+[2025-06-20 20:56:24,772 PID:3447 INFO __init__.py log_metrics] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df metrics] final_return_ma: 44.4149  strength: -3.58511  max_strength: 127  final_strength: 102  sample_efficiency: 1.8335e-05  training_efficiency: 0.00390295  stability: -2.92938
+[2025-06-20 20:56:35,081 PID:3447 INFO __init__.py log_summary] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df] epi: 0  t: 950000  wall_t: 1147  opt_step: 4635  frame: 950000  fps: 828.248  total_reward: 100  total_reward_ma: 45  loss: -0.00592732  lr: 5.0752e-06  explore_var: nan  entropy_coef: 0.00195  entropy: 2.88959  grad_norm: nan
+[2025-06-20 20:56:35,456 PID:3447 INFO __init__.py log_metrics] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df metrics] final_return_ma: 45  strength: -3  max_strength: 127  final_strength: 52  sample_efficiency: 2.14883e-05  training_efficiency: 0.0045757  stability: -4.26706
+[2025-06-20 20:56:35,457 PID:3447 INFO logger.py info] Running eval ckpt
+[2025-06-20 20:56:37,449 PID:3447 INFO __init__.py log_summary] Trial 0 session 2 reinforce_kangaroo_t0_s2 [eval_df] epi: 0  t: 0  wall_t: 1147  opt_step: 4635  frame: 950000  fps: 828.248  total_reward: 200  total_reward_ma: 35.8974  loss: -0.00592732  lr: 5.0752e-06  explore_var: nan  entropy_coef: 0.00195  entropy: 2.88959  grad_norm: nan
+[2025-06-20 20:56:37,543 PID:3447 INFO __init__.py log_metrics] Trial 0 session 2 reinforce_kangaroo_t0_s2 [eval_df metrics] final_return_ma: 35.8974  strength: -12.1026  max_strength: 152  final_strength: 152  sample_efficiency: 1.40787e-06  training_efficiency: 0.000282475  stability: -0.923077
+[2025-06-20 20:56:48,397 PID:3447 INFO __init__.py log_summary] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df] epi: 0  t: 960000  wall_t: 1160  opt_step: 4685  frame: 960000  fps: 827.586  total_reward: 50  total_reward_ma: 45.0521  loss: -0.00544564  lr: 4.0512e-06  explore_var: nan  entropy_coef: 0.00176  entropy: 2.88962  grad_norm: nan
+[2025-06-20 20:56:48,792 PID:3447 INFO __init__.py log_metrics] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df metrics] final_return_ma: 45.0521  strength: -2.94792  max_strength: 127  final_strength: 2  sample_efficiency: 2.16328e-05  training_efficiency: 0.00460653  stability: -5.40351
+[2025-06-20 20:57:00,031 PID:3447 INFO __init__.py log_summary] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df] epi: 0  t: 970000  wall_t: 1172  opt_step: 4735  frame: 970000  fps: 827.645  total_reward: 100  total_reward_ma: 45.6186  loss: -0.00455202  lr: 3.0272e-06  explore_var: nan  entropy_coef: 0.00157  entropy: 2.88958  grad_norm: nan
+[2025-06-20 20:57:00,415 PID:3447 INFO __init__.py log_metrics] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df metrics] final_return_ma: 45.6186  strength: -2.38144  max_strength: 127  final_strength: 52  sample_efficiency: 2.62704e-05  training_efficiency: 0.00559595  stability: -5.44876
+[2025-06-20 20:57:05,201 PID:3447 INFO logger.py info] Running eval ckpt
+[2025-06-20 20:57:08,297 PID:3447 INFO __init__.py log_summary] Trial 0 session 2 reinforce_kangaroo_t0_s2 [eval_df] epi: 0  t: 0  wall_t: 1177  opt_step: 4760  frame: 975000  fps: 828.377  total_reward: 0  total_reward_ma: 35  loss: -0.00427092  lr: 2.5152e-06  explore_var: nan  entropy_coef: 0.001475  entropy: 2.88958  grad_norm: nan
+[2025-06-20 20:57:08,333 PID:3447 INFO __init__.py log_metrics] Trial 0 session 2 reinforce_kangaroo_t0_s2 [eval_df metrics] final_return_ma: 35  strength: -13  max_strength: 152  final_strength: -48  sample_efficiency: 1.37259e-06  training_efficiency: 0.000275793  stability: -1.9661
+[2025-06-20 20:57:13,562 PID:3447 INFO __init__.py log_summary] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df] epi: 0  t: 980000  wall_t: 1185  opt_step: 4785  frame: 980000  fps: 827.004  total_reward: 25  total_reward_ma: 45.4082  loss: -0.00372684  lr: 2.0032e-06  explore_var: nan  entropy_coef: 0.00138  entropy: 2.88956  grad_norm: nan
+[2025-06-20 20:57:13,797 PID:3447 INFO __init__.py log_metrics] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df metrics] final_return_ma: 45.4082  strength: -2.59184  max_strength: 127  final_strength: -23  sample_efficiency: 2.3984e-05  training_efficiency: 0.00510816  stability: -7.22511
+[2025-06-20 20:57:24,608 PID:3447 INFO __init__.py log_summary] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df] epi: 0  t: 990000  wall_t: 1196  opt_step: 4830  frame: 990000  fps: 827.759  total_reward: 50  total_reward_ma: 45.4545  loss: -0.00348383  lr: 1.0816e-06  explore_var: nan  entropy_coef: 0.00119  entropy: 2.88957  grad_norm: nan
+[2025-06-20 20:57:24,821 PID:3447 INFO __init__.py log_metrics] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df metrics] final_return_ma: 45.4545  strength: -2.54545  max_strength: 127  final_strength: 2  sample_efficiency: 2.41663e-05  training_efficiency: 0.00514705  stability: -6.48031
+[2025-06-20 20:57:35,484 PID:3447 INFO __init__.py log_summary] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df] epi: 0  t: 1e+06  wall_t: 1207  opt_step: 4880  frame: 1e+06  fps: 828.5  total_reward: 25  total_reward_ma: 45.25  loss: -0.00292162  lr: 5.76e-08  explore_var: nan  entropy_coef: 0.001  entropy: 2.88956  grad_norm: nan
+[2025-06-20 20:57:35,705 PID:3447 INFO __init__.py log_metrics] Trial 0 session 2 reinforce_kangaroo_t0_s2 [train_df metrics] final_return_ma: 45.25  strength: -2.75  max_strength: 127  final_strength: -23  sample_efficiency: 2.22288e-05  training_efficiency: 0.00473371  stability: -6.63889
+[2025-06-20 20:57:35,706 PID:3447 INFO logger.py info] Running eval ckpt
+[2025-06-20 20:57:37,908 PID:3447 INFO __init__.py log_summary] Trial 0 session 2 reinforce_kangaroo_t0_s2 [eval_df] epi: 0  t: 0  wall_t: 1207  opt_step: 4880  frame: 1e+06  fps: 828.5  total_reward: 0  total_reward_ma: 34.1463  loss: -0.00292162  lr: 5.76e-08  explore_var: nan  entropy_coef: 0.001  entropy: 2.88956  grad_norm: nan
+[2025-06-20 20:57:37,940 PID:3447 INFO __init__.py log_metrics] Trial 0 session 2 reinforce_kangaroo_t0_s2 [eval_df metrics] final_return_ma: 34.1463  strength: -13.8537  max_strength: 152  final_strength: -48  sample_efficiency: 1.3411e-06  training_efficiency: 0.000269803  stability: -1.69231
+[2025-06-20 20:57:40,188 PID:3447 INFO __init__.py log_metrics] Trial 0 session 2 reinforce_kangaroo_t0_s2 [eval_df metrics] final_return_ma: 34.1463  strength: -13.8537  max_strength: 152  final_strength: -48  sample_efficiency: 1.3411e-06  training_efficiency: 0.000269803  stability: -1.69231
+[2025-06-20 20:57:40,442 PID:3447 INFO logger.py info] Session 2 done

@@ -1,0 +1,3 @@
+[2025-06-20 20:37:25,122 PID:3433 INFO logger.py info] Running sessions
+[2025-06-20 20:57:58,854 PID:3433 INFO analysis.py analyze_trial] All trial data zipped to data/reinforce_kangaroo_2025_06_20_203725.zip
+[2025-06-20 20:57:58,863 PID:3433 INFO logger.py info] Trial 0 done
