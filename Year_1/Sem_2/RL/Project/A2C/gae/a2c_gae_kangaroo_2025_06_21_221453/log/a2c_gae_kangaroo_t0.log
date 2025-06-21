@@ -1,0 +1,3 @@
+[2025-06-21 22:14:53,898 PID:1666 INFO logger.py info] Running sessions
+[2025-06-21 22:57:07,570 PID:1666 INFO analysis.py analyze_trial] All trial data zipped to data/a2c_gae_kangaroo_2025_06_21_221453.zip
+[2025-06-21 22:57:07,580 PID:1666 INFO logger.py info] Trial 0 done
