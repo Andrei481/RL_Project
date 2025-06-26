@@ -1,0 +1,275 @@
+[2025-06-26 11:55:48,962 PID:3029 INFO openai.py __init__] OpenAIEnv:
+- env_spec = {'frame_op': 'concat',
+ 'frame_op_len': 4,
+ 'max_frame': 1000000,
+ 'max_t': None,
+ 'name': 'Kangaroo-v0',
+ 'num_envs': 8,
+ 'reward_scale': 'sign'}
+- eval_frequency = 25000
+- log_frequency = 10000
+- frame_op = concat
+- frame_op_len = 4
+- image_downsize = (84, 84)
+- normalize_state = False
+- reward_scale = sign
+- num_envs = 8
+- name = Kangaroo-v0
+- max_t = 10000
+- max_frame = 62500
+- to_render = False
+- is_venv = True
+- clock_speed = 8
+- clock = <slm_lab.env.base.Clock object at 0x7f5b0ab261d0>
+- done = False
+- total_reward = nan
+- u_env = <slm_lab.env.vec_env.VecFrameStack object at 0x7f5aa07c7dd8>
+- observation_space = Box(4, 84, 84)
+- action_space = Discrete(18)
+- observable_dim = {'state': (4, 84, 84)}
+- action_dim = 18
+- is_discrete = True
+[2025-06-26 11:55:57,123 PID:3029 INFO net_util.py set_global_nets] Set global_nets attr ['global_net', 'optim', 'lr_scheduler'] for Hogwild
+[2025-06-26 11:55:57,141 PID:3029 INFO base.py end_init_nets] Initialized algorithm models for lab_mode: train
+[2025-06-26 11:55:57,180 PID:3029 INFO base.py __init__] ActorCritic:
+- agent = <slm_lab.agent.Agent object at 0x7f5aa01cb400>
+- action_pdtype = default
+- action_policy = <function default at 0x7f5aa2968378>
+- explore_var_spec = None
+- entropy_coef_spec = {'end_step': 1000000,
+ 'end_val': 0.001,
+ 'name': 'linear_decay',
+ 'start_step': 0,
+ 'start_val': 0.01}
+- policy_loss_coef = 1.0
+- val_loss_coef = 0.5
+- gamma = 0.99
+- lam = None
+- num_step_returns = 20
+- training_frequency = 20
+- to_train = 0
+- explore_var_scheduler = <slm_lab.agent.algorithm.policy_util.VarScheduler object at 0x7f5aa01cb0b8>
+- entropy_coef_scheduler = <slm_lab.agent.algorithm.policy_util.VarScheduler object at 0x7f5aa01cb208>
+- calc_advs_v_targets = <bound method ActorCritic.calc_nstep_advs_v_targets of <slm_lab.agent.algorithm.actor_critic.ActorCritic object at 0x7f5aa01cb080>>
+- shared = True
+- net = ConvNet(
+  (conv_model): Sequential(
+    (0): Conv2d(4, 32, kernel_size=(8, 8), stride=(4, 4))
+    (1): ReLU()
+    (2): Conv2d(32, 64, kernel_size=(4, 4), stride=(2, 2))
+    (3): ReLU()
+    (4): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1))
+    (5): ReLU()
+  )
+  (fc_model): Sequential(
+    (0): Linear(in_features=3136, out_features=512, bias=True)
+    (1): ReLU()
+  )
+  (model_tails): ModuleList(
+    (0): Sequential(
+      (0): Linear(in_features=512, out_features=18, bias=True)
+    )
+    (1): Sequential(
+      (0): Linear(in_features=512, out_features=1, bias=True)
+    )
+  )
+  (loss_fn): MSELoss()
+)
+- net_names = ['net']
+- optim = GlobalAdam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.0001
+    weight_decay: 0
+)
+- lr_scheduler = <slm_lab.agent.net.net_util.NoOpLRScheduler object at 0x7f5aa1abb4e0>
+- global_net = ConvNet(
+  (conv_model): Sequential(
+    (0): Conv2d(4, 32, kernel_size=(8, 8), stride=(4, 4))
+    (1): ReLU()
+    (2): Conv2d(32, 64, kernel_size=(4, 4), stride=(2, 2))
+    (3): ReLU()
+    (4): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1))
+    (5): ReLU()
+  )
+  (fc_model): Sequential(
+    (0): Linear(in_features=3136, out_features=512, bias=True)
+    (1): ReLU()
+  )
+  (model_tails): ModuleList(
+    (0): Sequential(
+      (0): Linear(in_features=512, out_features=18, bias=True)
+    )
+    (1): Sequential(
+      (0): Linear(in_features=512, out_features=1, bias=True)
+    )
+  )
+  (loss_fn): MSELoss()
+)
+[2025-06-26 11:55:57,188 PID:3029 INFO __init__.py __init__] Agent:
+- spec = {'cuda_offset': 0,
+ 'distributed': 'synced',
+ 'eval_frequency': 25000,
+ 'experiment': 0,
+ 'experiment_ts': '2025_06_26_115544',
+ 'git_sha': 'cae945a294cb111ee8e568bb4465ee74c501478b',
+ 'graph_prepath': 'data/a3c_nstep_kangaroo_2025_06_26_115544/graph/a3c_nstep_kangaroo_t0_s3',
+ 'info_prepath': 'data/a3c_nstep_kangaroo_2025_06_26_115544/info/a3c_nstep_kangaroo_t0_s3',
+ 'log_frequency': 10000,
+ 'log_prepath': 'data/a3c_nstep_kangaroo_2025_06_26_115544/log/a3c_nstep_kangaroo_t0_s3',
+ 'max_session': 16,
+ 'max_trial': 1,
+ 'model_prepath': 'data/a3c_nstep_kangaroo_2025_06_26_115544/model/a3c_nstep_kangaroo_t0_s3',
+ 'prepath': 'data/a3c_nstep_kangaroo_2025_06_26_115544/a3c_nstep_kangaroo_t0_s3',
+ 'random_seed': 1750931148,
+ 'resume': False,
+ 'rigorous_eval': 1,
+ 'session': 3,
+ 'trial': 0}
+- agent_spec = {'algorithm': {'action_pdtype': 'default',
+               'action_policy': 'default',
+               'entropy_coef_spec': {'end_step': 1000000,
+                                     'end_val': 0.001,
+                                     'name': 'linear_decay',
+                                     'start_step': 0,
+                                     'start_val': 0.01},
+               'explore_var_spec': None,
+               'gamma': 0.99,
+               'lam': None,
+               'name': 'ActorCritic',
+               'num_step_returns': 20,
+               'training_frequency': 20,
+               'val_loss_coef': 0.5},
+ 'memory': {'name': 'OnPolicyBatchReplay'},
+ 'name': 'A3C',
+ 'net': {'actor_optim_spec': {'lr': 0.0001, 'name': 'GlobalAdam'},
+         'batch_norm': False,
+         'clip_grad_val': 0.5,
+         'conv_hid_layers': [[32, 8, 4, 0, 1],
+                             [64, 4, 2, 0, 1],
+                             [64, 3, 1, 0, 1]],
+         'critic_optim_spec': {'lr': 0.0001, 'name': 'GlobalAdam'},
+         'fc_hid_layers': [512],
+         'gpu': False,
+         'hid_layers_activation': 'relu',
+         'init_fn': 'orthogonal_',
+         'loss_spec': {'name': 'MSELoss'},
+         'lr_scheduler_spec': None,
+         'normalize': True,
+         'shared': True,
+         'type': 'ConvNet',
+         'use_same_optim': False}}
+- name = A3C
+- body = body: {
+  "agent": "<slm_lab.agent.Agent object at 0x7f5aa01cb400>",
+  "env": "<slm_lab.env.openai.OpenAIEnv object at 0x7f5aa49d7080>",
+  "a": 0,
+  "e": 0,
+  "b": 0,
+  "aeb": "(0, 0, 0)",
+  "explore_var": NaN,
+  "entropy_coef": 0.01,
+  "loss": NaN,
+  "mean_entropy": NaN,
+  "mean_grad_norm": NaN,
+  "best_total_reward_ma": -Infinity,
+  "total_reward_ma": NaN,
+  "train_df": "Empty DataFrame\nColumns: [epi, t, wall_t, opt_step, frame, fps, total_reward, total_reward_ma, loss, lr, explore_var, entropy_coef, entropy, grad_norm]\nIndex: []",
+  "eval_df": "Empty DataFrame\nColumns: [epi, t, wall_t, opt_step, frame, fps, total_reward, total_reward_ma, loss, lr, explore_var, entropy_coef, entropy, grad_norm]\nIndex: []",
+  "observation_space": "Box(4, 84, 84)",
+  "action_space": "Discrete(18)",
+  "observable_dim": {
+    "state": [
+      4,
+      84,
+      84
+    ]
+  },
+  "state_dim": "(4, 84, 84)",
+  "action_dim": 18,
+  "is_discrete": true,
+  "action_type": "discrete",
+  "action_pdtype": "Categorical",
+  "ActionPD": "<class 'torch.distributions.categorical.Categorical'>",
+  "memory": "<slm_lab.agent.memory.onpolicy.OnPolicyBatchReplay object at 0x7f5aa01cb160>"
+}
+- algorithm = <slm_lab.agent.algorithm.actor_critic.ActorCritic object at 0x7f5aa01cb080>
+[2025-06-26 11:55:58,647 PID:3029 INFO openai.py __init__] OpenAIEnv:
+- env_spec = {'frame_op': 'concat',
+ 'frame_op_len': 4,
+ 'max_frame': 1000000,
+ 'max_t': None,
+ 'name': 'Kangaroo-v0',
+ 'num_envs': 8,
+ 'reward_scale': 'sign'}
+- eval_frequency = 25000
+- log_frequency = 10000
+- frame_op = concat
+- frame_op_len = 4
+- image_downsize = (84, 84)
+- normalize_state = False
+- reward_scale = sign
+- num_envs = 1
+- name = Kangaroo-v0
+- max_t = 10000
+- max_frame = 62500
+- to_render = False
+- is_venv = False
+- clock_speed = 1
+- clock = <slm_lab.env.base.Clock object at 0x7f5aa01cb9b0>
+- done = False
+- total_reward = nan
+- u_env = <ScaleRewardEnv<TrackReward<FrameStack<PreprocessImage<TimeLimit<AtariEnv<Kangaroo-v0>>>>>>>
+- observation_space = Box(4, 84, 84)
+- action_space = Discrete(18)
+- observable_dim = {'state': (4, 84, 84)}
+- action_dim = 18
+- is_discrete = True
+[2025-06-26 11:55:58,648 PID:3029 INFO logger.py info] Session:
+- spec = {'cuda_offset': 0,
+ 'distributed': 'synced',
+ 'eval_frequency': 25000,
+ 'experiment': 0,
+ 'experiment_ts': '2025_06_26_115544',
+ 'git_sha': 'cae945a294cb111ee8e568bb4465ee74c501478b',
+ 'graph_prepath': 'data/a3c_nstep_kangaroo_2025_06_26_115544/graph/a3c_nstep_kangaroo_t0_s3',
+ 'info_prepath': 'data/a3c_nstep_kangaroo_2025_06_26_115544/info/a3c_nstep_kangaroo_t0_s3',
+ 'log_frequency': 10000,
+ 'log_prepath': 'data/a3c_nstep_kangaroo_2025_06_26_115544/log/a3c_nstep_kangaroo_t0_s3',
+ 'max_session': 16,
+ 'max_trial': 1,
+ 'model_prepath': 'data/a3c_nstep_kangaroo_2025_06_26_115544/model/a3c_nstep_kangaroo_t0_s3',
+ 'prepath': 'data/a3c_nstep_kangaroo_2025_06_26_115544/a3c_nstep_kangaroo_t0_s3',
+ 'random_seed': 1750931148,
+ 'resume': False,
+ 'rigorous_eval': 1,
+ 'session': 3,
+ 'trial': 0}
+- index = 3
+- agent = <slm_lab.agent.Agent object at 0x7f5aa01cb400>
+- env = <slm_lab.env.openai.OpenAIEnv object at 0x7f5aa49d7080>
+- eval_env = <slm_lab.env.openai.OpenAIEnv object at 0x7f5aa01cb940>
+[2025-06-26 11:55:58,649 PID:3029 INFO logger.py info] Running RL loop for trial 0 session 3
+[2025-06-26 11:55:58,698 PID:3029 INFO __init__.py log_summary] Trial 0 session 3 a3c_nstep_kangaroo_t0_s3 [train_df] epi: 0  t: 0  wall_t: 0  opt_step: 0  frame: 0  fps: 0  total_reward: nan  total_reward_ma: nan  loss: nan  lr: 0.0001  explore_var: nan  entropy_coef: 0.01  entropy: nan  grad_norm: nan
+[2025-06-26 11:55:58,865 PID:3029 INFO logger.py info] Running eval ckpt
+[2025-06-26 11:56:12,214 PID:3029 INFO __init__.py log_summary] Trial 0 session 3 a3c_nstep_kangaroo_t0_s3 [eval_df] epi: 0  t: 0  wall_t: 0  opt_step: 0  frame: 0  fps: 0  total_reward: 0  total_reward_ma: 0  loss: nan  lr: 0.0001  explore_var: nan  entropy_coef: 0.01  entropy: nan  grad_norm: nan
+[2025-06-26 12:02:47,380 PID:3029 INFO __init__.py log_summary] Trial 0 session 3 a3c_nstep_kangaroo_t0_s3 [train_df] epi: 0  t: 10000  wall_t: 419  opt_step: 310  frame: 10000  fps: 23.8663  total_reward: 50  total_reward_ma: 50  loss: -0.0519735  lr: 0.0001  explore_var: nan  entropy_coef: 0.00991  entropy: 2.89026  grad_norm: nan
+[2025-06-26 12:09:25,240 PID:3029 INFO __init__.py log_summary] Trial 0 session 3 a3c_nstep_kangaroo_t0_s3 [train_df] epi: 0  t: 20000  wall_t: 811  opt_step: 625  frame: 20000  fps: 24.6609  total_reward: 75  total_reward_ma: 62.5  loss: -0.0379695  lr: 0.0001  explore_var: nan  entropy_coef: 0.00982  entropy: 2.89027  grad_norm: nan
+[2025-06-26 12:09:25,505 PID:3029 INFO __init__.py log_metrics] Trial 0 session 3 a3c_nstep_kangaroo_t0_s3 [train_df metrics] final_return_ma: 62.5  strength: 14.5  max_strength: 27  final_strength: 27  sample_efficiency: 5.34483e-05  training_efficiency: 0.00171212  stability: 1
+[2025-06-26 12:13:04,604 PID:3029 INFO logger.py info] Running eval ckpt
+[2025-06-26 12:13:32,180 PID:3029 INFO __init__.py log_summary] Trial 0 session 3 a3c_nstep_kangaroo_t0_s3 [eval_df] epi: 0  t: 0  wall_t: 1036  opt_step: 780  frame: 25000  fps: 24.1313  total_reward: 0  total_reward_ma: 0  loss: -0.0343275  lr: 0.0001  explore_var: nan  entropy_coef: 0.009775  entropy: 2.89027  grad_norm: nan
+[2025-06-26 12:16:28,272 PID:3029 INFO __init__.py log_summary] Trial 0 session 3 a3c_nstep_kangaroo_t0_s3 [train_df] epi: 0  t: 30000  wall_t: 1239  opt_step: 935  frame: 30000  fps: 24.2131  total_reward: 50  total_reward_ma: 58.3333  loss: -0.0353162  lr: 0.0001  explore_var: nan  entropy_coef: 0.00973  entropy: 2.89025  grad_norm: nan
+[2025-06-26 12:16:28,621 PID:3029 INFO __init__.py log_metrics] Trial 0 session 3 a3c_nstep_kangaroo_t0_s3 [train_df metrics] final_return_ma: 58.3333  strength: 10.3333  max_strength: 27  final_strength: 2  sample_efficiency: 5.21505e-05  training_efficiency: 0.00167067  stability: 0.137931
+[2025-06-26 12:23:21,957 PID:3029 INFO __init__.py log_summary] Trial 0 session 3 a3c_nstep_kangaroo_t0_s3 [train_df] epi: 0  t: 40000  wall_t: 1651  opt_step: 1250  frame: 40000  fps: 24.2277  total_reward: 0  total_reward_ma: 43.75  loss: -0.0425708  lr: 0.0001  explore_var: nan  entropy_coef: 0.00964  entropy: 2.89022  grad_norm: nan
+[2025-06-26 12:23:22,194 PID:3029 INFO __init__.py log_metrics] Trial 0 session 3 a3c_nstep_kangaroo_t0_s3 [train_df metrics] final_return_ma: 43.75  strength: -4.25  max_strength: 27  final_strength: -48  sample_efficiency: -2.45098e-05  training_efficiency: -0.000787685  stability: -1.41935
+[2025-06-26 12:30:01,094 PID:3029 INFO __init__.py log_summary] Trial 0 session 3 a3c_nstep_kangaroo_t0_s3 [train_df] epi: 0  t: 50000  wall_t: 2052  opt_step: 1560  frame: 50000  fps: 24.3665  total_reward: 50  total_reward_ma: 45  loss: -0.076523  lr: 0.0001  explore_var: nan  entropy_coef: 0.00955  entropy: 2.89009  grad_norm: nan
+[2025-06-26 12:30:01,218 PID:3029 INFO __init__.py log_metrics] Trial 0 session 3 a3c_nstep_kangaroo_t0_s3 [train_df metrics] final_return_ma: 45  strength: -3  max_strength: 27  final_strength: 2  sample_efficiency: -3.04444e-05  training_efficiency: -0.00097818  stability: -3.41176
+[2025-06-26 12:30:01,219 PID:3029 INFO logger.py info] Running eval ckpt
+[2025-06-26 12:30:28,892 PID:3029 INFO __init__.py log_summary] Trial 0 session 3 a3c_nstep_kangaroo_t0_s3 [eval_df] epi: 0  t: 0  wall_t: 2052  opt_step: 1560  frame: 50000  fps: 24.3665  total_reward: 0  total_reward_ma: 0  loss: -0.076523  lr: 0.0001  explore_var: nan  entropy_coef: 0.00955  entropy: 2.89009  grad_norm: nan
+[2025-06-26 12:30:29,012 PID:3029 INFO __init__.py log_metrics] Trial 0 session 3 a3c_nstep_kangaroo_t0_s3 [eval_df metrics] final_return_ma: 0  strength: -48  max_strength: -48  final_strength: -48  sample_efficiency: 2e-05  training_efficiency: 0.000641026  stability: 1
+[2025-06-26 12:36:59,153 PID:3029 INFO __init__.py log_summary] Trial 0 session 3 a3c_nstep_kangaroo_t0_s3 [train_df] epi: 0  t: 60000  wall_t: 2464  opt_step: 1875  frame: 60000  fps: 24.3506  total_reward: 25  total_reward_ma: 41.6667  loss: -0.0358558  lr: 0.0001  explore_var: nan  entropy_coef: 0.00946  entropy: 2.89011  grad_norm: nan
+[2025-06-26 12:36:59,344 PID:3029 INFO __init__.py log_metrics] Trial 0 session 3 a3c_nstep_kangaroo_t0_s3 [train_df metrics] final_return_ma: 41.6667  strength: -6.33333  max_strength: 27  final_strength: -23  sample_efficiency: -1.92982e-06  training_efficiency: -6.33168e-05  stability: -5.66667
+[2025-06-26 12:38:37,723 PID:3029 INFO __init__.py log_metrics] Trial 0 session 3 a3c_nstep_kangaroo_t0_s3 [eval_df metrics] final_return_ma: 0  strength: -48  max_strength: -48  final_strength: -48  sample_efficiency: 2e-05  training_efficiency: 0.000641026  stability: 1
+[2025-06-26 12:38:37,941 PID:3029 INFO logger.py info] Session 3 done
