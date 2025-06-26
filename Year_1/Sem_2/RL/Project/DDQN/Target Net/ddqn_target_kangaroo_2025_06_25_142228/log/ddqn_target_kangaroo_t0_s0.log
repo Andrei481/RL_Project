@@ -1,0 +1,1572 @@
+[2025-06-25 14:22:29,026 PID:1603 INFO openai.py __init__] OpenAIEnv:
+- env_spec = {'frame_op': 'concat',
+ 'frame_op_len': 4,
+ 'max_frame': 1000000,
+ 'max_t': None,
+ 'name': 'Kangaroo-v0',
+ 'num_envs': 8,
+ 'reward_scale': 'sign'}
+- eval_frequency = 25000
+- log_frequency = 10000
+- frame_op = concat
+- frame_op_len = 4
+- image_downsize = (84, 84)
+- normalize_state = False
+- reward_scale = sign
+- num_envs = 8
+- name = Kangaroo-v0
+- max_t = 10000
+- max_frame = 1000000
+- to_render = False
+- is_venv = True
+- clock_speed = 8
+- clock = <slm_lab.env.base.Clock object at 0x77ad71cb2eb8>
+- done = False
+- total_reward = nan
+- u_env = <slm_lab.env.vec_env.VecFrameStack object at 0x77ad71c77080>
+- observation_space = Box(4, 84, 84)
+- action_space = Discrete(18)
+- observable_dim = {'state': (4, 84, 84)}
+- action_dim = 18
+- is_discrete = True
+[2025-06-25 14:22:29,521 PID:1603 INFO base.py end_init_nets] Initialized algorithm models for lab_mode: train
+[2025-06-25 14:22:29,530 PID:1603 INFO base.py __init__] DoubleDQN:
+- agent = <slm_lab.agent.Agent object at 0x77ad71bca9e8>
+- action_pdtype = Argmax
+- action_policy = <function boltzmann at 0x77ad72b00d90>
+- explore_var_spec = {'end_step': 500000,
+ 'end_val': 0.5,
+ 'name': 'linear_decay',
+ 'start_step': 0,
+ 'start_val': 5.0}
+- training_start_step = 50000
+- gamma = 0.99
+- training_batch_iter = 3
+- training_iter = 3
+- training_frequency = 4
+- to_train = 0
+- explore_var_scheduler = <slm_lab.agent.algorithm.policy_util.VarScheduler object at 0x77ad71bcab38>
+- net = ConvNet(
+  (conv_model): Sequential(
+    (0): Conv2d(4, 32, kernel_size=(8, 8), stride=(4, 4))
+    (1): ReLU()
+    (2): Conv2d(32, 64, kernel_size=(4, 4), stride=(2, 2))
+    (3): ReLU()
+    (4): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1))
+    (5): ReLU()
+  )
+  (fc_model): Sequential(
+    (0): Linear(in_features=3136, out_features=512, bias=True)
+    (1): ReLU()
+  )
+  (model_tail): Sequential(
+    (0): Linear(in_features=512, out_features=18, bias=True)
+  )
+  (loss_fn): SmoothL1Loss()
+)
+- target_net = ConvNet(
+  (conv_model): Sequential(
+    (0): Conv2d(4, 32, kernel_size=(8, 8), stride=(4, 4))
+    (1): ReLU()
+    (2): Conv2d(32, 64, kernel_size=(4, 4), stride=(2, 2))
+    (3): ReLU()
+    (4): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1))
+    (5): ReLU()
+  )
+  (fc_model): Sequential(
+    (0): Linear(in_features=3136, out_features=512, bias=True)
+    (1): ReLU()
+  )
+  (model_tail): Sequential(
+    (0): Linear(in_features=512, out_features=18, bias=True)
+  )
+  (loss_fn): SmoothL1Loss()
+)
+- net_names = ['net', 'target_net']
+- optim = Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.0001
+    weight_decay: 0
+)
+- lr_scheduler = <slm_lab.agent.net.net_util.NoOpLRScheduler object at 0x77ad71b81630>
+- global_net = None
+- global_target_net = None
+- online_net = ConvNet(
+  (conv_model): Sequential(
+    (0): Conv2d(4, 32, kernel_size=(8, 8), stride=(4, 4))
+    (1): ReLU()
+    (2): Conv2d(32, 64, kernel_size=(4, 4), stride=(2, 2))
+    (3): ReLU()
+    (4): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1))
+    (5): ReLU()
+  )
+  (fc_model): Sequential(
+    (0): Linear(in_features=3136, out_features=512, bias=True)
+    (1): ReLU()
+  )
+  (model_tail): Sequential(
+    (0): Linear(in_features=512, out_features=18, bias=True)
+  )
+  (loss_fn): SmoothL1Loss()
+)
+- eval_net = ConvNet(
+  (conv_model): Sequential(
+    (0): Conv2d(4, 32, kernel_size=(8, 8), stride=(4, 4))
+    (1): ReLU()
+    (2): Conv2d(32, 64, kernel_size=(4, 4), stride=(2, 2))
+    (3): ReLU()
+    (4): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1))
+    (5): ReLU()
+  )
+  (fc_model): Sequential(
+    (0): Linear(in_features=3136, out_features=512, bias=True)
+    (1): ReLU()
+  )
+  (model_tail): Sequential(
+    (0): Linear(in_features=512, out_features=18, bias=True)
+  )
+  (loss_fn): SmoothL1Loss()
+)
+[2025-06-25 14:22:29,532 PID:1603 INFO __init__.py __init__] Agent:
+- spec = {'cuda_offset': 0,
+ 'distributed': False,
+ 'eval_frequency': 25000,
+ 'experiment': 0,
+ 'experiment_ts': '2025_06_25_142228',
+ 'git_sha': 'cae945a294cb111ee8e568bb4465ee74c501478b',
+ 'graph_prepath': 'data/ddqn_target_kangaroo_2025_06_25_142228/graph/ddqn_target_kangaroo_t0_s0',
+ 'info_prepath': 'data/ddqn_target_kangaroo_2025_06_25_142228/info/ddqn_target_kangaroo_t0_s0',
+ 'log_frequency': 10000,
+ 'log_prepath': 'data/ddqn_target_kangaroo_2025_06_25_142228/log/ddqn_target_kangaroo_t0_s0',
+ 'max_session': 1,
+ 'max_trial': 1,
+ 'model_prepath': 'data/ddqn_target_kangaroo_2025_06_25_142228/model/ddqn_target_kangaroo_t0_s0',
+ 'prepath': 'data/ddqn_target_kangaroo_2025_06_25_142228/ddqn_target_kangaroo_t0_s0',
+ 'random_seed': 1750850548,
+ 'resume': False,
+ 'rigorous_eval': 1,
+ 'session': 0,
+ 'trial': 0}
+- agent_spec = {'algorithm': {'action_pdtype': 'Argmax',
+               'action_policy': 'boltzmann',
+               'explore_var_spec': {'end_step': 500000,
+                                    'end_val': 0.5,
+                                    'name': 'linear_decay',
+                                    'start_step': 0,
+                                    'start_val': 5.0},
+               'gamma': 0.99,
+               'name': 'DoubleDQN',
+               'target_net_update_frequency': 10000,
+               'training_batch_iter': 3,
+               'training_frequency': 4,
+               'training_iter': 3,
+               'training_start_step': 50000},
+ 'memory': {'batch_size': 32,
+            'max_size': 500000,
+            'name': 'Replay',
+            'use_cer': False},
+ 'name': 'DoubleDQN',
+ 'net': {'batch_norm': False,
+         'clip_grad_val': 1.0,
+         'conv_hid_layers': [[32, 8, 4, 0, 1],
+                             [64, 4, 2, 0, 1],
+                             [64, 3, 1, 0, 1]],
+         'fc_hid_layers': [512],
+         'gpu': False,
+         'hid_layers_activation': 'relu',
+         'init_fn': 'orthogonal_',
+         'loss_spec': {'name': 'SmoothL1Loss'},
+         'lr_scheduler_spec': None,
+         'normalize': True,
+         'optim_spec': {'lr': 0.0001, 'name': 'Adam'},
+         'shared': True,
+         'type': 'ConvNet'}}
+- name = DoubleDQN
+- body = body: {
+  "agent": "<slm_lab.agent.Agent object at 0x77ad71bca9e8>",
+  "env": "<slm_lab.env.openai.OpenAIEnv object at 0x77addae81cf8>",
+  "a": 0,
+  "e": 0,
+  "b": 0,
+  "aeb": "(0, 0, 0)",
+  "explore_var": 5.0,
+  "entropy_coef": NaN,
+  "loss": NaN,
+  "mean_entropy": NaN,
+  "mean_grad_norm": NaN,
+  "best_total_reward_ma": -Infinity,
+  "total_reward_ma": NaN,
+  "train_df": "Empty DataFrame\nColumns: [epi, t, wall_t, opt_step, frame, fps, total_reward, total_reward_ma, loss, lr, explore_var, entropy_coef, entropy, grad_norm]\nIndex: []",
+  "eval_df": "Empty DataFrame\nColumns: [epi, t, wall_t, opt_step, frame, fps, total_reward, total_reward_ma, loss, lr, explore_var, entropy_coef, entropy, grad_norm]\nIndex: []",
+  "observation_space": "Box(4, 84, 84)",
+  "action_space": "Discrete(18)",
+  "observable_dim": {
+    "state": [
+      4,
+      84,
+      84
+    ]
+  },
+  "state_dim": "(4, 84, 84)",
+  "action_dim": 18,
+  "is_discrete": true,
+  "action_type": "discrete",
+  "action_pdtype": "Argmax",
+  "ActionPD": "<class 'slm_lab.lib.distribution.Argmax'>",
+  "memory": "<slm_lab.agent.memory.replay.Replay object at 0x77ad71bcab70>"
+}
+- algorithm = <slm_lab.agent.algorithm.dqn.DoubleDQN object at 0x77ad71bcaba8>
+[2025-06-25 14:22:29,818 PID:1603 INFO openai.py __init__] OpenAIEnv:
+- env_spec = {'frame_op': 'concat',
+ 'frame_op_len': 4,
+ 'max_frame': 1000000,
+ 'max_t': None,
+ 'name': 'Kangaroo-v0',
+ 'num_envs': 8,
+ 'reward_scale': 'sign'}
+- eval_frequency = 25000
+- log_frequency = 10000
+- frame_op = concat
+- frame_op_len = 4
+- image_downsize = (84, 84)
+- normalize_state = False
+- reward_scale = sign
+- num_envs = 1
+- name = Kangaroo-v0
+- max_t = 10000
+- max_frame = 1000000
+- to_render = False
+- is_venv = False
+- clock_speed = 1
+- clock = <slm_lab.env.base.Clock object at 0x77ad71b81780>
+- done = False
+- total_reward = nan
+- u_env = <ScaleRewardEnv<TrackReward<FrameStack<PreprocessImage<TimeLimit<AtariEnv<Kangaroo-v0>>>>>>>
+- observation_space = Box(4, 84, 84)
+- action_space = Discrete(18)
+- observable_dim = {'state': (4, 84, 84)}
+- action_dim = 18
+- is_discrete = True
+[2025-06-25 14:22:29,819 PID:1603 INFO logger.py info] Session:
+- spec = {'cuda_offset': 0,
+ 'distributed': False,
+ 'eval_frequency': 25000,
+ 'experiment': 0,
+ 'experiment_ts': '2025_06_25_142228',
+ 'git_sha': 'cae945a294cb111ee8e568bb4465ee74c501478b',
+ 'graph_prepath': 'data/ddqn_target_kangaroo_2025_06_25_142228/graph/ddqn_target_kangaroo_t0_s0',
+ 'info_prepath': 'data/ddqn_target_kangaroo_2025_06_25_142228/info/ddqn_target_kangaroo_t0_s0',
+ 'log_frequency': 10000,
+ 'log_prepath': 'data/ddqn_target_kangaroo_2025_06_25_142228/log/ddqn_target_kangaroo_t0_s0',
+ 'max_session': 1,
+ 'max_trial': 1,
+ 'model_prepath': 'data/ddqn_target_kangaroo_2025_06_25_142228/model/ddqn_target_kangaroo_t0_s0',
+ 'prepath': 'data/ddqn_target_kangaroo_2025_06_25_142228/ddqn_target_kangaroo_t0_s0',
+ 'random_seed': 1750850548,
+ 'resume': False,
+ 'rigorous_eval': 1,
+ 'session': 0,
+ 'trial': 0}
+- index = 0
+- agent = <slm_lab.agent.Agent object at 0x77ad71bca9e8>
+- env = <slm_lab.env.openai.OpenAIEnv object at 0x77addae81cf8>
+- eval_env = <slm_lab.env.openai.OpenAIEnv object at 0x77ad71b81668>
+[2025-06-25 14:22:29,819 PID:1603 INFO logger.py info] Running RL loop for trial 0 session 0
+[2025-06-25 14:22:29,837 PID:1603 INFO __init__.py log_summary] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df] epi: 0  t: 0  wall_t: 0  opt_step: 0  frame: 0  fps: 0  total_reward: nan  total_reward_ma: nan  loss: nan  lr: 0.0001  explore_var: 5  entropy_coef: nan  entropy: nan  grad_norm: nan
+[2025-06-25 14:22:29,891 PID:1603 INFO logger.py info] Running eval ckpt
+[2025-06-25 14:22:30,450 PID:1603 INFO __init__.py log_summary] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [eval_df] epi: 0  t: 0  wall_t: 0  opt_step: 0  frame: 0  fps: 0  total_reward: 0  total_reward_ma: 0  loss: nan  lr: 0.0001  explore_var: 5  entropy_coef: nan  entropy: nan  grad_norm: nan
+[2025-06-25 14:22:37,270 PID:1603 INFO __init__.py log_summary] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df] epi: 0  t: 10000  wall_t: 8  opt_step: 0  frame: 10000  fps: 1250  total_reward: 0  total_reward_ma: 0  loss: nan  lr: 0.0001  explore_var: 4.91  entropy_coef: nan  entropy: nan  grad_norm: nan
+[2025-06-25 14:22:43,996 PID:1603 INFO __init__.py log_summary] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df] epi: 0  t: 20000  wall_t: 15  opt_step: 0  frame: 20000  fps: 1333.33  total_reward: 0  total_reward_ma: 0  loss: nan  lr: 0.0001  explore_var: 4.82  entropy_coef: nan  entropy: nan  grad_norm: nan
+[2025-06-25 14:22:44,133 PID:1603 INFO __init__.py log_metrics] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df metrics] final_return_ma: 0  strength: -48  max_strength: -48  final_strength: -48  sample_efficiency: 7.5e-05  training_efficiency: -0  stability: 1
+[2025-06-25 14:22:47,590 PID:1603 INFO logger.py info] Running eval ckpt
+[2025-06-25 14:22:48,126 PID:1603 INFO __init__.py log_summary] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [eval_df] epi: 0  t: 0  wall_t: 18  opt_step: 0  frame: 25000  fps: 1388.89  total_reward: 0  total_reward_ma: 0  loss: nan  lr: 0.0001  explore_var: 4.775  entropy_coef: nan  entropy: nan  grad_norm: nan
+[2025-06-25 14:22:51,445 PID:1603 INFO __init__.py log_summary] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df] epi: 0  t: 30000  wall_t: 22  opt_step: 0  frame: 30000  fps: 1363.64  total_reward: 0  total_reward_ma: 0  loss: nan  lr: 0.0001  explore_var: 4.73  entropy_coef: nan  entropy: nan  grad_norm: nan
+[2025-06-25 14:22:51,558 PID:1603 INFO __init__.py log_metrics] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df metrics] final_return_ma: 0  strength: -48  max_strength: -48  final_strength: -48  sample_efficiency: 6.11111e-05  training_efficiency: -0  stability: 1
+[2025-06-25 14:22:56,616 PID:1603 INFO __init__.py log_summary] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df] epi: 0  t: 40000  wall_t: 27  opt_step: 0  frame: 40000  fps: 1481.48  total_reward: 0  total_reward_ma: 0  loss: nan  lr: 0.0001  explore_var: 4.64  entropy_coef: nan  entropy: nan  grad_norm: nan
+[2025-06-25 14:22:56,757 PID:1603 INFO __init__.py log_metrics] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df metrics] final_return_ma: 0  strength: -48  max_strength: -48  final_strength: -48  sample_efficiency: 5.20833e-05  training_efficiency: -0  stability: 1
+[2025-06-25 14:23:03,366 PID:1603 INFO __init__.py log_summary] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df] epi: 0  t: 50000  wall_t: 34  opt_step: 0  frame: 50000  fps: 1470.59  total_reward: 0  total_reward_ma: 0  loss: nan  lr: 0.0001  explore_var: 4.55  entropy_coef: nan  entropy: nan  grad_norm: nan
+[2025-06-25 14:23:03,508 PID:1603 INFO __init__.py log_metrics] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df metrics] final_return_ma: 0  strength: -48  max_strength: -48  final_strength: -48  sample_efficiency: 4.56667e-05  training_efficiency: -0  stability: 1
+[2025-06-25 14:23:03,508 PID:1603 INFO logger.py info] Running eval ckpt
+[2025-06-25 14:23:04,003 PID:1603 INFO __init__.py log_summary] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [eval_df] epi: 0  t: 0  wall_t: 34  opt_step: 0  frame: 50000  fps: 1470.59  total_reward: 0  total_reward_ma: 0  loss: nan  lr: 0.0001  explore_var: 4.55  entropy_coef: nan  entropy: nan  grad_norm: nan
+[2025-06-25 14:23:04,025 PID:1603 INFO __init__.py log_metrics] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [eval_df metrics] final_return_ma: 0  strength: -48  max_strength: -48  final_strength: -48  sample_efficiency: 2e-05  training_efficiency: -0  stability: 1
+[2025-06-25 14:30:03,496 PID:1603 INFO __init__.py log_summary] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df] epi: 0  t: 60000  wall_t: 454  opt_step: 56250  frame: 60000  fps: 132.159  total_reward: 25  total_reward_ma: 4.16667  loss: 1.08326e-05  lr: 0.0001  explore_var: 4.46  entropy_coef: nan  entropy: nan  grad_norm: nan
+[2025-06-25 14:30:03,740 PID:1603 INFO __init__.py log_metrics] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df metrics] final_return_ma: 4.16667  strength: -43.8333  max_strength: -23  final_strength: -23  sample_efficiency: 4.31305e-05  training_efficiency: 1.55471e-06  stability: 1
+[2025-06-25 14:37:16,778 PID:1603 INFO __init__.py log_summary] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df] epi: 0  t: 70000  wall_t: 887  opt_step: 112500  frame: 70000  fps: 78.9177  total_reward: 25  total_reward_ma: 7.14286  loss: 1.44455e-06  lr: 0.0001  explore_var: 4.37  entropy_coef: nan  entropy: nan  grad_norm: nan
+[2025-06-25 14:37:16,992 PID:1603 INFO __init__.py log_metrics] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df metrics] final_return_ma: 7.14286  strength: -40.8571  max_strength: -23  final_strength: -23  sample_efficiency: 4.08109e-05  training_efficiency: 2.14452e-06  stability: 1
+[2025-06-25 14:40:51,221 PID:1603 INFO logger.py info] Running eval ckpt
+[2025-06-25 14:40:51,910 PID:1603 INFO __init__.py log_summary] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [eval_df] epi: 0  t: 0  wall_t: 1102  opt_step: 140625  frame: 75000  fps: 68.0581  total_reward: 0  total_reward_ma: 0  loss: 4.79013e-07  lr: 0.0001  explore_var: 4.325  entropy_coef: nan  entropy: nan  grad_norm: nan
+[2025-06-25 14:40:51,928 PID:1603 INFO __init__.py log_metrics] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [eval_df metrics] final_return_ma: 0  strength: -48  max_strength: -48  final_strength: -48  sample_efficiency: 1.83333e-05  training_efficiency: 1.77778e-06  stability: 1
+[2025-06-25 14:44:19,357 PID:1603 INFO __init__.py log_summary] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df] epi: 0  t: 80000  wall_t: 1310  opt_step: 168750  frame: 80000  fps: 61.0687  total_reward: 0  total_reward_ma: 6.25  loss: 5.29714e-06  lr: 0.0001  explore_var: 4.28  entropy_coef: nan  entropy: nan  grad_norm: nan
+[2025-06-25 14:44:19,489 PID:1603 INFO __init__.py log_metrics] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df metrics] final_return_ma: 6.25  strength: -41.75  max_strength: -23  final_strength: -48  sample_efficiency: 3.67422e-05  training_efficiency: 2.68796e-06  stability: 0.912587
+[2025-06-25 14:51:14,200 PID:1603 INFO __init__.py log_summary] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df] epi: 0  t: 90000  wall_t: 1725  opt_step: 225000  frame: 90000  fps: 52.1739  total_reward: 50  total_reward_ma: 11.1111  loss: 0.000716797  lr: 0.0001  explore_var: 4.19  entropy_coef: nan  entropy: nan  grad_norm: nan
+[2025-06-25 14:51:14,448 PID:1603 INFO __init__.py log_metrics] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df metrics] final_return_ma: 11.1111  strength: -36.8889  max_strength: 2  final_strength: 2  sample_efficiency: 3.68966e-05  training_efficiency: 2.67738e-06  stability: 0.92515
+[2025-06-25 14:57:57,829 PID:1603 INFO __init__.py log_summary] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df] epi: 0  t: 100000  wall_t: 2128  opt_step: 281250  frame: 100000  fps: 46.9925  total_reward: 25  total_reward_ma: 12.5  loss: 7.24742e-05  lr: 0.0001  explore_var: 4.1  entropy_coef: nan  entropy: nan  grad_norm: nan
+[2025-06-25 14:57:58,048 PID:1603 INFO __init__.py log_metrics] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df metrics] final_return_ma: 12.5  strength: -35.5  max_strength: 2  final_strength: -23  sample_efficiency: 3.5154e-05  training_efficiency: 2.73427e-06  stability: 0.849398
+[2025-06-25 14:57:58,048 PID:1603 INFO logger.py info] Running eval ckpt
+[2025-06-25 14:57:59,167 PID:1603 INFO __init__.py log_summary] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [eval_df] epi: 0  t: 0  wall_t: 2128  opt_step: 281250  frame: 100000  fps: 46.9925  total_reward: 0  total_reward_ma: 0  loss: 7.24742e-05  lr: 0.0001  explore_var: 4.1  entropy_coef: nan  entropy: nan  grad_norm: nan
+[2025-06-25 14:57:59,184 PID:1603 INFO __init__.py log_metrics] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [eval_df metrics] final_return_ma: 0  strength: -48  max_strength: -48  final_strength: -48  sample_efficiency: 1.66667e-05  training_efficiency: 2.13333e-06  stability: 1
+[2025-06-25 15:04:41,880 PID:1603 INFO __init__.py log_summary] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df] epi: 0  t: 110000  wall_t: 2532  opt_step: 337500  frame: 110000  fps: 43.4439  total_reward: 25  total_reward_ma: 13.6364  loss: 2.34003e-05  lr: 0.0001  explore_var: 4.01  entropy_coef: nan  entropy: nan  grad_norm: nan
+[2025-06-25 15:04:42,116 PID:1603 INFO __init__.py log_metrics] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df metrics] final_return_ma: 13.6364  strength: -34.3636  max_strength: 2  final_strength: -23  sample_efficiency: 3.35682e-05  training_efficiency: 2.74819e-06  stability: 0.859155
+[2025-06-25 15:11:58,671 PID:1603 INFO __init__.py log_summary] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df] epi: 0  t: 120000  wall_t: 2971  opt_step: 393750  frame: 120000  fps: 40.3904  total_reward: 50  total_reward_ma: 16.6667  loss: 0.0137579  lr: 0.0001  explore_var: 3.92  entropy_coef: nan  entropy: nan  grad_norm: nan
+[2025-06-25 15:11:58,926 PID:1603 INFO __init__.py log_metrics] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df metrics] final_return_ma: 16.6667  strength: -31.3333  max_strength: 2  final_strength: 2  sample_efficiency: 3.37024e-05  training_efficiency: 2.7493e-06  stability: 0.867725
+[2025-06-25 15:15:41,529 PID:1603 INFO logger.py info] Running eval ckpt
+[2025-06-25 15:15:42,464 PID:1603 INFO __init__.py log_summary] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [eval_df] epi: 0  t: 0  wall_t: 3192  opt_step: 421875  frame: 125000  fps: 39.1604  total_reward: 0  total_reward_ma: 0  loss: 0.00464129  lr: 0.0001  explore_var: 3.875  entropy_coef: nan  entropy: nan  grad_norm: nan
+[2025-06-25 15:15:42,486 PID:1603 INFO __init__.py log_metrics] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [eval_df metrics] final_return_ma: 0  strength: -48  max_strength: -48  final_strength: -48  sample_efficiency: 1.52222e-05  training_efficiency: 2.17284e-06  stability: 1
+[2025-06-25 15:19:24,597 PID:1603 INFO __init__.py log_summary] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df] epi: 0  t: 130000  wall_t: 3415  opt_step: 450000  frame: 130000  fps: 38.0673  total_reward: 0  total_reward_ma: 15.3846  loss: 0.000122368  lr: 0.0001  explore_var: 3.83  entropy_coef: nan  entropy: nan  grad_norm: nan
+[2025-06-25 15:19:24,732 PID:1603 INFO __init__.py log_metrics] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df metrics] final_return_ma: 15.3846  strength: -32.6154  max_strength: 2  final_strength: -48  sample_efficiency: 3.07579e-05  training_efficiency: 2.68963e-06  stability: 0.734043
+[2025-06-25 15:26:50,910 PID:1603 INFO __init__.py log_summary] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df] epi: 0  t: 140000  wall_t: 3861  opt_step: 506250  frame: 140000  fps: 36.26  total_reward: 0  total_reward_ma: 14.2857  loss: 3.35653e-05  lr: 0.0001  explore_var: 3.74  entropy_coef: nan  entropy: nan  grad_norm: nan
+[2025-06-25 15:26:49,530 PID:1603 INFO __init__.py log_metrics] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df metrics] final_return_ma: 14.2857  strength: -33.7143  max_strength: 2  final_strength: -48  sample_efficiency: 2.83563e-05  training_efficiency: 2.61698e-06  stability: 0.764151
+[2025-06-25 15:34:04,835 PID:1603 INFO __init__.py log_summary] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df] epi: 0  t: 150000  wall_t: 4295  opt_step: 562500  frame: 150000  fps: 34.9243  total_reward: 0  total_reward_ma: 13.3333  loss: 3.2006e-05  lr: 0.0001  explore_var: 3.65  entropy_coef: nan  entropy: nan  grad_norm: nan
+[2025-06-25 15:34:04,981 PID:1603 INFO __init__.py log_metrics] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df metrics] final_return_ma: 13.3333  strength: -34.6667  max_strength: 2  final_strength: -48  sample_efficiency: 2.63542e-05  training_efficiency: 2.53952e-06  stability: 0.788136
+[2025-06-25 15:34:04,982 PID:1603 INFO logger.py info] Running eval ckpt
+[2025-06-25 15:34:05,790 PID:1603 INFO __init__.py log_summary] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [eval_df] epi: 0  t: 0  wall_t: 4295  opt_step: 562500  frame: 150000  fps: 34.9243  total_reward: 0  total_reward_ma: 0  loss: 3.2006e-05  lr: 0.0001  explore_var: 3.65  entropy_coef: nan  entropy: nan  grad_norm: nan
+[2025-06-25 15:34:05,811 PID:1603 INFO __init__.py log_metrics] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [eval_df metrics] final_return_ma: 0  strength: -48  max_strength: -48  final_strength: -48  sample_efficiency: 1.4e-05  training_efficiency: 2.1164e-06  stability: 1
+[2025-06-25 15:41:18,398 PID:1603 INFO __init__.py log_summary] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df] epi: 0  t: 160000  wall_t: 4729  opt_step: 618750  frame: 160000  fps: 33.8338  total_reward: 50  total_reward_ma: 15.625  loss: 0.00108696  lr: 0.0001  explore_var: 3.56  entropy_coef: nan  entropy: nan  grad_norm: nan
+[2025-06-25 15:41:18,533 PID:1603 INFO __init__.py log_metrics] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df metrics] final_return_ma: 15.625  strength: -32.375  max_strength: 2  final_strength: 2  sample_efficiency: 2.64318e-05  training_efficiency: 2.54308e-06  stability: 0.807692
+[2025-06-25 15:48:30,494 PID:1603 INFO __init__.py log_summary] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df] epi: 0  t: 170000  wall_t: 5161  opt_step: 675000  frame: 170000  fps: 32.9394  total_reward: 25  total_reward_ma: 16.1765  loss: 0.000151471  lr: 0.0001  explore_var: 3.47  entropy_coef: nan  entropy: nan  grad_norm: nan
+[2025-06-25 15:48:30,628 PID:1603 INFO __init__.py log_metrics] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df metrics] final_return_ma: 16.1765  strength: -31.8235  max_strength: 2  final_strength: -23  sample_efficiency: 2.55582e-05  training_efficiency: 2.49795e-06  stability: 0.758687
+[2025-06-25 15:52:09,605 PID:1603 INFO logger.py info] Running eval ckpt
+[2025-06-25 15:52:10,804 PID:1603 INFO __init__.py log_summary] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [eval_df] epi: 0  t: 0  wall_t: 5380  opt_step: 703125  frame: 175000  fps: 32.5279  total_reward: 0  total_reward_ma: 0  loss: 0.00185687  lr: 0.0001  explore_var: 3.425  entropy_coef: nan  entropy: nan  grad_norm: nan
+[2025-06-25 15:52:10,825 PID:1603 INFO __init__.py log_metrics] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [eval_df metrics] final_return_ma: 0  strength: -48  max_strength: -48  final_strength: -48  sample_efficiency: 1.29643e-05  training_efficiency: 2.02963e-06  stability: 1
+[2025-06-25 15:55:49,660 PID:1603 INFO __init__.py log_summary] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df] epi: 0  t: 180000  wall_t: 5600  opt_step: 731250  frame: 180000  fps: 32.1429  total_reward: 350  total_reward_ma: 34.7222  loss: 0.000123706  lr: 0.0001  explore_var: 3.38  entropy_coef: nan  entropy: nan  grad_norm: nan
+[2025-06-25 15:55:49,875 PID:1603 INFO __init__.py log_metrics] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df metrics] final_return_ma: 34.7222  strength: -13.2778  max_strength: 302  final_strength: 302  sample_efficiency: 5.08335e-05  training_efficiency: 3.92636e-06  stability: 0.768946
+[2025-06-25 16:03:12,299 PID:1603 INFO __init__.py log_summary] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df] epi: 0  t: 190000  wall_t: 6043  opt_step: 787500  frame: 190000  fps: 31.4413  total_reward: 25  total_reward_ma: 34.2105  loss: 0.00115788  lr: 0.0001  explore_var: 3.29  entropy_coef: nan  entropy: nan  grad_norm: nan
+[2025-06-25 16:03:12,461 PID:1603 INFO __init__.py log_metrics] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df metrics] final_return_ma: 34.2105  strength: -13.7895  max_strength: 302  final_strength: -23  sample_efficiency: 4.68331e-05  training_efficiency: 3.69316e-06  stability: -0.882845
+[2025-06-25 16:10:37,140 PID:1603 INFO __init__.py log_summary] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df] epi: 0  t: 200000  wall_t: 6487  opt_step: 843750  frame: 200000  fps: 30.8309  total_reward: 237.5  total_reward_ma: 44.375  loss: 4.66895e-05  lr: 0.0001  explore_var: 3.2  entropy_coef: nan  entropy: nan  grad_norm: nan
+[2025-06-25 16:10:37,393 PID:1603 INFO __init__.py log_metrics] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df metrics] final_return_ma: 44.375  strength: -3.625  max_strength: 302  final_strength: 189.5  sample_efficiency: 0.000156176  training_efficiency: 1.02485e-05  stability: -0.717557
+[2025-06-25 16:10:37,393 PID:1603 INFO logger.py info] Running eval ckpt
+[2025-06-25 16:10:38,343 PID:1603 INFO __init__.py log_summary] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [eval_df] epi: 0  t: 0  wall_t: 6487  opt_step: 843750  frame: 200000  fps: 30.8309  total_reward: 200  total_reward_ma: 22.2222  loss: 4.66895e-05  lr: 0.0001  explore_var: 3.2  entropy_coef: nan  entropy: nan  grad_norm: nan
+[2025-06-25 16:10:38,361 PID:1603 INFO __init__.py log_metrics] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [eval_df metrics] final_return_ma: 22.2222  strength: -25.7778  max_strength: 152  final_strength: 152  sample_efficiency: 1.81823e-05  training_efficiency: 2.58289e-06  stability: 1
+[2025-06-25 16:18:03,398 PID:1603 INFO __init__.py log_summary] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df] epi: 0  t: 210000  wall_t: 6934  opt_step: 900000  frame: 210000  fps: 30.2855  total_reward: 200  total_reward_ma: 51.7857  loss: 0.000116092  lr: 0.0001  explore_var: 3.11  entropy_coef: nan  entropy: nan  grad_norm: nan
+[2025-06-25 16:18:03,626 PID:1603 INFO __init__.py log_metrics] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df metrics] final_return_ma: 51.7857  strength: 3.78571  max_strength: 302  final_strength: 152  sample_efficiency: -0.00013332  training_efficiency: -7.2217e-06  stability: -5.72414
+[2025-06-25 16:25:27,366 PID:1603 INFO __init__.py log_summary] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df] epi: 0  t: 220000  wall_t: 7378  opt_step: 956250  frame: 220000  fps: 29.8184  total_reward: 300  total_reward_ma: 63.0682  loss: 0.000788168  lr: 0.0001  explore_var: 3.02  entropy_coef: nan  entropy: nan  grad_norm: nan
+[2025-06-25 16:25:27,634 PID:1603 INFO __init__.py log_metrics] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df metrics] final_return_ma: 63.0682  strength: 15.0682  max_strength: 302  final_strength: 252  sample_efficiency: -2.85173e-05  training_efficiency: -9.36941e-07  stability: -5.13208
+[2025-06-25 16:29:10,833 PID:1603 INFO logger.py info] Running eval ckpt
+[2025-06-25 16:29:11,642 PID:1603 INFO __init__.py log_summary] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [eval_df] epi: 0  t: 0  wall_t: 7601  opt_step: 984375  frame: 225000  fps: 29.6014  total_reward: 200  total_reward_ma: 40  loss: 0.000228925  lr: 0.0001  explore_var: 2.975  entropy_coef: nan  entropy: nan  grad_norm: nan
+[2025-06-25 16:29:11,664 PID:1603 INFO __init__.py log_metrics] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [eval_df metrics] final_return_ma: 40  strength: -8  max_strength: 152  final_strength: 152  sample_efficiency: 4.42841e-05  training_efficiency: 5.56021e-06  stability: 1
+[2025-06-25 16:32:53,732 PID:1603 INFO __init__.py log_summary] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df] epi: 0  t: 230000  wall_t: 7824  opt_step: 1.0125e+06  frame: 230000  fps: 29.3967  total_reward: 250  total_reward_ma: 71.1957  loss: 0.000232473  lr: 0.0001  explore_var: 2.93  entropy_coef: nan  entropy: nan  grad_norm: nan
+[2025-06-25 16:32:53,978 PID:1603 INFO __init__.py log_metrics] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df metrics] final_return_ma: 71.1957  strength: 23.1957  max_strength: 302  final_strength: 202  sample_efficiency: -1.60736e-05  training_efficiency: -2.08228e-07  stability: -0.621418
+[2025-06-25 16:40:22,552 PID:1603 INFO __init__.py log_summary] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df] epi: 0  t: 240000  wall_t: 8273  opt_step: 1.06875e+06  frame: 240000  fps: 29.01  total_reward: 337.5  total_reward_ma: 82.2917  loss: 0.000195075  lr: 0.0001  explore_var: 2.84  entropy_coef: nan  entropy: nan  grad_norm: nan
+[2025-06-25 16:40:22,784 PID:1603 INFO __init__.py log_metrics] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df metrics] final_return_ma: 82.2917  strength: 34.2917  max_strength: 302  final_strength: 289.5  sample_efficiency: -8.95381e-06  training_efficiency: 1.94152e-07  stability: -0.00749767
+[2025-06-25 16:47:53,075 PID:1603 INFO __init__.py log_summary] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df] epi: 0  t: 250000  wall_t: 8723  opt_step: 1.125e+06  frame: 250000  fps: 28.6599  total_reward: 225  total_reward_ma: 88  loss: 0.000139328  lr: 0.0001  explore_var: 2.75  entropy_coef: nan  entropy: nan  grad_norm: nan
+[2025-06-25 16:47:53,304 PID:1603 INFO __init__.py log_metrics] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df metrics] final_return_ma: 88  strength: 40  max_strength: 302  final_strength: 177  sample_efficiency: -6.66099e-06  training_efficiency: 3.17121e-07  stability: 0.210207
+[2025-06-25 16:47:53,304 PID:1603 INFO logger.py info] Running eval ckpt
+[2025-06-25 16:47:54,308 PID:1603 INFO __init__.py log_summary] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [eval_df] epi: 0  t: 0  wall_t: 8723  opt_step: 1.125e+06  frame: 250000  fps: 28.6599  total_reward: 400  total_reward_ma: 72.7273  loss: 0.000139328  lr: 0.0001  explore_var: 2.75  entropy_coef: nan  entropy: nan  grad_norm: nan
+[2025-06-25 16:47:54,329 PID:1603 INFO __init__.py log_metrics] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [eval_df metrics] final_return_ma: 72.7273  strength: 24.7273  max_strength: 352  final_strength: 352  sample_efficiency: -7.84827e-06  training_efficiency: -4.8503e-07  stability: 1
+[2025-06-25 16:55:28,757 PID:1603 INFO __init__.py log_summary] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df] epi: 0  t: 260000  wall_t: 9179  opt_step: 1.18125e+06  frame: 260000  fps: 28.3255  total_reward: 525  total_reward_ma: 104.808  loss: 0.000248322  lr: 0.0001  explore_var: 2.66  entropy_coef: nan  entropy: nan  grad_norm: nan
+[2025-06-25 16:55:29,029 PID:1603 INFO __init__.py log_metrics] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df metrics] final_return_ma: 104.808  strength: 56.8077  max_strength: 477  final_strength: 477  sample_efficiency: -3.26769e-06  training_efficiency: 4.88104e-07  stability: 0.35
+[2025-06-25 17:03:04,050 PID:1603 INFO __init__.py log_summary] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df] epi: 0  t: 270000  wall_t: 9634  opt_step: 1.2375e+06  frame: 270000  fps: 28.0257  total_reward: 525  total_reward_ma: 120.37  loss: 0.00445536  lr: 0.0001  explore_var: 2.57  entropy_coef: nan  entropy: nan  grad_norm: nan
+[2025-06-25 17:03:04,320 PID:1603 INFO __init__.py log_metrics] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df metrics] final_return_ma: 120.37  strength: 72.3704  max_strength: 477  final_strength: 477  sample_efficiency: -1.56587e-06  training_efficiency: 5.66215e-07  stability: 0.559919
+[2025-06-25 17:06:57,217 PID:1603 INFO logger.py info] Running eval ckpt
+[2025-06-25 17:06:58,203 PID:1603 INFO __init__.py log_summary] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [eval_df] epi: 0  t: 0  wall_t: 9868  opt_step: 1.26562e+06  frame: 275000  fps: 27.8679  total_reward: 200  total_reward_ma: 83.3333  loss: 0.00174135  lr: 0.0001  explore_var: 2.525  entropy_coef: nan  entropy: nan  grad_norm: nan
+[2025-06-25 17:06:58,222 PID:1603 INFO __init__.py log_metrics] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [eval_df metrics] final_return_ma: 83.3333  strength: 35.3333  max_strength: 352  final_strength: 152  sample_efficiency: -3.73114e-06  training_efficiency: -2.78993e-08  stability: 0.264706
+[2025-06-25 17:10:46,971 PID:1603 INFO __init__.py log_summary] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df] epi: 0  t: 280000  wall_t: 10097  opt_step: 1.29375e+06  frame: 280000  fps: 27.731  total_reward: 175  total_reward_ma: 122.321  loss: 0.00103394  lr: 0.0001  explore_var: 2.48  entropy_coef: nan  entropy: nan  grad_norm: nan
+[2025-06-25 17:10:47,200 PID:1603 INFO __init__.py log_metrics] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df metrics] final_return_ma: 122.321  strength: 74.3214  max_strength: 477  final_strength: 127  sample_efficiency: -1.25235e-06  training_efficiency: 5.78832e-07  stability: 0.488229
+[2025-06-25 17:18:31,090 PID:1603 INFO __init__.py log_summary] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df] epi: 0  t: 290000  wall_t: 10561  opt_step: 1.35e+06  frame: 290000  fps: 27.4595  total_reward: 350  total_reward_ma: 130.172  loss: 0.000315169  lr: 0.0001  explore_var: 2.39  entropy_coef: nan  entropy: nan  grad_norm: nan
+[2025-06-25 17:18:31,349 PID:1603 INFO __init__.py log_metrics] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df metrics] final_return_ma: 130.172  strength: 82.1724  max_strength: 477  final_strength: 302  sample_efficiency: -6.56633e-07  training_efficiency: 5.99351e-07  stability: 0.519462
+[2025-06-25 17:26:25,236 PID:1603 INFO __init__.py log_summary] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df] epi: 0  t: 300000  wall_t: 11036  opt_step: 1.40625e+06  frame: 300000  fps: 27.1838  total_reward: 400  total_reward_ma: 139.167  loss: 0.00141204  lr: 0.0001  explore_var: 2.3  entropy_coef: nan  entropy: nan  grad_norm: nan
+[2025-06-25 17:26:25,500 PID:1603 INFO __init__.py log_metrics] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df metrics] final_return_ma: 139.167  strength: 91.1667  max_strength: 477  final_strength: 352  sample_efficiency: -1.43116e-07  training_efficiency: 6.13734e-07  stability: 0.580361
+[2025-06-25 17:26:25,501 PID:1603 INFO logger.py info] Running eval ckpt
+[2025-06-25 17:26:26,558 PID:1603 INFO __init__.py log_summary] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [eval_df] epi: 0  t: 0  wall_t: 11036  opt_step: 1.40625e+06  frame: 300000  fps: 27.1838  total_reward: 0  total_reward_ma: 76.9231  loss: 0.00141204  lr: 0.0001  explore_var: 2.3  entropy_coef: nan  entropy: nan  grad_norm: nan
+[2025-06-25 17:26:26,577 PID:1603 INFO __init__.py log_metrics] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [eval_df metrics] final_return_ma: 76.9231  strength: 28.9231  max_strength: 352  final_strength: -48  sample_efficiency: -4.63299e-06  training_efficiency: -1.22241e-07  stability: 0.0566038
+[2025-06-25 17:34:32,239 PID:1603 INFO __init__.py log_summary] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df] epi: 0  t: 310000  wall_t: 11522  opt_step: 1.4625e+06  frame: 310000  fps: 26.9051  total_reward: 400  total_reward_ma: 147.581  loss: 0.000508288  lr: 0.0001  explore_var: 2.21  entropy_coef: nan  entropy: nan  grad_norm: nan
+[2025-06-25 17:34:32,506 PID:1603 INFO __init__.py log_metrics] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df metrics] final_return_ma: 147.581  strength: 99.5806  max_strength: 477  final_strength: 352  sample_efficiency: 2.4103e-07  training_efficiency: 6.21719e-07  stability: 0.634369
+[2025-06-25 17:42:54,686 PID:1603 INFO __init__.py log_summary] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df] epi: 0  t: 320000  wall_t: 12025  opt_step: 1.51875e+06  frame: 320000  fps: 26.6112  total_reward: 500  total_reward_ma: 158.594  loss: 0.00225757  lr: 0.0001  explore_var: 2.12  entropy_coef: nan  entropy: nan  grad_norm: nan
+[2025-06-25 17:42:54,953 PID:1603 INFO __init__.py log_metrics] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df metrics] final_return_ma: 158.594  strength: 110.594  max_strength: 477  final_strength: 452  sample_efficiency: 6.0937e-07  training_efficiency: 6.26409e-07  stability: 0.676061
+[2025-06-25 17:47:13,133 PID:1603 INFO logger.py info] Running eval ckpt
+[2025-06-25 17:47:14,408 PID:1603 INFO __init__.py log_summary] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [eval_df] epi: 0  t: 0  wall_t: 12283  opt_step: 1.54688e+06  frame: 325000  fps: 26.4593  total_reward: 400  total_reward_ma: 100  loss: 0.0034738  lr: 0.0001  explore_var: 2.075  entropy_coef: nan  entropy: nan  grad_norm: nan
+[2025-06-25 17:47:14,440 PID:1603 INFO __init__.py log_metrics] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [eval_df metrics] final_return_ma: 100  strength: 52  max_strength: 352  final_strength: 352  sample_efficiency: -9.05118e-07  training_efficiency: 2.49441e-07  stability: -0.0638298
+[2025-06-25 17:51:35,017 PID:1603 INFO __init__.py log_summary] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df] epi: 0  t: 330000  wall_t: 12545  opt_step: 1.575e+06  frame: 330000  fps: 26.3053  total_reward: 450  total_reward_ma: 167.424  loss: 0.000558431  lr: 0.0001  explore_var: 2.03  entropy_coef: nan  entropy: nan  grad_norm: nan
+[2025-06-25 17:51:35,260 PID:1603 INFO __init__.py log_metrics] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df metrics] final_return_ma: 167.424  strength: 119.424  max_strength: 477  final_strength: 402  sample_efficiency: 8.56316e-07  training_efficiency: 6.27277e-07  stability: 0.703306
+[2025-06-25 18:00:43,043 PID:1603 INFO __init__.py log_summary] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df] epi: 0  t: 340000  wall_t: 13093  opt_step: 1.63125e+06  frame: 340000  fps: 25.9681  total_reward: 375  total_reward_ma: 173.529  loss: 0.00351175  lr: 0.0001  explore_var: 1.94  entropy_coef: nan  entropy: nan  grad_norm: nan
+[2025-06-25 18:00:43,335 PID:1603 INFO __init__.py log_metrics] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df metrics] final_return_ma: 173.529  strength: 125.529  max_strength: 477  final_strength: 327  sample_efficiency: 1.01605e-06  training_efficiency: 6.26185e-07  stability: 0.714539
+[2025-06-25 18:11:48,207 PID:1603 INFO __init__.py log_summary] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df] epi: 0  t: 350000  wall_t: 13758  opt_step: 1.6875e+06  frame: 350000  fps: 25.4397  total_reward: 325  total_reward_ma: 177.857  loss: 0.00131567  lr: 0.0001  explore_var: 1.85  entropy_coef: nan  entropy: nan  grad_norm: nan
+[2025-06-25 18:11:48,500 PID:1603 INFO __init__.py log_metrics] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df metrics] final_return_ma: 177.857  strength: 129.857  max_strength: 477  final_strength: 277  sample_efficiency: 1.12826e-06  training_efficiency: 6.24138e-07  stability: 0.724695
+[2025-06-25 18:11:48,500 PID:1603 INFO logger.py info] Running eval ckpt
+[2025-06-25 18:11:49,700 PID:1603 INFO __init__.py log_summary] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [eval_df] epi: 0  t: 0  wall_t: 13758  opt_step: 1.6875e+06  frame: 350000  fps: 25.4397  total_reward: 0  total_reward_ma: 93.3333  loss: 0.00131567  lr: 0.0001  explore_var: 1.85  entropy_coef: nan  entropy: nan  grad_norm: nan
+[2025-06-25 18:11:49,726 PID:1603 INFO __init__.py log_metrics] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [eval_df metrics] final_return_ma: 93.3333  strength: 45.3333  max_strength: 352  final_strength: -48  sample_efficiency: -1.17069e-06  training_efficiency: 2.25218e-07  stability: -0.0989012
+[2025-06-25 18:15:39,845 PID:1871 INFO openai.py __init__] OpenAIEnv:
+- env_spec = {'frame_op': 'concat',
+ 'frame_op_len': 4,
+ 'max_frame': 1000000,
+ 'max_t': None,
+ 'name': 'Kangaroo-v0',
+ 'num_envs': 8,
+ 'reward_scale': 'sign'}
+- eval_frequency = 25000
+- log_frequency = 10000
+- frame_op = concat
+- frame_op_len = 4
+- image_downsize = (84, 84)
+- normalize_state = False
+- reward_scale = sign
+- num_envs = 8
+- name = Kangaroo-v0
+- max_t = 10000
+- max_frame = 1000000
+- to_render = False
+- is_venv = True
+- clock_speed = 8
+- clock = <slm_lab.env.base.Clock object at 0x779746f73ef0>
+- done = False
+- total_reward = nan
+- u_env = <slm_lab.env.vec_env.VecFrameStack object at 0x779746f38160>
+- observation_space = Box(4, 84, 84)
+- action_space = Discrete(18)
+- observable_dim = {'state': (4, 84, 84)}
+- action_dim = 18
+- is_discrete = True
+[2025-06-25 18:15:40,431 PID:1871 INFO net_util.py load_algorithm] Loading algorithm DoubleDQN nets ['net', 'target_net'] from data/ddqn_target_kangaroo_2025_06_25_142228/model/ddqn_target_kangaroo_t0_s0_*.pt
+[2025-06-25 18:15:40,556 PID:1871 INFO base.py end_init_nets] Loaded algorithm models for lab_mode: train
+[2025-06-25 18:15:40,599 PID:1871 INFO base.py __init__] DoubleDQN:
+- agent = <slm_lab.agent.Agent object at 0x779746e8d978>
+- action_pdtype = Argmax
+- action_policy = <function boltzmann at 0x779747dc1d90>
+- explore_var_spec = {'end_step': 500000,
+ 'end_val': 0.5,
+ 'name': 'linear_decay',
+ 'start_step': 0,
+ 'start_val': 5.0}
+- training_start_step = 50000
+- gamma = 0.99
+- training_batch_iter = 3
+- training_iter = 3
+- training_frequency = 4
+- to_train = 0
+- explore_var_scheduler = <slm_lab.agent.algorithm.policy_util.VarScheduler object at 0x779746e8da20>
+- net = ConvNet(
+  (conv_model): Sequential(
+    (0): Conv2d(4, 32, kernel_size=(8, 8), stride=(4, 4))
+    (1): ReLU()
+    (2): Conv2d(32, 64, kernel_size=(4, 4), stride=(2, 2))
+    (3): ReLU()
+    (4): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1))
+    (5): ReLU()
+  )
+  (fc_model): Sequential(
+    (0): Linear(in_features=3136, out_features=512, bias=True)
+    (1): ReLU()
+  )
+  (model_tail): Sequential(
+    (0): Linear(in_features=512, out_features=18, bias=True)
+  )
+  (loss_fn): SmoothL1Loss()
+)
+- target_net = ConvNet(
+  (conv_model): Sequential(
+    (0): Conv2d(4, 32, kernel_size=(8, 8), stride=(4, 4))
+    (1): ReLU()
+    (2): Conv2d(32, 64, kernel_size=(4, 4), stride=(2, 2))
+    (3): ReLU()
+    (4): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1))
+    (5): ReLU()
+  )
+  (fc_model): Sequential(
+    (0): Linear(in_features=3136, out_features=512, bias=True)
+    (1): ReLU()
+  )
+  (model_tail): Sequential(
+    (0): Linear(in_features=512, out_features=18, bias=True)
+  )
+  (loss_fn): SmoothL1Loss()
+)
+- net_names = ['net', 'target_net']
+- optim = Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.0001
+    weight_decay: 0
+)
+- lr_scheduler = <slm_lab.agent.net.net_util.NoOpLRScheduler object at 0x779746e64f28>
+- global_net = None
+- global_target_net = None
+- online_net = ConvNet(
+  (conv_model): Sequential(
+    (0): Conv2d(4, 32, kernel_size=(8, 8), stride=(4, 4))
+    (1): ReLU()
+    (2): Conv2d(32, 64, kernel_size=(4, 4), stride=(2, 2))
+    (3): ReLU()
+    (4): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1))
+    (5): ReLU()
+  )
+  (fc_model): Sequential(
+    (0): Linear(in_features=3136, out_features=512, bias=True)
+    (1): ReLU()
+  )
+  (model_tail): Sequential(
+    (0): Linear(in_features=512, out_features=18, bias=True)
+  )
+  (loss_fn): SmoothL1Loss()
+)
+- eval_net = ConvNet(
+  (conv_model): Sequential(
+    (0): Conv2d(4, 32, kernel_size=(8, 8), stride=(4, 4))
+    (1): ReLU()
+    (2): Conv2d(32, 64, kernel_size=(4, 4), stride=(2, 2))
+    (3): ReLU()
+    (4): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1))
+    (5): ReLU()
+  )
+  (fc_model): Sequential(
+    (0): Linear(in_features=3136, out_features=512, bias=True)
+    (1): ReLU()
+  )
+  (model_tail): Sequential(
+    (0): Linear(in_features=512, out_features=18, bias=True)
+  )
+  (loss_fn): SmoothL1Loss()
+)
+[2025-06-25 18:15:40,640 PID:1871 INFO __init__.py __init__] Agent:
+- spec = {'cuda_offset': 0,
+ 'distributed': False,
+ 'eval_frequency': 25000,
+ 'experiment': 0,
+ 'experiment_ts': '2025_06_25_142228',
+ 'git_sha': 'cae945a294cb111ee8e568bb4465ee74c501478b',
+ 'graph_prepath': 'data/ddqn_target_kangaroo_2025_06_25_142228/graph/ddqn_target_kangaroo_t0_s0',
+ 'info_prepath': 'data/ddqn_target_kangaroo_2025_06_25_142228/info/ddqn_target_kangaroo_t0_s0',
+ 'log_frequency': 10000,
+ 'log_prepath': 'data/ddqn_target_kangaroo_2025_06_25_142228/log/ddqn_target_kangaroo_t0_s0',
+ 'max_session': 1,
+ 'max_trial': 1,
+ 'model_prepath': 'data/ddqn_target_kangaroo_2025_06_25_142228/model/ddqn_target_kangaroo_t0_s0',
+ 'prepath': 'data/ddqn_target_kangaroo_2025_06_25_142228/ddqn_target_kangaroo_t0_s0',
+ 'random_seed': 1750864539,
+ 'resume': True,
+ 'rigorous_eval': 1,
+ 'session': 0,
+ 'trial': 0}
+- agent_spec = {'algorithm': {'action_pdtype': 'Argmax',
+               'action_policy': 'boltzmann',
+               'explore_var_spec': {'end_step': 500000,
+                                    'end_val': 0.5,
+                                    'name': 'linear_decay',
+                                    'start_step': 0,
+                                    'start_val': 5.0},
+               'gamma': 0.99,
+               'name': 'DoubleDQN',
+               'target_net_update_frequency': 10000,
+               'training_batch_iter': 3,
+               'training_frequency': 4,
+               'training_iter': 3,
+               'training_start_step': 50000},
+ 'memory': {'batch_size': 32,
+            'max_size': 500000,
+            'name': 'Replay',
+            'use_cer': False},
+ 'name': 'DoubleDQN',
+ 'net': {'batch_norm': False,
+         'clip_grad_val': 1.0,
+         'conv_hid_layers': [[32, 8, 4, 0, 1],
+                             [64, 4, 2, 0, 1],
+                             [64, 3, 1, 0, 1]],
+         'fc_hid_layers': [512],
+         'gpu': False,
+         'hid_layers_activation': 'relu',
+         'init_fn': 'orthogonal_',
+         'loss_spec': {'name': 'SmoothL1Loss'},
+         'lr_scheduler_spec': None,
+         'normalize': True,
+         'optim_spec': {'lr': 0.0001, 'name': 'Adam'},
+         'shared': True,
+         'type': 'ConvNet'}}
+- name = DoubleDQN
+- body = body: {
+  "agent": "<slm_lab.agent.Agent object at 0x779746e8d978>",
+  "env": "<slm_lab.env.openai.OpenAIEnv object at 0x7797b010fcf8>",
+  "a": 0,
+  "e": 0,
+  "b": 0,
+  "aeb": "(0, 0, 0)",
+  "explore_var": 0.5,
+  "entropy_coef": NaN,
+  "loss": NaN,
+  "mean_entropy": NaN,
+  "mean_grad_norm": NaN,
+  "best_total_reward_ma": -Infinity,
+  "total_reward_ma": NaN,
+  "train_df": "    epi         t   wall_t   opt_step     frame          fps  total_reward  total_reward_ma      loss      lr  explore_var  entropy_coef  entropy  grad_norm\n0   0.0       0.0      0.0        0.0       0.0     0.000000           NaN              NaN       NaN  0.0001         5.00           NaN      NaN        NaN\n1   0.0   10000.0      8.0        0.0   10000.0  1250.000000           0.0         0.000000       NaN  0.0001         4.91           NaN      NaN        NaN\n2   0.0   20000.0     15.0        0.0   20000.0  1333.333400           0.0         0.000000       NaN  0.0001         4.82           NaN      NaN        NaN\n3   0.0   30000.0     22.0        0.0   30000.0  1363.636400           0.0         0.000000       NaN  0.0001         4.73           NaN      NaN        NaN\n4   0.0   40000.0     27.0        0.0   40000.0  1481.481400           0.0         0.000000       NaN  0.0001         4.64           NaN      NaN        NaN\n5   0.0   50000.0     34.0        0.0   50000.0  1470.588300           0.0         0.000000       NaN  0.0001         4.55           NaN      NaN        NaN\n6   0.0   60000.0    454.0    56250.0   60000.0   132.158580          25.0         4.166666  0.000011  0.0001         4.46           NaN      NaN        NaN\n7   0.0   70000.0    887.0   112500.0   70000.0    78.917700          25.0         7.142857  0.000001  0.0001         4.37           NaN      NaN        NaN\n8   0.0   80000.0   1310.0   168750.0   80000.0    61.068703           0.0         6.250000  0.000005  0.0001         4.28           NaN      NaN        NaN\n9   0.0   90000.0   1725.0   225000.0   90000.0    52.173912          50.0        11.111111  0.000717  0.0001         4.19           NaN      NaN        NaN\n10  0.0  100000.0   2128.0   281250.0  100000.0    46.992480          25.0        12.500000  0.000072  0.0001         4.10           NaN      NaN        NaN\n11  0.0  110000.0   2532.0   337500.0  110000.0    43.443916          25.0        13.636364  0.000023  0.0001         4.01           NaN      NaN        NaN\n12  0.0  120000.0   2971.0   393750.0  120000.0    40.390440          50.0        16.666666  0.013758  0.0001         3.92           NaN      NaN        NaN\n13  0.0  130000.0   3415.0   450000.0  130000.0    38.067350           0.0        15.384615  0.000122  0.0001         3.83           NaN      NaN        NaN\n14  0.0  140000.0   3861.0   506250.0  140000.0    36.260036           0.0        14.285714  0.000034  0.0001         3.74           NaN      NaN        NaN\n15  0.0  150000.0   4295.0   562500.0  150000.0    34.924330           0.0        13.333333  0.000032  0.0001         3.65           NaN      NaN        NaN\n16  0.0  160000.0   4729.0   618750.0  160000.0    33.833790          50.0        15.625000  0.001087  0.0001         3.56           NaN      NaN        NaN\n17  0.0  170000.0   5161.0   675000.0  170000.0    32.939354          25.0        16.176470  0.000151  0.0001         3.47           NaN      NaN        NaN\n18  0.0  180000.0   5600.0   731250.0  180000.0    32.142857         350.0        34.722220  0.000124  0.0001         3.38           NaN      NaN        NaN\n19  0.0  190000.0   6043.0   787500.0  190000.0    31.441338          25.0        34.210526  0.001158  0.0001         3.29           NaN      NaN        NaN\n20  0.0  200000.0   6487.0   843750.0  200000.0    30.830893         237.5        44.375000  0.000047  0.0001         3.20           NaN      NaN        NaN\n21  0.0  210000.0   6934.0   900000.0  210000.0    30.285550         200.0        51.785713  0.000116  0.0001         3.11           NaN      NaN        NaN\n22  0.0  220000.0   7378.0   956250.0  220000.0    29.818378         300.0        63.068180  0.000788  0.0001         3.02           NaN      NaN        NaN\n23  0.0  230000.0   7824.0  1012500.0  230000.0    29.396729         250.0        71.195656  0.000232  0.0001         2.93           NaN      NaN        NaN\n24  0.0  240000.0   8273.0  1068750.0  240000.0    29.010033         337.5        82.291664  0.000195  0.0001         2.84           NaN      NaN        NaN\n25  0.0  250000.0   8723.0  1125000.0  250000.0    28.659864         225.0        88.000000  0.000139  0.0001         2.75           NaN      NaN        NaN\n26  0.0  260000.0   9179.0  1181250.0  260000.0    28.325525         525.0       104.807690  0.000248  0.0001         2.66           NaN      NaN        NaN\n27  0.0  270000.0   9634.0  1237500.0  270000.0    28.025742         525.0       120.370370  0.004455  0.0001         2.57           NaN      NaN        NaN\n28  0.0  280000.0  10097.0  1293750.0  280000.0    27.731009         175.0       122.321430  0.001034  0.0001         2.48           NaN      NaN        NaN\n29  0.0  290000.0  10561.0  1350000.0  290000.0    27.459520         350.0       130.172410  0.000315  0.0001         2.39           NaN      NaN        NaN\n30  0.0  300000.0  11036.0  1406250.0  300000.0    27.183762         400.0       139.166670  0.001412  0.0001         2.30           NaN      NaN        NaN\n31  0.0  310000.0  11522.0  1462500.0  310000.0    26.905050         400.0       147.580640  0.000508  0.0001         2.21           NaN      NaN        NaN\n32  0.0  320000.0  12025.0  1518750.0  320000.0    26.611227         500.0       158.593750  0.002258  0.0001         2.12           NaN      NaN        NaN\n33  0.0  330000.0  12545.0  1575000.0  330000.0    26.305302         450.0       167.424240  0.000558  0.0001         2.03           NaN      NaN        NaN\n34  0.0  340000.0  13093.0  1631250.0  340000.0    25.968075         375.0       173.529420  0.003512  0.0001         1.94           NaN      NaN        NaN\n35  0.0  350000.0  13758.0  1687500.0  350000.0    25.439745         325.0       177.857150  0.001316  0.0001         1.85           NaN      NaN        NaN",
+  "eval_df": "    epi         t   wall_t   opt_step     frame          fps  total_reward  total_reward_ma      loss      lr  explore_var  entropy_coef  entropy  grad_norm\n0   0.0       0.0      0.0        0.0       0.0     0.000000           NaN              NaN       NaN  0.0001         5.00           NaN      NaN        NaN\n1   0.0   10000.0      8.0        0.0   10000.0  1250.000000           0.0         0.000000       NaN  0.0001         4.91           NaN      NaN        NaN\n2   0.0   20000.0     15.0        0.0   20000.0  1333.333400           0.0         0.000000       NaN  0.0001         4.82           NaN      NaN        NaN\n3   0.0   30000.0     22.0        0.0   30000.0  1363.636400           0.0         0.000000       NaN  0.0001         4.73           NaN      NaN        NaN\n4   0.0   40000.0     27.0        0.0   40000.0  1481.481400           0.0         0.000000       NaN  0.0001         4.64           NaN      NaN        NaN\n5   0.0   50000.0     34.0        0.0   50000.0  1470.588300           0.0         0.000000       NaN  0.0001         4.55           NaN      NaN        NaN\n6   0.0   60000.0    454.0    56250.0   60000.0   132.158580          25.0         4.166666  0.000011  0.0001         4.46           NaN      NaN        NaN\n7   0.0   70000.0    887.0   112500.0   70000.0    78.917700          25.0         7.142857  0.000001  0.0001         4.37           NaN      NaN        NaN\n8   0.0   80000.0   1310.0   168750.0   80000.0    61.068703           0.0         6.250000  0.000005  0.0001         4.28           NaN      NaN        NaN\n9   0.0   90000.0   1725.0   225000.0   90000.0    52.173912          50.0        11.111111  0.000717  0.0001         4.19           NaN      NaN        NaN\n10  0.0  100000.0   2128.0   281250.0  100000.0    46.992480          25.0        12.500000  0.000072  0.0001         4.10           NaN      NaN        NaN\n11  0.0  110000.0   2532.0   337500.0  110000.0    43.443916          25.0        13.636364  0.000023  0.0001         4.01           NaN      NaN        NaN\n12  0.0  120000.0   2971.0   393750.0  120000.0    40.390440          50.0        16.666666  0.013758  0.0001         3.92           NaN      NaN        NaN\n13  0.0  130000.0   3415.0   450000.0  130000.0    38.067350           0.0        15.384615  0.000122  0.0001         3.83           NaN      NaN        NaN\n14  0.0  140000.0   3861.0   506250.0  140000.0    36.260036           0.0        14.285714  0.000034  0.0001         3.74           NaN      NaN        NaN\n15  0.0  150000.0   4295.0   562500.0  150000.0    34.924330           0.0        13.333333  0.000032  0.0001         3.65           NaN      NaN        NaN\n16  0.0  160000.0   4729.0   618750.0  160000.0    33.833790          50.0        15.625000  0.001087  0.0001         3.56           NaN      NaN        NaN\n17  0.0  170000.0   5161.0   675000.0  170000.0    32.939354          25.0        16.176470  0.000151  0.0001         3.47           NaN      NaN        NaN\n18  0.0  180000.0   5600.0   731250.0  180000.0    32.142857         350.0        34.722220  0.000124  0.0001         3.38           NaN      NaN        NaN\n19  0.0  190000.0   6043.0   787500.0  190000.0    31.441338          25.0        34.210526  0.001158  0.0001         3.29           NaN      NaN        NaN\n20  0.0  200000.0   6487.0   843750.0  200000.0    30.830893         237.5        44.375000  0.000047  0.0001         3.20           NaN      NaN        NaN\n21  0.0  210000.0   6934.0   900000.0  210000.0    30.285550         200.0        51.785713  0.000116  0.0001         3.11           NaN      NaN        NaN\n22  0.0  220000.0   7378.0   956250.0  220000.0    29.818378         300.0        63.068180  0.000788  0.0001         3.02           NaN      NaN        NaN\n23  0.0  230000.0   7824.0  1012500.0  230000.0    29.396729         250.0        71.195656  0.000232  0.0001         2.93           NaN      NaN        NaN\n24  0.0  240000.0   8273.0  1068750.0  240000.0    29.010033         337.5        82.291664  0.000195  0.0001         2.84           NaN      NaN        NaN\n25  0.0  250000.0   8723.0  1125000.0  250000.0    28.659864         225.0        88.000000  0.000139  0.0001         2.75           NaN      NaN        NaN\n26  0.0  260000.0   9179.0  1181250.0  260000.0    28.325525         525.0       104.807690  0.000248  0.0001         2.66           NaN      NaN        NaN\n27  0.0  270000.0   9634.0  1237500.0  270000.0    28.025742         525.0       120.370370  0.004455  0.0001         2.57           NaN      NaN        NaN\n28  0.0  280000.0  10097.0  1293750.0  280000.0    27.731009         175.0       122.321430  0.001034  0.0001         2.48           NaN      NaN        NaN\n29  0.0  290000.0  10561.0  1350000.0  290000.0    27.459520         350.0       130.172410  0.000315  0.0001         2.39           NaN      NaN        NaN\n30  0.0  300000.0  11036.0  1406250.0  300000.0    27.183762         400.0       139.166670  0.001412  0.0001         2.30           NaN      NaN        NaN\n31  0.0  310000.0  11522.0  1462500.0  310000.0    26.905050         400.0       147.580640  0.000508  0.0001         2.21           NaN      NaN        NaN\n32  0.0  320000.0  12025.0  1518750.0  320000.0    26.611227         500.0       158.593750  0.002258  0.0001         2.12           NaN      NaN        NaN\n33  0.0  330000.0  12545.0  1575000.0  330000.0    26.305302         450.0       167.424240  0.000558  0.0001         2.03           NaN      NaN        NaN\n34  0.0  340000.0  13093.0  1631250.0  340000.0    25.968075         375.0       173.529420  0.003512  0.0001         1.94           NaN      NaN        NaN\n35  0.0  350000.0  13758.0  1687500.0  350000.0    25.439745         325.0       177.857150  0.001316  0.0001         1.85           NaN      NaN        NaN",
+  "observation_space": "Box(4, 84, 84)",
+  "action_space": "Discrete(18)",
+  "observable_dim": {
+    "state": [
+      4,
+      84,
+      84
+    ]
+  },
+  "state_dim": "(4, 84, 84)",
+  "action_dim": 18,
+  "is_discrete": true,
+  "action_type": "discrete",
+  "action_pdtype": "Argmax",
+  "ActionPD": "<class 'slm_lab.lib.distribution.Argmax'>",
+  "memory": "<slm_lab.agent.memory.replay.Replay object at 0x779746e8da90>"
+}
+- algorithm = <slm_lab.agent.algorithm.dqn.DoubleDQN object at 0x779746e8df28>
+[2025-06-25 18:15:40,909 PID:1871 INFO openai.py __init__] OpenAIEnv:
+- env_spec = {'frame_op': 'concat',
+ 'frame_op_len': 4,
+ 'max_frame': 1000000,
+ 'max_t': None,
+ 'name': 'Kangaroo-v0',
+ 'num_envs': 8,
+ 'reward_scale': 'sign'}
+- eval_frequency = 25000
+- log_frequency = 10000
+- frame_op = concat
+- frame_op_len = 4
+- image_downsize = (84, 84)
+- normalize_state = False
+- reward_scale = sign
+- num_envs = 1
+- name = Kangaroo-v0
+- max_t = 10000
+- max_frame = 1000000
+- to_render = False
+- is_venv = False
+- clock_speed = 1
+- clock = <slm_lab.env.base.Clock object at 0x779746e15b70>
+- done = False
+- total_reward = nan
+- u_env = <ScaleRewardEnv<TrackReward<FrameStack<PreprocessImage<TimeLimit<AtariEnv<Kangaroo-v0>>>>>>>
+- observation_space = Box(4, 84, 84)
+- action_space = Discrete(18)
+- observable_dim = {'state': (4, 84, 84)}
+- action_dim = 18
+- is_discrete = True
+[2025-06-25 18:15:40,910 PID:1871 INFO logger.py info] Session:
+- spec = {'cuda_offset': 0,
+ 'distributed': False,
+ 'eval_frequency': 25000,
+ 'experiment': 0,
+ 'experiment_ts': '2025_06_25_142228',
+ 'git_sha': 'cae945a294cb111ee8e568bb4465ee74c501478b',
+ 'graph_prepath': 'data/ddqn_target_kangaroo_2025_06_25_142228/graph/ddqn_target_kangaroo_t0_s0',
+ 'info_prepath': 'data/ddqn_target_kangaroo_2025_06_25_142228/info/ddqn_target_kangaroo_t0_s0',
+ 'log_frequency': 10000,
+ 'log_prepath': 'data/ddqn_target_kangaroo_2025_06_25_142228/log/ddqn_target_kangaroo_t0_s0',
+ 'max_session': 1,
+ 'max_trial': 1,
+ 'model_prepath': 'data/ddqn_target_kangaroo_2025_06_25_142228/model/ddqn_target_kangaroo_t0_s0',
+ 'prepath': 'data/ddqn_target_kangaroo_2025_06_25_142228/ddqn_target_kangaroo_t0_s0',
+ 'random_seed': 1750864539,
+ 'resume': True,
+ 'rigorous_eval': 1,
+ 'session': 0,
+ 'trial': 0}
+- index = 0
+- agent = <slm_lab.agent.Agent object at 0x779746e8d978>
+- env = <slm_lab.env.openai.OpenAIEnv object at 0x7797b010fcf8>
+- eval_env = <slm_lab.env.openai.OpenAIEnv object at 0x779746e15a20>
+[2025-06-25 18:15:40,910 PID:1871 INFO logger.py info] Running RL loop for trial 0 session 0
+[2025-06-25 18:15:40,924 PID:1871 INFO __init__.py log_summary] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df] epi: 0  t: 350000  wall_t: 13758  opt_step: 1.6875e+06  frame: 350000  fps: 25.4397  total_reward: 325  total_reward_ma: 177.857  loss: 0.00131567  lr: 0.0001  explore_var: 1.85  entropy_coef: nan  entropy: nan  grad_norm: nan
+[2025-06-25 18:15:41,164 PID:1871 INFO __init__.py log_metrics] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df metrics] final_return_ma: 177.857  strength: 129.857  max_strength: 477  final_strength: 277  sample_efficiency: 1.12826e-06  training_efficiency: 6.24138e-07  stability: 0.724695
+[2025-06-25 18:15:41,164 PID:1871 INFO logger.py info] Running eval ckpt
+[2025-06-25 18:15:42,342 PID:1871 INFO __init__.py log_summary] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [eval_df] epi: 0  t: 350000  wall_t: 13758  opt_step: 1.6875e+06  frame: 350000  fps: 25.4397  total_reward: 325  total_reward_ma: 177.857  loss: 0.00131567  lr: 0.0001  explore_var: 1.85  entropy_coef: nan  entropy: nan  grad_norm: nan
+[2025-06-25 18:15:42,363 PID:1871 INFO __init__.py log_metrics] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [eval_df metrics] final_return_ma: 177.857  strength: 129.857  max_strength: 477  final_strength: 277  sample_efficiency: 1.12826e-06  training_efficiency: 6.24138e-07  stability: 0.724695
+[2025-06-25 18:15:48,386 PID:1871 INFO __init__.py log_summary] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df] epi: 0  t: 360000  wall_t: 13766  opt_step: 1.6875e+06  frame: 360000  fps: 26.1514  total_reward: 0  total_reward_ma: 172.917  loss: nan  lr: 0.0001  explore_var: 1.76  entropy_coef: nan  entropy: nan  grad_norm: nan
+[2025-06-25 18:15:48,520 PID:1871 INFO __init__.py log_metrics] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df metrics] final_return_ma: 172.917  strength: 124.917  max_strength: 477  final_strength: -48  sample_efficiency: 1.11065e-06  training_efficiency: 6.24475e-07  stability: 0.669967
+[2025-06-25 18:15:56,252 PID:1871 INFO __init__.py log_summary] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df] epi: 0  t: 370000  wall_t: 13774  opt_step: 1.6875e+06  frame: 370000  fps: 26.8622  total_reward: 225  total_reward_ma: 174.324  loss: nan  lr: 0.0001  explore_var: 1.67  entropy_coef: nan  entropy: nan  grad_norm: nan
+[2025-06-25 18:15:56,389 PID:1871 INFO __init__.py log_metrics] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df metrics] final_return_ma: 174.324  strength: 126.324  max_strength: 477  final_strength: 177  sample_efficiency: 1.17094e-06  training_efficiency: 6.23267e-07  stability: 0.666444
+[2025-06-25 18:15:59,854 PID:1871 INFO logger.py info] Running eval ckpt
+[2025-06-25 18:16:01,428 PID:1871 INFO __init__.py log_summary] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [eval_df] epi: 0  t: 0  wall_t: 13778  opt_step: 1.6875e+06  frame: 375000  fps: 27.2173  total_reward: 1200  total_reward_ma: 206.25  loss: nan  lr: 0.0001  explore_var: 1.625  entropy_coef: nan  entropy: nan  grad_norm: nan
+[2025-06-25 18:16:01,450 PID:1871 INFO __init__.py log_metrics] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [eval_df metrics] final_return_ma: 206.25  strength: 158.25  max_strength: 1152  final_strength: 1152  sample_efficiency: 1.43934e-06  training_efficiency: 6.17759e-07  stability: 0.741474
+[2025-06-25 18:16:04,929 PID:1871 INFO __init__.py log_summary] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df] epi: 0  t: 380000  wall_t: 13783  opt_step: 1.6875e+06  frame: 380000  fps: 27.5702  total_reward: 25  total_reward_ma: 170.395  loss: nan  lr: 0.0001  explore_var: 1.58  entropy_coef: nan  entropy: nan  grad_norm: nan
+[2025-06-25 18:16:05,065 PID:1871 INFO __init__.py log_metrics] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df metrics] final_return_ma: 170.395  strength: 122.395  max_strength: 477  final_strength: -23  sample_efficiency: 1.16372e-06  training_efficiency: 6.23419e-07  stability: 0.636286
+[2025-06-25 18:16:12,049 PID:1871 INFO __init__.py log_summary] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df] epi: 0  t: 390000  wall_t: 13790  opt_step: 1.6875e+06  frame: 390000  fps: 28.2814  total_reward: 25  total_reward_ma: 166.667  loss: nan  lr: 0.0001  explore_var: 1.49  entropy_coef: nan  entropy: nan  grad_norm: nan
+[2025-06-25 18:16:12,181 PID:1871 INFO __init__.py log_metrics] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df metrics] final_return_ma: 166.667  strength: 118.667  max_strength: 477  final_strength: -23  sample_efficiency: 1.15676e-06  training_efficiency: 6.23572e-07  stability: 0.634487
+[2025-06-25 18:16:17,146 PID:1871 INFO __init__.py log_summary] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df] epi: 0  t: 400000  wall_t: 13795  opt_step: 1.6875e+06  frame: 400000  fps: 28.996  total_reward: 50  total_reward_ma: 163.75  loss: nan  lr: 0.0001  explore_var: 1.4  entropy_coef: nan  entropy: nan  grad_norm: nan
+[2025-06-25 18:16:17,298 PID:1871 INFO __init__.py log_metrics] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df metrics] final_return_ma: 163.75  strength: 115.75  max_strength: 477  final_strength: 2  sample_efficiency: 1.15734e-06  training_efficiency: 6.23559e-07  stability: 0.632671
+[2025-06-25 18:16:17,299 PID:1871 INFO logger.py info] Running eval ckpt
+[2025-06-25 18:16:18,798 PID:1871 INFO __init__.py log_summary] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [eval_df] epi: 0  t: 0  wall_t: 13795  opt_step: 1.6875e+06  frame: 400000  fps: 28.996  total_reward: 200  total_reward_ma: 206.081  loss: nan  lr: 0.0001  explore_var: 1.4  entropy_coef: nan  entropy: nan  grad_norm: nan
+[2025-06-25 18:16:18,818 PID:1871 INFO __init__.py log_metrics] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [eval_df metrics] final_return_ma: 206.081  strength: 158.081  max_strength: 1152  final_strength: 152  sample_efficiency: 1.46691e-06  training_efficiency: 6.17105e-07  stability: 0.61822
+[2025-06-25 18:25:02,476 PID:1871 INFO __init__.py log_summary] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df] epi: 0  t: 410000  wall_t: 14320  opt_step: 1.74375e+06  frame: 410000  fps: 28.6313  total_reward: 425  total_reward_ma: 170.122  loss: 0.00675571  lr: 0.0001  explore_var: 1.31  entropy_coef: nan  entropy: nan  grad_norm: nan
+[2025-06-25 18:25:02,609 PID:1871 INFO __init__.py log_metrics] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df metrics] final_return_ma: 170.122  strength: 122.122  max_strength: 477  final_strength: 377  sample_efficiency: 1.25384e-06  training_efficiency: 6.19788e-07  stability: 0.632829
+[2025-06-25 18:34:00,496 PID:1871 INFO __init__.py log_summary] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df] epi: 0  t: 420000  wall_t: 14858  opt_step: 1.8e+06  frame: 420000  fps: 28.2676  total_reward: 125  total_reward_ma: 169.048  loss: 0.000810769  lr: 0.0001  explore_var: 1.22  entropy_coef: nan  entropy: nan  grad_norm: nan
+[2025-06-25 18:34:00,639 PID:1871 INFO __init__.py log_metrics] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df metrics] final_return_ma: 169.048  strength: 121.048  max_strength: 477  final_strength: 77  sample_efficiency: 1.27091e-06  training_efficiency: 6.18815e-07  stability: 0.600559
+[2025-06-25 18:38:26,179 PID:1871 INFO logger.py info] Running eval ckpt
+[2025-06-25 18:38:27,139 PID:1871 INFO __init__.py log_summary] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [eval_df] epi: 0  t: 0  wall_t: 15124  opt_step: 1.82812e+06  frame: 425000  fps: 28.101  total_reward: 0  total_reward_ma: 200.658  loss: 0.000757831  lr: 0.0001  explore_var: 1.175  entropy_coef: nan  entropy: nan  grad_norm: nan
+[2025-06-25 18:38:27,161 PID:1871 INFO __init__.py log_metrics] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [eval_df metrics] final_return_ma: 200.658  strength: 152.658  max_strength: 1152  final_strength: -48  sample_efficiency: 1.45958e-06  training_efficiency: 6.17685e-07  stability: 0.593948
+[2025-06-25 18:42:43,682 PID:1871 INFO __init__.py log_summary] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df] epi: 0  t: 430000  wall_t: 15381  opt_step: 1.85625e+06  frame: 430000  fps: 27.9566  total_reward: 375  total_reward_ma: 173.837  loss: 0.000914012  lr: 0.0001  explore_var: 1.13  entropy_coef: nan  entropy: nan  grad_norm: nan
+[2025-06-25 18:42:43,829 PID:1871 INFO __init__.py log_metrics] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df metrics] final_return_ma: 173.837  strength: 125.837  max_strength: 477  final_strength: 327  sample_efficiency: 1.33465e-06  training_efficiency: 6.13975e-07  stability: 0.606609
+[2025-06-25 18:51:18,123 PID:1871 INFO __init__.py log_summary] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df] epi: 0  t: 440000  wall_t: 15896  opt_step: 1.9125e+06  frame: 440000  fps: 27.6799  total_reward: 425  total_reward_ma: 179.545  loss: 0.000720697  lr: 0.0001  explore_var: 1.04  entropy_coef: nan  entropy: nan  grad_norm: nan
+[2025-06-25 18:51:18,349 PID:1871 INFO __init__.py log_metrics] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df metrics] final_return_ma: 179.545  strength: 131.545  max_strength: 477  final_strength: 377  sample_efficiency: 1.39575e-06  training_efficiency: 6.08041e-07  stability: 0.630383
+[2025-06-25 18:59:38,657 PID:1871 INFO __init__.py log_summary] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df] epi: 0  t: 450000  wall_t: 16396  opt_step: 1.96875e+06  frame: 450000  fps: 27.4457  total_reward: 375  total_reward_ma: 183.889  loss: 0.000529379  lr: 0.0001  explore_var: 0.95  entropy_coef: nan  entropy: nan  grad_norm: nan
+[2025-06-25 18:59:38,887 PID:1871 INFO __init__.py log_metrics] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df metrics] final_return_ma: 183.889  strength: 135.889  max_strength: 477  final_strength: 327  sample_efficiency: 1.43995e-06  training_efficiency: 6.02688e-07  stability: 0.645819
+[2025-06-25 18:59:38,888 PID:1871 INFO logger.py info] Running eval ckpt
+[2025-06-25 18:59:39,862 PID:1871 INFO __init__.py log_summary] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [eval_df] epi: 0  t: 0  wall_t: 16396  opt_step: 1.96875e+06  frame: 450000  fps: 27.4457  total_reward: 0  total_reward_ma: 195.513  loss: 0.000529379  lr: 0.0001  explore_var: 0.95  entropy_coef: nan  entropy: nan  grad_norm: nan
+[2025-06-25 18:59:39,883 PID:1871 INFO __init__.py log_metrics] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [eval_df metrics] final_return_ma: 195.513  strength: 147.513  max_strength: 1152  final_strength: -48  sample_efficiency: 1.45321e-06  training_efficiency: 6.18601e-07  stability: 0.590588
+[2025-06-25 19:07:44,036 PID:1871 INFO __init__.py log_summary] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df] epi: 0  t: 460000  wall_t: 16882  opt_step: 2.025e+06  frame: 460000  fps: 27.248  total_reward: 425  total_reward_ma: 189.13  loss: 0.000882884  lr: 0.0001  explore_var: 0.86  entropy_coef: nan  entropy: nan  grad_norm: nan
+[2025-06-25 19:07:44,316 PID:1871 INFO __init__.py log_metrics] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df metrics] final_return_ma: 189.13  strength: 141.13  max_strength: 477  final_strength: 377  sample_efficiency: 1.48257e-06  training_efficiency: 5.96366e-07  stability: 0.664759
+[2025-06-25 19:15:43,267 PID:1871 INFO __init__.py log_summary] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df] epi: 0  t: 470000  wall_t: 17361  opt_step: 2.08125e+06  frame: 470000  fps: 27.0722  total_reward: 400  total_reward_ma: 193.617  loss: 0.00408416  lr: 0.0001  explore_var: 0.77  entropy_coef: nan  entropy: nan  grad_norm: nan
+[2025-06-25 19:15:43,533 PID:1871 INFO __init__.py log_metrics] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df metrics] final_return_ma: 193.617  strength: 145.617  max_strength: 477  final_strength: 352  sample_efficiency: 1.51575e-06  training_efficiency: 5.90406e-07  stability: 0.680376
+[2025-06-25 19:19:45,359 PID:1871 INFO logger.py info] Running eval ckpt
+[2025-06-25 19:19:47,013 PID:1871 INFO __init__.py log_summary] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [eval_df] epi: 0  t: 0  wall_t: 17603  opt_step: 2.10938e+06  frame: 475000  fps: 26.984  total_reward: 1200  total_reward_ma: 220.625  loss: 0.000997182  lr: 0.0001  explore_var: 0.725  entropy_coef: nan  entropy: nan  grad_norm: nan
+[2025-06-25 19:19:47,034 PID:1871 INFO __init__.py log_metrics] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [eval_df metrics] final_return_ma: 220.625  strength: 172.625  max_strength: 1152  final_strength: 1152  sample_efficiency: 1.562e-06  training_efficiency: 5.94489e-07  stability: 0.587172
+[2025-06-25 19:23:47,449 PID:1871 INFO __init__.py log_summary] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df] epi: 0  t: 480000  wall_t: 17845  opt_step: 2.1375e+06  frame: 480000  fps: 26.8983  total_reward: 475  total_reward_ma: 199.479  loss: 0.00099809  lr: 0.0001  explore_var: 0.68  entropy_coef: nan  entropy: nan  grad_norm: nan
+[2025-06-25 19:23:47,702 PID:1871 INFO __init__.py log_metrics] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df metrics] final_return_ma: 199.479  strength: 151.479  max_strength: 477  final_strength: 427  sample_efficiency: 1.54908e-06  training_efficiency: 5.83208e-07  stability: 0.696815
+[2025-06-25 19:31:46,178 PID:1871 INFO __init__.py log_summary] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df] epi: 0  t: 490000  wall_t: 18324  opt_step: 2.19375e+06  frame: 490000  fps: 26.7409  total_reward: 475  total_reward_ma: 205.102  loss: 0.0017286  lr: 0.0001  explore_var: 0.59  entropy_coef: nan  entropy: nan  grad_norm: nan
+[2025-06-25 19:31:46,407 PID:1871 INFO __init__.py log_metrics] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df metrics] final_return_ma: 205.102  strength: 157.102  max_strength: 477  final_strength: 427  sample_efficiency: 1.57636e-06  training_efficiency: 5.76143e-07  stability: 0.71462
+[2025-06-25 19:39:34,998 PID:1871 INFO __init__.py log_summary] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df] epi: 0  t: 500000  wall_t: 18793  opt_step: 2.25e+06  frame: 500000  fps: 26.6057  total_reward: 400  total_reward_ma: 209  loss: 0.000661634  lr: 0.0001  explore_var: 0.5  entropy_coef: nan  entropy: nan  grad_norm: nan
+[2025-06-25 19:39:35,233 PID:1871 INFO __init__.py log_metrics] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df metrics] final_return_ma: 209  strength: 161  max_strength: 477  final_strength: 352  sample_efficiency: 1.59488e-06  training_efficiency: 5.70384e-07  stability: 0.720707
+[2025-06-25 19:39:35,233 PID:1871 INFO logger.py info] Running eval ckpt
+[2025-06-25 19:39:35,752 PID:1871 INFO __init__.py log_summary] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [eval_df] epi: 0  t: 0  wall_t: 18793  opt_step: 2.25e+06  frame: 500000  fps: 26.6057  total_reward: 0  total_reward_ma: 215.244  loss: 0.000661634  lr: 0.0001  explore_var: 0.5  entropy_coef: nan  entropy: nan  grad_norm: nan
+[2025-06-25 19:39:35,772 PID:1871 INFO __init__.py log_metrics] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [eval_df metrics] final_return_ma: 215.244  strength: 167.244  max_strength: 1152  final_strength: -48  sample_efficiency: 1.55893e-06  training_efficiency: 5.95539e-07  stability: 0.482259
+[2025-06-25 19:47:13,497 PID:1871 INFO __init__.py log_summary] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df] epi: 0  t: 510000  wall_t: 19251  opt_step: 2.30625e+06  frame: 510000  fps: 26.4921  total_reward: 725  total_reward_ma: 219.118  loss: 0.004901  lr: 0.0001  explore_var: 0.5  entropy_coef: nan  entropy: nan  grad_norm: nan
+[2025-06-25 19:47:13,749 PID:1871 INFO __init__.py log_metrics] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df metrics] final_return_ma: 219.118  strength: 171.118  max_strength: 677  final_strength: 677  sample_efficiency: 1.62327e-06  training_efficiency: 5.59773e-07  stability: 0.732919
+[2025-06-25 19:54:53,408 PID:1871 INFO __init__.py log_summary] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df] epi: 0  t: 520000  wall_t: 19711  opt_step: 2.3625e+06  frame: 520000  fps: 26.3812  total_reward: 600  total_reward_ma: 226.442  loss: 0.00263717  lr: 0.0001  explore_var: 0.5  entropy_coef: nan  entropy: nan  grad_norm: nan
+[2025-06-25 19:54:53,666 PID:1871 INFO __init__.py log_metrics] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df metrics] final_return_ma: 226.442  strength: 178.442  max_strength: 677  final_strength: 552  sample_efficiency: 1.6411e-06  training_efficiency: 5.51654e-07  stability: 0.739315
+[2025-06-25 19:58:41,341 PID:1871 INFO logger.py info] Running eval ckpt
+[2025-06-25 19:58:42,416 PID:1871 INFO __init__.py log_summary] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [eval_df] epi: 0  t: 0  wall_t: 19939  opt_step: 2.39062e+06  frame: 525000  fps: 26.3303  total_reward: 0  total_reward_ma: 210.119  loss: 0.0025137  lr: 0.0001  explore_var: 0.5  entropy_coef: nan  entropy: nan  grad_norm: nan
+[2025-06-25 19:58:42,438 PID:1871 INFO __init__.py log_metrics] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [eval_df metrics] final_return_ma: 210.119  strength: 162.119  max_strength: 1152  final_strength: -48  sample_efficiency: 1.55649e-06  training_efficiency: 5.96788e-07  stability: 0.478635
+[2025-06-25 20:02:32,388 PID:1871 INFO __init__.py log_summary] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df] epi: 0  t: 530000  wall_t: 20170  opt_step: 2.41875e+06  frame: 530000  fps: 26.2766  total_reward: 500  total_reward_ma: 231.604  loss: 0.00499092  lr: 0.0001  explore_var: 0.5  entropy_coef: nan  entropy: nan  grad_norm: nan
+[2025-06-25 20:02:32,662 PID:1871 INFO __init__.py log_metrics] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df metrics] final_return_ma: 231.604  strength: 183.604  max_strength: 677  final_strength: 452  sample_efficiency: 1.65251e-06  training_efficiency: 5.45234e-07  stability: 0.744046
+[2025-06-25 20:10:36,240 PID:1871 INFO __init__.py log_summary] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df] epi: 0  t: 540000  wall_t: 20654  opt_step: 2.475e+06  frame: 540000  fps: 26.1451  total_reward: 650  total_reward_ma: 239.352  loss: 0.000623379  lr: 0.0001  explore_var: 0.5  entropy_coef: nan  entropy: nan  grad_norm: nan
+[2025-06-25 20:10:36,469 PID:1871 INFO __init__.py log_metrics] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df metrics] final_return_ma: 239.352  strength: 191.352  max_strength: 677  final_strength: 602  sample_efficiency: 1.66413e-06  training_efficiency: 5.37008e-07  stability: 0.755935
+[2025-06-25 20:18:14,542 PID:1871 INFO __init__.py log_summary] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df] epi: 0  t: 550000  wall_t: 21112  opt_step: 2.53125e+06  frame: 550000  fps: 26.0515  total_reward: 275  total_reward_ma: 240  loss: 0.00902969  lr: 0.0001  explore_var: 0.5  entropy_coef: nan  entropy: nan  grad_norm: nan
+[2025-06-25 20:18:14,774 PID:1871 INFO __init__.py log_metrics] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df metrics] final_return_ma: 240  strength: 192  max_strength: 677  final_strength: 227  sample_efficiency: 1.66744e-06  training_efficiency: 5.33956e-07  stability: 0.733862
+[2025-06-25 20:18:14,774 PID:1871 INFO logger.py info] Running eval ckpt
+[2025-06-25 20:18:16,040 PID:1871 INFO __init__.py log_summary] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [eval_df] epi: 0  t: 0  wall_t: 21112  opt_step: 2.53125e+06  frame: 550000  fps: 26.0515  total_reward: 600  total_reward_ma: 219.186  loss: 0.00902969  lr: 0.0001  explore_var: 0.5  entropy_coef: nan  entropy: nan  grad_norm: nan
+[2025-06-25 20:18:16,069 PID:1871 INFO __init__.py log_metrics] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [eval_df metrics] final_return_ma: 219.186  strength: 171.186  max_strength: 1152  final_strength: 552  sample_efficiency: 1.57612e-06  training_efficiency: 5.81661e-07  stability: 0.47496
+[2025-06-25 20:25:54,825 PID:1871 INFO __init__.py log_summary] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df] epi: 0  t: 560000  wall_t: 21572  opt_step: 2.5875e+06  frame: 560000  fps: 25.9596  total_reward: 525  total_reward_ma: 245.089  loss: 0.00216121  lr: 0.0001  explore_var: 0.5  entropy_coef: nan  entropy: nan  grad_norm: nan
+[2025-06-25 20:25:55,088 PID:1871 INFO __init__.py log_metrics] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df metrics] final_return_ma: 245.089  strength: 197.089  max_strength: 677  final_strength: 477  sample_efficiency: 1.67255e-06  training_efficiency: 5.27582e-07  stability: 0.739583
+[2025-06-25 20:33:36,775 PID:1871 INFO __init__.py log_summary] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df] epi: 0  t: 570000  wall_t: 22034  opt_step: 2.64375e+06  frame: 570000  fps: 25.8691  total_reward: 750  total_reward_ma: 253.947  loss: 0.00173092  lr: 0.0001  explore_var: 0.5  entropy_coef: nan  entropy: nan  grad_norm: nan
+[2025-06-25 20:33:37,009 PID:1871 INFO __init__.py log_metrics] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df metrics] final_return_ma: 253.947  strength: 205.947  max_strength: 702  final_strength: 702  sample_efficiency: 1.67744e-06  training_efficiency: 5.18652e-07  stability: 0.750838
+[2025-06-25 20:37:29,254 PID:1871 INFO logger.py info] Running eval ckpt
+[2025-06-25 20:37:30,492 PID:1871 INFO __init__.py log_summary] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [eval_df] epi: 0  t: 0  wall_t: 22267  opt_step: 2.67188e+06  frame: 575000  fps: 25.823  total_reward: 0  total_reward_ma: 214.205  loss: 0.00115171  lr: 0.0001  explore_var: 0.5  entropy_coef: nan  entropy: nan  grad_norm: nan
+[2025-06-25 20:37:30,515 PID:1871 INFO __init__.py log_metrics] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [eval_df metrics] final_return_ma: 214.205  strength: 166.205  max_strength: 1152  final_strength: -48  sample_efficiency: 1.57505e-06  training_efficiency: 5.83022e-07  stability: 0.432822
+[2025-06-25 20:41:20,357 PID:1871 INFO __init__.py log_summary] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df] epi: 0  t: 580000  wall_t: 22498  opt_step: 2.7e+06  frame: 580000  fps: 25.7801  total_reward: 375  total_reward_ma: 256.034  loss: 0.00800002  lr: 0.0001  explore_var: 0.5  entropy_coef: nan  entropy: nan  grad_norm: nan
+[2025-06-25 20:41:20,609 PID:1871 INFO __init__.py log_metrics] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df metrics] final_return_ma: 256.034  strength: 208.034  max_strength: 702  final_strength: 327  sample_efficiency: 1.67871e-06  training_efficiency: 5.14634e-07  stability: 0.733793
+[2025-06-25 20:49:01,933 PID:1871 INFO __init__.py log_summary] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df] epi: 0  t: 590000  wall_t: 22960  opt_step: 2.75625e+06  frame: 590000  fps: 25.6969  total_reward: 500  total_reward_ma: 260.169  loss: 0.109684  lr: 0.0001  explore_var: 0.5  entropy_coef: nan  entropy: nan  grad_norm: nan
+[2025-06-25 20:49:02,167 PID:1871 INFO __init__.py log_metrics] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df metrics] final_return_ma: 260.169  strength: 212.169  max_strength: 702  final_strength: 452  sample_efficiency: 1.67929e-06  training_efficiency: 5.09152e-07  stability: 0.741008
+[2025-06-25 20:56:45,471 PID:1871 INFO __init__.py log_summary] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df] epi: 0  t: 600000  wall_t: 23423  opt_step: 2.8125e+06  frame: 600000  fps: 25.6158  total_reward: 750  total_reward_ma: 268.333  loss: 0.0050538  lr: 0.0001  explore_var: 0.5  entropy_coef: nan  entropy: nan  grad_norm: nan
+[2025-06-25 20:56:45,736 PID:1871 INFO __init__.py log_metrics] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df metrics] final_return_ma: 268.333  strength: 220.333  max_strength: 702  final_strength: 702  sample_efficiency: 1.67862e-06  training_efficiency: 5.00995e-07  stability: 0.750359
+[2025-06-25 20:56:45,737 PID:1871 INFO logger.py info] Running eval ckpt
+[2025-06-25 20:56:46,567 PID:1871 INFO __init__.py log_summary] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [eval_df] epi: 0  t: 0  wall_t: 23423  opt_step: 2.8125e+06  frame: 600000  fps: 25.6158  total_reward: 0  total_reward_ma: 209.444  loss: 0.0050538  lr: 0.0001  explore_var: 0.5  entropy_coef: nan  entropy: nan  grad_norm: nan
+[2025-06-25 20:56:46,589 PID:1871 INFO __init__.py log_metrics] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [eval_df metrics] final_return_ma: 209.444  strength: 161.444  max_strength: 1152  final_strength: -48  sample_efficiency: 1.57444e-06  training_efficiency: 5.84525e-07  stability: 0.429099
+[2025-06-25 21:04:34,663 PID:1871 INFO __init__.py log_summary] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df] epi: 0  t: 610000  wall_t: 23892  opt_step: 2.86875e+06  frame: 610000  fps: 25.5316  total_reward: 625  total_reward_ma: 274.18  loss: 0.00111788  lr: 0.0001  explore_var: 0.5  entropy_coef: nan  entropy: nan  grad_norm: nan
+[2025-06-25 21:04:34,913 PID:1871 INFO __init__.py log_metrics] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df metrics] final_return_ma: 274.18  strength: 226.18  max_strength: 702  final_strength: 577  sample_efficiency: 1.67698e-06  training_efficiency: 4.94622e-07  stability: 0.75416
+[2025-06-25 21:12:22,814 PID:1871 INFO __init__.py log_summary] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df] epi: 0  t: 620000  wall_t: 24360  opt_step: 2.925e+06  frame: 620000  fps: 25.4516  total_reward: 500  total_reward_ma: 277.823  loss: 0.00305105  lr: 0.0001  explore_var: 0.5  entropy_coef: nan  entropy: nan  grad_norm: nan
+[2025-06-25 21:12:23,079 PID:1871 INFO __init__.py log_metrics] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df metrics] final_return_ma: 277.823  strength: 229.823  max_strength: 702  final_strength: 452  sample_efficiency: 1.67495e-06  training_efficiency: 4.89776e-07  stability: 0.755382
+[2025-06-25 21:16:17,757 PID:1871 INFO logger.py info] Running eval ckpt
+[2025-06-25 21:16:19,423 PID:1871 INFO __init__.py log_summary] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [eval_df] epi: 0  t: 0  wall_t: 24595  opt_step: 2.95312e+06  frame: 625000  fps: 25.4117  total_reward: 1000  total_reward_ma: 226.63  loss: 0.0122928  lr: 0.0001  explore_var: 0.5  entropy_coef: nan  entropy: nan  grad_norm: nan
+[2025-06-25 21:16:19,445 PID:1871 INFO __init__.py log_metrics] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [eval_df metrics] final_return_ma: 226.63  strength: 178.63  max_strength: 1152  final_strength: 952  sample_efficiency: 1.5774e-06  training_efficiency: 5.56036e-07  stability: 0.425327
+[2025-06-25 21:20:15,124 PID:1871 INFO __init__.py log_summary] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df] epi: 0  t: 630000  wall_t: 24833  opt_step: 2.98125e+06  frame: 630000  fps: 25.3695  total_reward: 750  total_reward_ma: 285.317  loss: 0.00117174  lr: 0.0001  explore_var: 0.5  entropy_coef: nan  entropy: nan  grad_norm: nan
+[2025-06-25 21:20:15,368 PID:1871 INFO __init__.py log_metrics] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df metrics] final_return_ma: 285.317  strength: 237.317  max_strength: 702  final_strength: 702  sample_efficiency: 1.67083e-06  training_efficiency: 4.82529e-07  stability: 0.763141
+[2025-06-25 21:28:11,635 PID:1871 INFO __init__.py log_summary] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df] epi: 0  t: 640000  wall_t: 25309  opt_step: 3.0375e+06  frame: 640000  fps: 25.2874  total_reward: 625  total_reward_ma: 290.625  loss: 0.00360501  lr: 0.0001  explore_var: 0.5  entropy_coef: nan  entropy: nan  grad_norm: nan
+[2025-06-25 21:28:11,864 PID:1871 INFO __init__.py log_metrics] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df metrics] final_return_ma: 290.625  strength: 242.625  max_strength: 702  final_strength: 577  sample_efficiency: 1.66681e-06  training_efficiency: 4.76832e-07  stability: 0.765902
+[2025-06-25 21:36:16,283 PID:1871 INFO __init__.py log_summary] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df] epi: 0  t: 650000  wall_t: 25794  opt_step: 3.09375e+06  frame: 650000  fps: 25.1997  total_reward: 650  total_reward_ma: 296.154  loss: 0.00152306  lr: 0.0001  explore_var: 0.5  entropy_coef: nan  entropy: nan  grad_norm: nan
+[2025-06-25 21:36:16,553 PID:1871 INFO __init__.py log_metrics] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df metrics] final_return_ma: 296.154  strength: 248.154  max_strength: 702  final_strength: 602  sample_efficiency: 1.66202e-06  training_efficiency: 4.711e-07  stability: 0.774601
+[2025-06-25 21:36:16,553 PID:1871 INFO logger.py info] Running eval ckpt
+[2025-06-25 21:36:17,909 PID:1871 INFO __init__.py log_summary] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [eval_df] epi: 0  t: 0  wall_t: 25794  opt_step: 3.09375e+06  frame: 650000  fps: 25.1997  total_reward: 600  total_reward_ma: 234.574  loss: 0.00152306  lr: 0.0001  explore_var: 0.5  entropy_coef: nan  entropy: nan  grad_norm: nan
+[2025-06-25 21:36:17,936 PID:1871 INFO __init__.py log_metrics] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [eval_df metrics] final_return_ma: 234.574  strength: 186.574  max_strength: 1152  final_strength: 552  sample_efficiency: 1.57495e-06  training_efficiency: 5.41381e-07  stability: 0.443227
+[2025-06-25 21:44:30,570 PID:1871 INFO __init__.py log_summary] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df] epi: 0  t: 660000  wall_t: 26288  opt_step: 3.15e+06  frame: 660000  fps: 25.1065  total_reward: 700  total_reward_ma: 302.273  loss: 0.000697649  lr: 0.0001  explore_var: 0.5  entropy_coef: nan  entropy: nan  grad_norm: nan
+[2025-06-25 21:44:30,808 PID:1871 INFO __init__.py log_metrics] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df metrics] final_return_ma: 302.273  strength: 254.273  max_strength: 702  final_strength: 652  sample_efficiency: 1.65631e-06  training_efficiency: 4.65131e-07  stability: 0.783013
+[2025-06-25 21:52:58,581 PID:1871 INFO __init__.py log_summary] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df] epi: 0  t: 670000  wall_t: 26796  opt_step: 3.20625e+06  frame: 670000  fps: 25.0037  total_reward: 1125  total_reward_ma: 314.552  loss: 0.00154861  lr: 0.0001  explore_var: 0.5  entropy_coef: nan  entropy: nan  grad_norm: nan
+[2025-06-25 21:52:57,013 PID:1871 INFO __init__.py log_metrics] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df metrics] final_return_ma: 314.552  strength: 266.552  max_strength: 1077  final_strength: 1077  sample_efficiency: 1.64644e-06  training_efficiency: 4.55889e-07  stability: 0.791443
+[2025-06-25 21:58:06,510 PID:1871 INFO logger.py info] Running eval ckpt
+[2025-06-25 21:58:07,710 PID:1871 INFO __init__.py log_summary] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [eval_df] epi: 0  t: 0  wall_t: 27104  opt_step: 3.23438e+06  frame: 675000  fps: 24.9041  total_reward: 400  total_reward_ma: 238.021  loss: 0.00410863  lr: 0.0001  explore_var: 0.5  entropy_coef: nan  entropy: nan  grad_norm: nan
+[2025-06-25 21:58:07,747 PID:1871 INFO __init__.py log_metrics] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [eval_df metrics] final_return_ma: 238.021  strength: 190.021  max_strength: 1152  final_strength: 352  sample_efficiency: 1.57134e-06  training_efficiency: 5.3242e-07  stability: 0.455468
+[2025-06-25 22:03:32,662 PID:1871 INFO __init__.py log_summary] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df] epi: 0  t: 680000  wall_t: 27430  opt_step: 3.2625e+06  frame: 680000  fps: 24.7904  total_reward: 950  total_reward_ma: 323.897  loss: 0.00238773  lr: 0.0001  explore_var: 0.5  entropy_coef: nan  entropy: nan  grad_norm: nan
+[2025-06-25 22:03:32,938 PID:1871 INFO __init__.py log_metrics] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df metrics] final_return_ma: 323.897  strength: 275.897  max_strength: 1077  final_strength: 902  sample_efficiency: 1.63798e-06  training_efficiency: 4.48708e-07  stability: 0.794221
+[2025-06-25 22:13:35,779 PID:1871 INFO __init__.py log_summary] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df] epi: 0  t: 690000  wall_t: 28033  opt_step: 3.31875e+06  frame: 690000  fps: 24.6138  total_reward: 900  total_reward_ma: 332.246  loss: 0.00202452  lr: 0.0001  explore_var: 0.5  entropy_coef: nan  entropy: nan  grad_norm: nan
+[2025-06-25 22:13:36,055 PID:1871 INFO __init__.py log_metrics] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df metrics] final_return_ma: 332.246  strength: 284.246  max_strength: 1077  final_strength: 852  sample_efficiency: 1.62978e-06  training_efficiency: 4.42305e-07  stability: 0.80145
+[2025-06-25 22:25:45,929 PID:1871 INFO __init__.py log_summary] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df] epi: 0  t: 700000  wall_t: 28763  opt_step: 3.375e+06  frame: 700000  fps: 24.3368  total_reward: 1100  total_reward_ma: 343.214  loss: 0.00145942  lr: 0.0001  explore_var: 0.5  entropy_coef: nan  entropy: nan  grad_norm: nan
+[2025-06-25 22:25:46,220 PID:1871 INFO __init__.py log_metrics] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df metrics] final_return_ma: 343.214  strength: 295.214  max_strength: 1077  final_strength: 1052  sample_efficiency: 1.61954e-06  training_efficiency: 4.34872e-07  stability: 0.810075
+[2025-06-25 22:25:46,221 PID:1871 INFO logger.py info] Running eval ckpt
+[2025-06-25 22:25:47,958 PID:1871 INFO __init__.py log_summary] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [eval_df] epi: 0  t: 0  wall_t: 28763  opt_step: 3.375e+06  frame: 700000  fps: 24.3368  total_reward: 1000  total_reward_ma: 253.571  loss: 0.00145942  lr: 0.0001  explore_var: 0.5  entropy_coef: nan  entropy: nan  grad_norm: nan
+[2025-06-25 22:25:47,981 PID:1871 INFO __init__.py log_metrics] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [eval_df metrics] final_return_ma: 253.571  strength: 205.571  max_strength: 1152  final_strength: 952  sample_efficiency: 1.55785e-06  training_efficiency: 5.10104e-07  stability: 0.476483
+[2025-06-25 22:43:48,593 PID:1875 ERROR logger.py exception] ShmemVecEnv worker: got KeyboardInterrupt
+Traceback (most recent call last):
+  File "/mnt/d/Code/Master/Year 1/Sem 2/RL/Project/SLM-Lab/slm_lab/env/vec_env.py", line 123, in subproc_worker
+    cmd, data = pipe.recv()
+  File "/home/andrei0408/miniconda3/envs/lab/lib/python3.7/multiprocessing/connection.py", line 250, in recv
+    buf = self._recv_bytes()
+  File "/home/andrei0408/miniconda3/envs/lab/lib/python3.7/multiprocessing/connection.py", line 407, in _recv_bytes
+    buf = self._recv(4)
+  File "/home/andrei0408/miniconda3/envs/lab/lib/python3.7/multiprocessing/connection.py", line 379, in _recv
+    chunk = read(handle, remaining)
+KeyboardInterrupt
+[2025-06-25 22:43:48,600 PID:1876 ERROR logger.py exception] ShmemVecEnv worker: got KeyboardInterrupt
+Traceback (most recent call last):
+  File "/mnt/d/Code/Master/Year 1/Sem 2/RL/Project/SLM-Lab/slm_lab/env/vec_env.py", line 123, in subproc_worker
+    cmd, data = pipe.recv()
+  File "/home/andrei0408/miniconda3/envs/lab/lib/python3.7/multiprocessing/connection.py", line 250, in recv
+    buf = self._recv_bytes()
+  File "/home/andrei0408/miniconda3/envs/lab/lib/python3.7/multiprocessing/connection.py", line 407, in _recv_bytes
+    buf = self._recv(4)
+  File "/home/andrei0408/miniconda3/envs/lab/lib/python3.7/multiprocessing/connection.py", line 379, in _recv
+    chunk = read(handle, remaining)
+KeyboardInterrupt
+[2025-06-25 22:43:48,593 PID:1881 ERROR logger.py exception] ShmemVecEnv worker: got KeyboardInterrupt
+Traceback (most recent call last):
+  File "/mnt/d/Code/Master/Year 1/Sem 2/RL/Project/SLM-Lab/slm_lab/env/vec_env.py", line 123, in subproc_worker
+    cmd, data = pipe.recv()
+  File "/home/andrei0408/miniconda3/envs/lab/lib/python3.7/multiprocessing/connection.py", line 250, in recv
+    buf = self._recv_bytes()
+  File "/home/andrei0408/miniconda3/envs/lab/lib/python3.7/multiprocessing/connection.py", line 407, in _recv_bytes
+    buf = self._recv(4)
+  File "/home/andrei0408/miniconda3/envs/lab/lib/python3.7/multiprocessing/connection.py", line 379, in _recv
+    chunk = read(handle, remaining)
+KeyboardInterrupt
+[2025-06-25 22:44:08,569 PID:2037 INFO openai.py __init__] OpenAIEnv:
+- env_spec = {'frame_op': 'concat',
+ 'frame_op_len': 4,
+ 'max_frame': 1000000,
+ 'max_t': None,
+ 'name': 'Kangaroo-v0',
+ 'num_envs': 8,
+ 'reward_scale': 'sign'}
+- eval_frequency = 25000
+- log_frequency = 10000
+- frame_op = concat
+- frame_op_len = 4
+- image_downsize = (84, 84)
+- normalize_state = False
+- reward_scale = sign
+- num_envs = 8
+- name = Kangaroo-v0
+- max_t = 10000
+- max_frame = 1000000
+- to_render = False
+- is_venv = True
+- clock_speed = 8
+- clock = <slm_lab.env.base.Clock object at 0x769fa3af2eb8>
+- done = False
+- total_reward = nan
+- u_env = <slm_lab.env.vec_env.VecFrameStack object at 0x769fa3ab8160>
+- observation_space = Box(4, 84, 84)
+- action_space = Discrete(18)
+- observable_dim = {'state': (4, 84, 84)}
+- action_dim = 18
+- is_discrete = True
+[2025-06-25 22:44:09,282 PID:2037 INFO net_util.py load_algorithm] Loading algorithm DoubleDQN nets ['net', 'target_net'] from data/ddqn_target_kangaroo_2025_06_25_142228/model/ddqn_target_kangaroo_t0_s0_*.pt
+[2025-06-25 22:44:09,418 PID:2037 INFO base.py end_init_nets] Loaded algorithm models for lab_mode: train
+[2025-06-25 22:44:09,476 PID:2037 INFO base.py __init__] DoubleDQN:
+- agent = <slm_lab.agent.Agent object at 0x769fa3a0c9b0>
+- action_pdtype = Argmax
+- action_policy = <function boltzmann at 0x769fa4941d90>
+- explore_var_spec = {'end_step': 500000,
+ 'end_val': 0.5,
+ 'name': 'linear_decay',
+ 'start_step': 0,
+ 'start_val': 5.0}
+- training_start_step = 50000
+- gamma = 0.99
+- training_batch_iter = 3
+- training_iter = 3
+- training_frequency = 4
+- to_train = 0
+- explore_var_scheduler = <slm_lab.agent.algorithm.policy_util.VarScheduler object at 0x769fa39e53c8>
+- net = ConvNet(
+  (conv_model): Sequential(
+    (0): Conv2d(4, 32, kernel_size=(8, 8), stride=(4, 4))
+    (1): ReLU()
+    (2): Conv2d(32, 64, kernel_size=(4, 4), stride=(2, 2))
+    (3): ReLU()
+    (4): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1))
+    (5): ReLU()
+  )
+  (fc_model): Sequential(
+    (0): Linear(in_features=3136, out_features=512, bias=True)
+    (1): ReLU()
+  )
+  (model_tail): Sequential(
+    (0): Linear(in_features=512, out_features=18, bias=True)
+  )
+  (loss_fn): SmoothL1Loss()
+)
+- target_net = ConvNet(
+  (conv_model): Sequential(
+    (0): Conv2d(4, 32, kernel_size=(8, 8), stride=(4, 4))
+    (1): ReLU()
+    (2): Conv2d(32, 64, kernel_size=(4, 4), stride=(2, 2))
+    (3): ReLU()
+    (4): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1))
+    (5): ReLU()
+  )
+  (fc_model): Sequential(
+    (0): Linear(in_features=3136, out_features=512, bias=True)
+    (1): ReLU()
+  )
+  (model_tail): Sequential(
+    (0): Linear(in_features=512, out_features=18, bias=True)
+  )
+  (loss_fn): SmoothL1Loss()
+)
+- net_names = ['net', 'target_net']
+- optim = Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.0001
+    weight_decay: 0
+)
+- lr_scheduler = <slm_lab.agent.net.net_util.NoOpLRScheduler object at 0x769fa39e5f28>
+- global_net = None
+- global_target_net = None
+- online_net = ConvNet(
+  (conv_model): Sequential(
+    (0): Conv2d(4, 32, kernel_size=(8, 8), stride=(4, 4))
+    (1): ReLU()
+    (2): Conv2d(32, 64, kernel_size=(4, 4), stride=(2, 2))
+    (3): ReLU()
+    (4): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1))
+    (5): ReLU()
+  )
+  (fc_model): Sequential(
+    (0): Linear(in_features=3136, out_features=512, bias=True)
+    (1): ReLU()
+  )
+  (model_tail): Sequential(
+    (0): Linear(in_features=512, out_features=18, bias=True)
+  )
+  (loss_fn): SmoothL1Loss()
+)
+- eval_net = ConvNet(
+  (conv_model): Sequential(
+    (0): Conv2d(4, 32, kernel_size=(8, 8), stride=(4, 4))
+    (1): ReLU()
+    (2): Conv2d(32, 64, kernel_size=(4, 4), stride=(2, 2))
+    (3): ReLU()
+    (4): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1))
+    (5): ReLU()
+  )
+  (fc_model): Sequential(
+    (0): Linear(in_features=3136, out_features=512, bias=True)
+    (1): ReLU()
+  )
+  (model_tail): Sequential(
+    (0): Linear(in_features=512, out_features=18, bias=True)
+  )
+  (loss_fn): SmoothL1Loss()
+)
+[2025-06-25 22:44:09,525 PID:2037 INFO __init__.py __init__] Agent:
+- spec = {'cuda_offset': 0,
+ 'distributed': False,
+ 'eval_frequency': 25000,
+ 'experiment': 0,
+ 'experiment_ts': '2025_06_25_142228',
+ 'git_sha': 'cae945a294cb111ee8e568bb4465ee74c501478b',
+ 'graph_prepath': 'data/ddqn_target_kangaroo_2025_06_25_142228/graph/ddqn_target_kangaroo_t0_s0',
+ 'info_prepath': 'data/ddqn_target_kangaroo_2025_06_25_142228/info/ddqn_target_kangaroo_t0_s0',
+ 'log_frequency': 10000,
+ 'log_prepath': 'data/ddqn_target_kangaroo_2025_06_25_142228/log/ddqn_target_kangaroo_t0_s0',
+ 'max_session': 1,
+ 'max_trial': 1,
+ 'model_prepath': 'data/ddqn_target_kangaroo_2025_06_25_142228/model/ddqn_target_kangaroo_t0_s0',
+ 'prepath': 'data/ddqn_target_kangaroo_2025_06_25_142228/ddqn_target_kangaroo_t0_s0',
+ 'random_seed': 1750880648,
+ 'resume': True,
+ 'rigorous_eval': 1,
+ 'session': 0,
+ 'trial': 0}
+- agent_spec = {'algorithm': {'action_pdtype': 'Argmax',
+               'action_policy': 'boltzmann',
+               'explore_var_spec': {'end_step': 500000,
+                                    'end_val': 0.5,
+                                    'name': 'linear_decay',
+                                    'start_step': 0,
+                                    'start_val': 5.0},
+               'gamma': 0.99,
+               'name': 'DoubleDQN',
+               'target_net_update_frequency': 10000,
+               'training_batch_iter': 3,
+               'training_frequency': 4,
+               'training_iter': 3,
+               'training_start_step': 50000},
+ 'memory': {'batch_size': 32,
+            'max_size': 500000,
+            'name': 'Replay',
+            'use_cer': False},
+ 'name': 'DoubleDQN',
+ 'net': {'batch_norm': False,
+         'clip_grad_val': 1.0,
+         'conv_hid_layers': [[32, 8, 4, 0, 1],
+                             [64, 4, 2, 0, 1],
+                             [64, 3, 1, 0, 1]],
+         'fc_hid_layers': [512],
+         'gpu': False,
+         'hid_layers_activation': 'relu',
+         'init_fn': 'orthogonal_',
+         'loss_spec': {'name': 'SmoothL1Loss'},
+         'lr_scheduler_spec': None,
+         'normalize': True,
+         'optim_spec': {'lr': 0.0001, 'name': 'Adam'},
+         'shared': True,
+         'type': 'ConvNet'}}
+- name = DoubleDQN
+- body = body: {
+  "agent": "<slm_lab.agent.Agent object at 0x769fa3a0c9b0>",
+  "env": "<slm_lab.env.openai.OpenAIEnv object at 0x76a00cc91cf8>",
+  "a": 0,
+  "e": 0,
+  "b": 0,
+  "aeb": "(0, 0, 0)",
+  "explore_var": 0.5,
+  "entropy_coef": NaN,
+  "loss": NaN,
+  "mean_entropy": NaN,
+  "mean_grad_norm": NaN,
+  "best_total_reward_ma": -Infinity,
+  "total_reward_ma": NaN,
+  "train_df": "    epi         t   wall_t   opt_step     frame          fps  total_reward  total_reward_ma      loss      lr  explore_var  entropy_coef  entropy  grad_norm\n0   0.0       0.0      0.0        0.0       0.0     0.000000           NaN              NaN       NaN  0.0001         5.00           NaN      NaN        NaN\n1   0.0   10000.0      8.0        0.0   10000.0  1250.000000           0.0         0.000000       NaN  0.0001         4.91           NaN      NaN        NaN\n2   0.0   20000.0     15.0        0.0   20000.0  1333.333400           0.0         0.000000       NaN  0.0001         4.82           NaN      NaN        NaN\n3   0.0   30000.0     22.0        0.0   30000.0  1363.636400           0.0         0.000000       NaN  0.0001         4.73           NaN      NaN        NaN\n4   0.0   40000.0     27.0        0.0   40000.0  1481.481400           0.0         0.000000       NaN  0.0001         4.64           NaN      NaN        NaN\n5   0.0   50000.0     34.0        0.0   50000.0  1470.588300           0.0         0.000000       NaN  0.0001         4.55           NaN      NaN        NaN\n6   0.0   60000.0    454.0    56250.0   60000.0   132.158580          25.0         4.166666  0.000011  0.0001         4.46           NaN      NaN        NaN\n7   0.0   70000.0    887.0   112500.0   70000.0    78.917700          25.0         7.142857  0.000001  0.0001         4.37           NaN      NaN        NaN\n8   0.0   80000.0   1310.0   168750.0   80000.0    61.068703           0.0         6.250000  0.000005  0.0001         4.28           NaN      NaN        NaN\n9   0.0   90000.0   1725.0   225000.0   90000.0    52.173912          50.0        11.111111  0.000717  0.0001         4.19           NaN      NaN        NaN\n10  0.0  100000.0   2128.0   281250.0  100000.0    46.992480          25.0        12.500000  0.000072  0.0001         4.10           NaN      NaN        NaN\n11  0.0  110000.0   2532.0   337500.0  110000.0    43.443916          25.0        13.636364  0.000023  0.0001         4.01           NaN      NaN        NaN\n12  0.0  120000.0   2971.0   393750.0  120000.0    40.390440          50.0        16.666666  0.013758  0.0001         3.92           NaN      NaN        NaN\n13  0.0  130000.0   3415.0   450000.0  130000.0    38.067350           0.0        15.384615  0.000122  0.0001         3.83           NaN      NaN        NaN\n14  0.0  140000.0   3861.0   506250.0  140000.0    36.260036           0.0        14.285714  0.000034  0.0001         3.74           NaN      NaN        NaN\n15  0.0  150000.0   4295.0   562500.0  150000.0    34.924330           0.0        13.333333  0.000032  0.0001         3.65           NaN      NaN        NaN\n16  0.0  160000.0   4729.0   618750.0  160000.0    33.833790          50.0        15.625000  0.001087  0.0001         3.56           NaN      NaN        NaN\n17  0.0  170000.0   5161.0   675000.0  170000.0    32.939354          25.0        16.176470  0.000151  0.0001         3.47           NaN      NaN        NaN\n18  0.0  180000.0   5600.0   731250.0  180000.0    32.142857         350.0        34.722220  0.000124  0.0001         3.38           NaN      NaN        NaN\n19  0.0  190000.0   6043.0   787500.0  190000.0    31.441338          25.0        34.210526  0.001158  0.0001         3.29           NaN      NaN        NaN\n20  0.0  200000.0   6487.0   843750.0  200000.0    30.830893         237.5        44.375000  0.000047  0.0001         3.20           NaN      NaN        NaN\n21  0.0  210000.0   6934.0   900000.0  210000.0    30.285550         200.0        51.785713  0.000116  0.0001         3.11           NaN      NaN        NaN\n22  0.0  220000.0   7378.0   956250.0  220000.0    29.818378         300.0        63.068180  0.000788  0.0001         3.02           NaN      NaN        NaN\n23  0.0  230000.0   7824.0  1012500.0  230000.0    29.396729         250.0        71.195656  0.000232  0.0001         2.93           NaN      NaN        NaN\n24  0.0  240000.0   8273.0  1068750.0  240000.0    29.010033         337.5        82.291664  0.000195  0.0001         2.84           NaN      NaN        NaN\n25  0.0  250000.0   8723.0  1125000.0  250000.0    28.659864         225.0        88.000000  0.000139  0.0001         2.75           NaN      NaN        NaN\n26  0.0  260000.0   9179.0  1181250.0  260000.0    28.325525         525.0       104.807690  0.000248  0.0001         2.66           NaN      NaN        NaN\n27  0.0  270000.0   9634.0  1237500.0  270000.0    28.025742         525.0       120.370370  0.004455  0.0001         2.57           NaN      NaN        NaN\n28  0.0  280000.0  10097.0  1293750.0  280000.0    27.731009         175.0       122.321430  0.001034  0.0001         2.48           NaN      NaN        NaN\n29  0.0  290000.0  10561.0  1350000.0  290000.0    27.459520         350.0       130.172410  0.000315  0.0001         2.39           NaN      NaN        NaN\n..  ...       ...      ...        ...       ...          ...           ...              ...       ...     ...          ...           ...      ...        ...\n41  0.0  410000.0  14320.0  1743750.0  410000.0    28.631285         425.0       170.121951  0.006756  0.0001         1.31           NaN      NaN        NaN\n42  0.0  420000.0  14858.0  1800000.0  420000.0    28.267599         125.0       169.047619  0.000811  0.0001         1.22           NaN      NaN        NaN\n43  0.0  430000.0  15381.0  1856250.0  430000.0    27.956570         375.0       173.837209  0.000914  0.0001         1.13           NaN      NaN        NaN\n44  0.0  440000.0  15896.0  1912500.0  440000.0    27.679920         425.0       179.545455  0.000721  0.0001         1.04           NaN      NaN        NaN\n45  0.0  450000.0  16396.0  1968750.0  450000.0    27.445719         375.0       183.888889  0.000529  0.0001         0.95           NaN      NaN        NaN\n46  0.0  460000.0  16882.0  2025000.0  460000.0    27.247957         425.0       189.130435  0.000883  0.0001         0.86           NaN      NaN        NaN\n47  0.0  470000.0  17361.0  2081250.0  470000.0    27.072174         400.0       193.617021  0.004084  0.0001         0.77           NaN      NaN        NaN\n48  0.0  480000.0  17845.0  2137500.0  480000.0    26.898291         475.0       199.479167  0.000998  0.0001         0.68           NaN      NaN        NaN\n49  0.0  490000.0  18324.0  2193750.0  490000.0    26.740887         475.0       205.102041  0.001729  0.0001         0.59           NaN      NaN        NaN\n50  0.0  500000.0  18793.0  2250000.0  500000.0    26.605652         400.0       209.000000  0.000662  0.0001         0.50           NaN      NaN        NaN\n51  0.0  510000.0  19251.0  2306250.0  510000.0    26.492130         725.0       219.117647  0.004901  0.0001         0.50           NaN      NaN        NaN\n52  0.0  520000.0  19711.0  2362500.0  520000.0    26.381208         600.0       226.442308  0.002637  0.0001         0.50           NaN      NaN        NaN\n53  0.0  530000.0  20170.0  2418750.0  530000.0    26.276648         500.0       231.603774  0.004991  0.0001         0.50           NaN      NaN        NaN\n54  0.0  540000.0  20654.0  2475000.0  540000.0    26.145056         650.0       239.351852  0.000623  0.0001         0.50           NaN      NaN        NaN\n55  0.0  550000.0  21112.0  2531250.0  550000.0    26.051535         275.0       240.000000  0.009030  0.0001         0.50           NaN      NaN        NaN\n56  0.0  560000.0  21572.0  2587500.0  560000.0    25.959578         525.0       245.089286  0.002161  0.0001         0.50           NaN      NaN        NaN\n57  0.0  570000.0  22034.0  2643750.0  570000.0    25.869112         750.0       253.947368  0.001731  0.0001         0.50           NaN      NaN        NaN\n58  0.0  580000.0  22498.0  2700000.0  580000.0    25.780069         375.0       256.034483  0.008000  0.0001         0.50           NaN      NaN        NaN\n59  0.0  590000.0  22960.0  2756250.0  590000.0    25.696863         500.0       260.169492  0.109684  0.0001         0.50           NaN      NaN        NaN\n60  0.0  600000.0  23423.0  2812500.0  600000.0    25.615849         750.0       268.333333  0.005054  0.0001         0.50           NaN      NaN        NaN\n61  0.0  610000.0  23892.0  2868750.0  610000.0    25.531559         625.0       274.180328  0.001118  0.0001         0.50           NaN      NaN        NaN\n62  0.0  620000.0  24360.0  2925000.0  620000.0    25.451559         500.0       277.822581  0.003051  0.0001         0.50           NaN      NaN        NaN\n63  0.0  630000.0  24833.0  2981250.0  630000.0    25.369469         750.0       285.317460  0.001172  0.0001         0.50           NaN      NaN        NaN\n64  0.0  640000.0  25309.0  3037500.0  640000.0    25.287447         625.0       290.625000  0.003605  0.0001         0.50           NaN      NaN        NaN\n65  0.0  650000.0  25794.0  3093750.0  650000.0    25.199659         650.0       296.153846  0.001523  0.0001         0.50           NaN      NaN        NaN\n66  0.0  660000.0  26288.0  3150000.0  660000.0    25.106512         700.0       302.272727  0.000698  0.0001         0.50           NaN      NaN        NaN\n67  0.0  670000.0  26796.0  3206250.0  670000.0    25.003733        1125.0       314.552239  0.001549  0.0001         0.50           NaN      NaN        NaN\n68  0.0  680000.0  27430.0  3262500.0  680000.0    24.790375         950.0       323.897059  0.002388  0.0001         0.50           NaN      NaN        NaN\n69  0.0  690000.0  28033.0  3318750.0  690000.0    24.613848         900.0       332.246377  0.002025  0.0001         0.50           NaN      NaN        NaN\n70  0.0  700000.0  28763.0  3375000.0  700000.0    24.336823        1100.0       343.214286  0.001459  0.0001         0.50           NaN      NaN        NaN\n\n[71 rows x 14 columns]",
+  "eval_df": "    epi         t   wall_t   opt_step     frame          fps  total_reward  total_reward_ma      loss      lr  explore_var  entropy_coef  entropy  grad_norm\n0   0.0       0.0      0.0        0.0       0.0     0.000000           NaN              NaN       NaN  0.0001         5.00           NaN      NaN        NaN\n1   0.0   10000.0      8.0        0.0   10000.0  1250.000000           0.0         0.000000       NaN  0.0001         4.91           NaN      NaN        NaN\n2   0.0   20000.0     15.0        0.0   20000.0  1333.333400           0.0         0.000000       NaN  0.0001         4.82           NaN      NaN        NaN\n3   0.0   30000.0     22.0        0.0   30000.0  1363.636400           0.0         0.000000       NaN  0.0001         4.73           NaN      NaN        NaN\n4   0.0   40000.0     27.0        0.0   40000.0  1481.481400           0.0         0.000000       NaN  0.0001         4.64           NaN      NaN        NaN\n5   0.0   50000.0     34.0        0.0   50000.0  1470.588300           0.0         0.000000       NaN  0.0001         4.55           NaN      NaN        NaN\n6   0.0   60000.0    454.0    56250.0   60000.0   132.158580          25.0         4.166666  0.000011  0.0001         4.46           NaN      NaN        NaN\n7   0.0   70000.0    887.0   112500.0   70000.0    78.917700          25.0         7.142857  0.000001  0.0001         4.37           NaN      NaN        NaN\n8   0.0   80000.0   1310.0   168750.0   80000.0    61.068703           0.0         6.250000  0.000005  0.0001         4.28           NaN      NaN        NaN\n9   0.0   90000.0   1725.0   225000.0   90000.0    52.173912          50.0        11.111111  0.000717  0.0001         4.19           NaN      NaN        NaN\n10  0.0  100000.0   2128.0   281250.0  100000.0    46.992480          25.0        12.500000  0.000072  0.0001         4.10           NaN      NaN        NaN\n11  0.0  110000.0   2532.0   337500.0  110000.0    43.443916          25.0        13.636364  0.000023  0.0001         4.01           NaN      NaN        NaN\n12  0.0  120000.0   2971.0   393750.0  120000.0    40.390440          50.0        16.666666  0.013758  0.0001         3.92           NaN      NaN        NaN\n13  0.0  130000.0   3415.0   450000.0  130000.0    38.067350           0.0        15.384615  0.000122  0.0001         3.83           NaN      NaN        NaN\n14  0.0  140000.0   3861.0   506250.0  140000.0    36.260036           0.0        14.285714  0.000034  0.0001         3.74           NaN      NaN        NaN\n15  0.0  150000.0   4295.0   562500.0  150000.0    34.924330           0.0        13.333333  0.000032  0.0001         3.65           NaN      NaN        NaN\n16  0.0  160000.0   4729.0   618750.0  160000.0    33.833790          50.0        15.625000  0.001087  0.0001         3.56           NaN      NaN        NaN\n17  0.0  170000.0   5161.0   675000.0  170000.0    32.939354          25.0        16.176470  0.000151  0.0001         3.47           NaN      NaN        NaN\n18  0.0  180000.0   5600.0   731250.0  180000.0    32.142857         350.0        34.722220  0.000124  0.0001         3.38           NaN      NaN        NaN\n19  0.0  190000.0   6043.0   787500.0  190000.0    31.441338          25.0        34.210526  0.001158  0.0001         3.29           NaN      NaN        NaN\n20  0.0  200000.0   6487.0   843750.0  200000.0    30.830893         237.5        44.375000  0.000047  0.0001         3.20           NaN      NaN        NaN\n21  0.0  210000.0   6934.0   900000.0  210000.0    30.285550         200.0        51.785713  0.000116  0.0001         3.11           NaN      NaN        NaN\n22  0.0  220000.0   7378.0   956250.0  220000.0    29.818378         300.0        63.068180  0.000788  0.0001         3.02           NaN      NaN        NaN\n23  0.0  230000.0   7824.0  1012500.0  230000.0    29.396729         250.0        71.195656  0.000232  0.0001         2.93           NaN      NaN        NaN\n24  0.0  240000.0   8273.0  1068750.0  240000.0    29.010033         337.5        82.291664  0.000195  0.0001         2.84           NaN      NaN        NaN\n25  0.0  250000.0   8723.0  1125000.0  250000.0    28.659864         225.0        88.000000  0.000139  0.0001         2.75           NaN      NaN        NaN\n26  0.0  260000.0   9179.0  1181250.0  260000.0    28.325525         525.0       104.807690  0.000248  0.0001         2.66           NaN      NaN        NaN\n27  0.0  270000.0   9634.0  1237500.0  270000.0    28.025742         525.0       120.370370  0.004455  0.0001         2.57           NaN      NaN        NaN\n28  0.0  280000.0  10097.0  1293750.0  280000.0    27.731009         175.0       122.321430  0.001034  0.0001         2.48           NaN      NaN        NaN\n29  0.0  290000.0  10561.0  1350000.0  290000.0    27.459520         350.0       130.172410  0.000315  0.0001         2.39           NaN      NaN        NaN\n..  ...       ...      ...        ...       ...          ...           ...              ...       ...     ...          ...           ...      ...        ...\n41  0.0  410000.0  14320.0  1743750.0  410000.0    28.631285         425.0       170.121951  0.006756  0.0001         1.31           NaN      NaN        NaN\n42  0.0  420000.0  14858.0  1800000.0  420000.0    28.267599         125.0       169.047619  0.000811  0.0001         1.22           NaN      NaN        NaN\n43  0.0  430000.0  15381.0  1856250.0  430000.0    27.956570         375.0       173.837209  0.000914  0.0001         1.13           NaN      NaN        NaN\n44  0.0  440000.0  15896.0  1912500.0  440000.0    27.679920         425.0       179.545455  0.000721  0.0001         1.04           NaN      NaN        NaN\n45  0.0  450000.0  16396.0  1968750.0  450000.0    27.445719         375.0       183.888889  0.000529  0.0001         0.95           NaN      NaN        NaN\n46  0.0  460000.0  16882.0  2025000.0  460000.0    27.247957         425.0       189.130435  0.000883  0.0001         0.86           NaN      NaN        NaN\n47  0.0  470000.0  17361.0  2081250.0  470000.0    27.072174         400.0       193.617021  0.004084  0.0001         0.77           NaN      NaN        NaN\n48  0.0  480000.0  17845.0  2137500.0  480000.0    26.898291         475.0       199.479167  0.000998  0.0001         0.68           NaN      NaN        NaN\n49  0.0  490000.0  18324.0  2193750.0  490000.0    26.740887         475.0       205.102041  0.001729  0.0001         0.59           NaN      NaN        NaN\n50  0.0  500000.0  18793.0  2250000.0  500000.0    26.605652         400.0       209.000000  0.000662  0.0001         0.50           NaN      NaN        NaN\n51  0.0  510000.0  19251.0  2306250.0  510000.0    26.492130         725.0       219.117647  0.004901  0.0001         0.50           NaN      NaN        NaN\n52  0.0  520000.0  19711.0  2362500.0  520000.0    26.381208         600.0       226.442308  0.002637  0.0001         0.50           NaN      NaN        NaN\n53  0.0  530000.0  20170.0  2418750.0  530000.0    26.276648         500.0       231.603774  0.004991  0.0001         0.50           NaN      NaN        NaN\n54  0.0  540000.0  20654.0  2475000.0  540000.0    26.145056         650.0       239.351852  0.000623  0.0001         0.50           NaN      NaN        NaN\n55  0.0  550000.0  21112.0  2531250.0  550000.0    26.051535         275.0       240.000000  0.009030  0.0001         0.50           NaN      NaN        NaN\n56  0.0  560000.0  21572.0  2587500.0  560000.0    25.959578         525.0       245.089286  0.002161  0.0001         0.50           NaN      NaN        NaN\n57  0.0  570000.0  22034.0  2643750.0  570000.0    25.869112         750.0       253.947368  0.001731  0.0001         0.50           NaN      NaN        NaN\n58  0.0  580000.0  22498.0  2700000.0  580000.0    25.780069         375.0       256.034483  0.008000  0.0001         0.50           NaN      NaN        NaN\n59  0.0  590000.0  22960.0  2756250.0  590000.0    25.696863         500.0       260.169492  0.109684  0.0001         0.50           NaN      NaN        NaN\n60  0.0  600000.0  23423.0  2812500.0  600000.0    25.615849         750.0       268.333333  0.005054  0.0001         0.50           NaN      NaN        NaN\n61  0.0  610000.0  23892.0  2868750.0  610000.0    25.531559         625.0       274.180328  0.001118  0.0001         0.50           NaN      NaN        NaN\n62  0.0  620000.0  24360.0  2925000.0  620000.0    25.451559         500.0       277.822581  0.003051  0.0001         0.50           NaN      NaN        NaN\n63  0.0  630000.0  24833.0  2981250.0  630000.0    25.369469         750.0       285.317460  0.001172  0.0001         0.50           NaN      NaN        NaN\n64  0.0  640000.0  25309.0  3037500.0  640000.0    25.287447         625.0       290.625000  0.003605  0.0001         0.50           NaN      NaN        NaN\n65  0.0  650000.0  25794.0  3093750.0  650000.0    25.199659         650.0       296.153846  0.001523  0.0001         0.50           NaN      NaN        NaN\n66  0.0  660000.0  26288.0  3150000.0  660000.0    25.106512         700.0       302.272727  0.000698  0.0001         0.50           NaN      NaN        NaN\n67  0.0  670000.0  26796.0  3206250.0  670000.0    25.003733        1125.0       314.552239  0.001549  0.0001         0.50           NaN      NaN        NaN\n68  0.0  680000.0  27430.0  3262500.0  680000.0    24.790375         950.0       323.897059  0.002388  0.0001         0.50           NaN      NaN        NaN\n69  0.0  690000.0  28033.0  3318750.0  690000.0    24.613848         900.0       332.246377  0.002025  0.0001         0.50           NaN      NaN        NaN\n70  0.0  700000.0  28763.0  3375000.0  700000.0    24.336823        1100.0       343.214286  0.001459  0.0001         0.50           NaN      NaN        NaN\n\n[71 rows x 14 columns]",
+  "observation_space": "Box(4, 84, 84)",
+  "action_space": "Discrete(18)",
+  "observable_dim": {
+    "state": [
+      4,
+      84,
+      84
+    ]
+  },
+  "state_dim": "(4, 84, 84)",
+  "action_dim": 18,
+  "is_discrete": true,
+  "action_type": "discrete",
+  "action_pdtype": "Argmax",
+  "ActionPD": "<class 'slm_lab.lib.distribution.Argmax'>",
+  "memory": "<slm_lab.agent.memory.replay.Replay object at 0x769fa3a0c908>"
+}
+- algorithm = <slm_lab.agent.algorithm.dqn.DoubleDQN object at 0x769fa3a0c8d0>
+[2025-06-25 22:44:09,768 PID:2037 INFO openai.py __init__] OpenAIEnv:
+- env_spec = {'frame_op': 'concat',
+ 'frame_op_len': 4,
+ 'max_frame': 1000000,
+ 'max_t': None,
+ 'name': 'Kangaroo-v0',
+ 'num_envs': 8,
+ 'reward_scale': 'sign'}
+- eval_frequency = 25000
+- log_frequency = 10000
+- frame_op = concat
+- frame_op_len = 4
+- image_downsize = (84, 84)
+- normalize_state = False
+- reward_scale = sign
+- num_envs = 1
+- name = Kangaroo-v0
+- max_t = 10000
+- max_frame = 1000000
+- to_render = False
+- is_venv = False
+- clock_speed = 1
+- clock = <slm_lab.env.base.Clock object at 0x769fa39959b0>
+- done = False
+- total_reward = nan
+- u_env = <ScaleRewardEnv<TrackReward<FrameStack<PreprocessImage<TimeLimit<AtariEnv<Kangaroo-v0>>>>>>>
+- observation_space = Box(4, 84, 84)
+- action_space = Discrete(18)
+- observable_dim = {'state': (4, 84, 84)}
+- action_dim = 18
+- is_discrete = True
+[2025-06-25 22:44:09,769 PID:2037 INFO logger.py info] Session:
+- spec = {'cuda_offset': 0,
+ 'distributed': False,
+ 'eval_frequency': 25000,
+ 'experiment': 0,
+ 'experiment_ts': '2025_06_25_142228',
+ 'git_sha': 'cae945a294cb111ee8e568bb4465ee74c501478b',
+ 'graph_prepath': 'data/ddqn_target_kangaroo_2025_06_25_142228/graph/ddqn_target_kangaroo_t0_s0',
+ 'info_prepath': 'data/ddqn_target_kangaroo_2025_06_25_142228/info/ddqn_target_kangaroo_t0_s0',
+ 'log_frequency': 10000,
+ 'log_prepath': 'data/ddqn_target_kangaroo_2025_06_25_142228/log/ddqn_target_kangaroo_t0_s0',
+ 'max_session': 1,
+ 'max_trial': 1,
+ 'model_prepath': 'data/ddqn_target_kangaroo_2025_06_25_142228/model/ddqn_target_kangaroo_t0_s0',
+ 'prepath': 'data/ddqn_target_kangaroo_2025_06_25_142228/ddqn_target_kangaroo_t0_s0',
+ 'random_seed': 1750880648,
+ 'resume': True,
+ 'rigorous_eval': 1,
+ 'session': 0,
+ 'trial': 0}
+- index = 0
+- agent = <slm_lab.agent.Agent object at 0x769fa3a0c9b0>
+- env = <slm_lab.env.openai.OpenAIEnv object at 0x76a00cc91cf8>
+- eval_env = <slm_lab.env.openai.OpenAIEnv object at 0x769fa3995a20>
+[2025-06-25 22:44:09,769 PID:2037 INFO logger.py info] Running RL loop for trial 0 session 0
+[2025-06-25 22:44:09,787 PID:2037 INFO __init__.py log_summary] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df] epi: 0  t: 700000  wall_t: 28763  opt_step: 3.375e+06  frame: 700000  fps: 24.3368  total_reward: 1100  total_reward_ma: 343.214  loss: 0.00145942  lr: 0.0001  explore_var: 0.5  entropy_coef: nan  entropy: nan  grad_norm: nan
+[2025-06-25 22:44:10,037 PID:2037 INFO __init__.py log_metrics] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df metrics] final_return_ma: 343.214  strength: 295.214  max_strength: 1077  final_strength: 1052  sample_efficiency: 1.61954e-06  training_efficiency: 4.34872e-07  stability: 0.810075
+[2025-06-25 22:44:10,038 PID:2037 INFO logger.py info] Running eval ckpt
+[2025-06-25 22:44:12,131 PID:2037 INFO __init__.py log_summary] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [eval_df] epi: 0  t: 700000  wall_t: 28763  opt_step: 3.375e+06  frame: 700000  fps: 24.3368  total_reward: 1100  total_reward_ma: 343.214  loss: 0.00145942  lr: 0.0001  explore_var: 0.5  entropy_coef: nan  entropy: nan  grad_norm: nan
+[2025-06-25 22:44:12,152 PID:2037 INFO __init__.py log_metrics] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [eval_df metrics] final_return_ma: 343.214  strength: 295.214  max_strength: 1077  final_strength: 1052  sample_efficiency: 1.61954e-06  training_efficiency: 4.34872e-07  stability: 0.810075
+[2025-06-25 22:44:21,023 PID:2037 INFO __init__.py log_summary] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df] epi: 0  t: 710000  wall_t: 28775  opt_step: 3.375e+06  frame: 710000  fps: 24.6742  total_reward: 1250  total_reward_ma: 355.986  loss: nan  lr: 0.0001  explore_var: 0.5  entropy_coef: nan  entropy: nan  grad_norm: nan
+[2025-06-25 22:44:21,285 PID:2037 INFO __init__.py log_metrics] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df metrics] final_return_ma: 355.986  strength: 307.986  max_strength: 1202  final_strength: 1202  sample_efficiency: 1.60794e-06  training_efficiency: 4.27255e-07  stability: 0.819744
+[2025-06-25 22:44:29,793 PID:2037 INFO __init__.py log_summary] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df] epi: 0  t: 720000  wall_t: 28784  opt_step: 3.375e+06  frame: 720000  fps: 25.0139  total_reward: 1300  total_reward_ma: 369.097  loss: nan  lr: 0.0001  explore_var: 0.5  entropy_coef: nan  entropy: nan  grad_norm: nan
+[2025-06-25 22:44:30,091 PID:2037 INFO __init__.py log_metrics] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df metrics] final_return_ma: 369.097  strength: 321.097  max_strength: 1252  final_strength: 1252  sample_efficiency: 1.59607e-06  training_efficiency: 4.20163e-07  stability: 0.829652
+[2025-06-25 22:44:34,304 PID:2037 INFO logger.py info] Running eval ckpt
+[2025-06-25 22:44:36,258 PID:2037 INFO __init__.py log_summary] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [eval_df] epi: 0  t: 0  wall_t: 28789  opt_step: 3.375e+06  frame: 725000  fps: 25.1832  total_reward: 1400  total_reward_ma: 358.099  loss: nan  lr: 0.0001  explore_var: 0.5  entropy_coef: nan  entropy: nan  grad_norm: nan
+[2025-06-25 22:44:36,280 PID:2037 INFO __init__.py log_metrics] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [eval_df metrics] final_return_ma: 358.099  strength: 310.099  max_strength: 1352  final_strength: 1352  sample_efficiency: 1.60479e-06  training_efficiency: 4.26363e-07  stability: 0.819744
+[2025-06-25 22:44:38,313 PID:2037 INFO __init__.py log_summary] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df] epi: 0  t: 730000  wall_t: 28793  opt_step: 3.375e+06  frame: 730000  fps: 25.3534  total_reward: 1275  total_reward_ma: 381.507  loss: nan  lr: 0.0001  explore_var: 0.5  entropy_coef: nan  entropy: nan  grad_norm: nan
+[2025-06-25 22:44:38,558 PID:2037 INFO __init__.py log_metrics] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df metrics] final_return_ma: 381.507  strength: 333.507  max_strength: 1252  final_strength: 1227  sample_efficiency: 1.58467e-06  training_efficiency: 4.1392e-07  stability: 0.837796
+[2025-06-25 22:44:45,864 PID:2037 INFO __init__.py log_summary] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df] epi: 0  t: 740000  wall_t: 28800  opt_step: 3.375e+06  frame: 740000  fps: 25.6944  total_reward: 1525  total_reward_ma: 396.959  loss: nan  lr: 0.0001  explore_var: 0.5  entropy_coef: nan  entropy: nan  grad_norm: nan
+[2025-06-25 22:44:46,150 PID:2037 INFO __init__.py log_metrics] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df metrics] final_return_ma: 396.959  strength: 348.959  max_strength: 1477  final_strength: 1477  sample_efficiency: 1.57133e-06  training_efficiency: 4.07192e-07  stability: 0.845971
+[2025-06-25 22:44:53,482 PID:2037 INFO __init__.py log_summary] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df] epi: 0  t: 750000  wall_t: 28808  opt_step: 3.375e+06  frame: 750000  fps: 26.0344  total_reward: 1050  total_reward_ma: 405.667  loss: nan  lr: 0.0001  explore_var: 0.5  entropy_coef: nan  entropy: nan  grad_norm: nan
+[2025-06-25 22:44:53,733 PID:2037 INFO __init__.py log_metrics] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df metrics] final_return_ma: 405.667  strength: 357.667  max_strength: 1477  final_strength: 1002  sample_efficiency: 1.56244e-06  training_efficiency: 4.0305e-07  stability: 0.836386
+[2025-06-25 22:44:53,733 PID:2037 INFO logger.py info] Running eval ckpt
+[2025-06-25 22:44:55,449 PID:2037 INFO __init__.py log_summary] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [eval_df] epi: 0  t: 0  wall_t: 28808  opt_step: 3.375e+06  frame: 750000  fps: 26.0344  total_reward: 1000  total_reward_ma: 367.014  loss: nan  lr: 0.0001  explore_var: 0.5  entropy_coef: nan  entropy: nan  grad_norm: nan
+[2025-06-25 22:44:55,472 PID:2037 INFO __init__.py log_metrics] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [eval_df metrics] final_return_ma: 367.014  strength: 319.014  max_strength: 1352  final_strength: 952  sample_efficiency: 1.59354e-06  training_efficiency: 4.20972e-07  stability: 0.812645
+[2025-06-25 22:54:37,502 PID:2037 INFO __init__.py log_summary] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df] epi: 0  t: 760000  wall_t: 29391  opt_step: 3.43125e+06  frame: 760000  fps: 25.8583  total_reward: 1525  total_reward_ma: 420.395  loss: 0.00364582  lr: 0.0001  explore_var: 0.5  entropy_coef: nan  entropy: nan  grad_norm: nan
+[2025-06-25 22:54:37,844 PID:2037 INFO __init__.py log_metrics] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df metrics] final_return_ma: 420.395  strength: 372.395  max_strength: 1477  final_strength: 1477  sample_efficiency: 1.54957e-06  training_efficiency: 3.97225e-07  stability: 0.842498
+[2025-06-25 23:04:36,334 PID:2037 INFO __init__.py log_summary] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df] epi: 0  t: 770000  wall_t: 29990  opt_step: 3.4875e+06  frame: 770000  fps: 25.6752  total_reward: 825  total_reward_ma: 425.649  loss: 0.0137998  lr: 0.0001  explore_var: 0.5  entropy_coef: nan  entropy: nan  grad_norm: nan
+[2025-06-25 23:04:36,582 PID:2037 INFO __init__.py log_metrics] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df metrics] final_return_ma: 425.649  strength: 377.649  max_strength: 1477  final_strength: 777  sample_efficiency: 1.54286e-06  training_efficiency: 3.94273e-07  stability: 0.825984
+[2025-06-25 23:09:29,596 PID:2037 INFO logger.py info] Running eval ckpt
+[2025-06-25 23:09:30,967 PID:2037 INFO __init__.py log_summary] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [eval_df] epi: 0  t: 0  wall_t: 30283  opt_step: 3.51562e+06  frame: 775000  fps: 25.5919  total_reward: 1000  total_reward_ma: 375.685  loss: 0.00904312  lr: 0.0001  explore_var: 0.5  entropy_coef: nan  entropy: nan  grad_norm: nan
+[2025-06-25 23:09:30,986 PID:2037 INFO __init__.py log_metrics] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [eval_df metrics] final_return_ma: 375.685  strength: 327.685  max_strength: 1352  final_strength: 952  sample_efficiency: 1.58147e-06  training_efficiency: 4.15538e-07  stability: 0.82041
+[2025-06-25 23:13:57,351 PID:2037 INFO __init__.py log_summary] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df] epi: 0  t: 780000  wall_t: 30551  opt_step: 3.54375e+06  frame: 780000  fps: 25.5311  total_reward: 1275  total_reward_ma: 436.538  loss: 0.0014799  lr: 0.0001  explore_var: 0.5  entropy_coef: nan  entropy: nan  grad_norm: nan
+[2025-06-25 23:13:57,579 PID:2037 INFO __init__.py log_metrics] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df metrics] final_return_ma: 436.538  strength: 388.538  max_strength: 1477  final_strength: 1227  sample_efficiency: 1.5323e-06  training_efficiency: 3.89735e-07  stability: 0.830634
+[2025-06-25 23:22:43,151 PID:2037 INFO __init__.py log_summary] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df] epi: 0  t: 790000  wall_t: 31077  opt_step: 3.6e+06  frame: 790000  fps: 25.4207  total_reward: 900  total_reward_ma: 442.405  loss: 0.0012886  lr: 0.0001  explore_var: 0.5  entropy_coef: nan  entropy: nan  grad_norm: nan
+[2025-06-25 23:22:43,377 PID:2037 INFO __init__.py log_metrics] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df metrics] final_return_ma: 442.405  strength: 394.405  max_strength: 1477  final_strength: 852  sample_efficiency: 1.52502e-06  training_efficiency: 3.86674e-07  stability: 0.825117
+[2025-06-25 23:31:50,688 PID:2037 INFO __init__.py log_summary] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df] epi: 0  t: 800000  wall_t: 31625  opt_step: 3.65625e+06  frame: 800000  fps: 25.2964  total_reward: 775  total_reward_ma: 446.562  loss: 0.00625615  lr: 0.0001  explore_var: 0.5  entropy_coef: nan  entropy: nan  grad_norm: nan
+[2025-06-25 23:31:50,930 PID:2037 INFO __init__.py log_metrics] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df metrics] final_return_ma: 446.562  strength: 398.562  max_strength: 1477  final_strength: 727  sample_efficiency: 1.51875e-06  training_efficiency: 3.84093e-07  stability: 0.825887
+[2025-06-25 23:31:50,930 PID:2037 INFO logger.py info] Running eval ckpt
+[2025-06-25 23:31:52,396 PID:2037 INFO __init__.py log_summary] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [eval_df] epi: 0  t: 0  wall_t: 31625  opt_step: 3.65625e+06  frame: 800000  fps: 25.2964  total_reward: 400  total_reward_ma: 376.014  loss: 0.00625615  lr: 0.0001  explore_var: 0.5  entropy_coef: nan  entropy: nan  grad_norm: nan
+[2025-06-25 23:31:52,419 PID:2037 INFO __init__.py log_metrics] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [eval_df metrics] final_return_ma: 376.014  strength: 328.014  max_strength: 1352  final_strength: 352  sample_efficiency: 1.57666e-06  training_efficiency: 4.13478e-07  stability: 0.802475
+[2025-06-25 23:40:33,436 PID:2037 INFO __init__.py log_summary] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df] epi: 0  t: 810000  wall_t: 32147  opt_step: 3.7125e+06  frame: 810000  fps: 25.1968  total_reward: 1400  total_reward_ma: 458.333  loss: 0.00154336  lr: 0.0001  explore_var: 0.5  entropy_coef: nan  entropy: nan  grad_norm: nan
+[2025-06-25 23:40:33,671 PID:2037 INFO __init__.py log_metrics] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df metrics] final_return_ma: 458.333  strength: 410.333  max_strength: 1477  final_strength: 1352  sample_efficiency: 1.50719e-06  training_efficiency: 3.79426e-07  stability: 0.829857
+[2025-06-25 23:50:03,795 PID:2037 INFO __init__.py log_summary] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df] epi: 0  t: 820000  wall_t: 32719  opt_step: 3.76875e+06  frame: 820000  fps: 25.0619  total_reward: 1250  total_reward_ma: 467.988  loss: 0.00224335  lr: 0.0001  explore_var: 0.5  entropy_coef: nan  entropy: nan  grad_norm: nan
+[2025-06-25 23:50:04,092 PID:2037 INFO __init__.py log_metrics] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df metrics] final_return_ma: 467.988  strength: 419.988  max_strength: 1477  final_strength: 1202  sample_efficiency: 1.49715e-06  training_efficiency: 3.75444e-07  stability: 0.832265
+[2025-06-25 23:55:05,876 PID:2037 INFO logger.py info] Running eval ckpt
+[2025-06-25 23:55:06,946 PID:2037 INFO __init__.py log_summary] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [eval_df] epi: 0  t: 0  wall_t: 33020  opt_step: 3.79688e+06  frame: 825000  fps: 24.9849  total_reward: 500  total_reward_ma: 377.667  loss: 0.00135739  lr: 0.0001  explore_var: 0.5  entropy_coef: nan  entropy: nan  grad_norm: nan
+[2025-06-25 23:55:06,972 PID:2037 INFO __init__.py log_metrics] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [eval_df metrics] final_return_ma: 377.667  strength: 329.667  max_strength: 1352  final_strength: 452  sample_efficiency: 1.57e-06  training_efficiency: 4.10734e-07  stability: 0.805339
+[2025-06-25 23:59:43,814 PID:2037 INFO __init__.py log_summary] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df] epi: 0  t: 830000  wall_t: 33298  opt_step: 3.825e+06  frame: 830000  fps: 24.9264  total_reward: 1125  total_reward_ma: 475.904  loss: 0.00586164  lr: 0.0001  explore_var: 0.5  entropy_coef: nan  entropy: nan  grad_norm: nan
+[2025-06-25 23:59:42,258 PID:2037 INFO __init__.py log_metrics] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df metrics] final_return_ma: 475.904  strength: 427.904  max_strength: 1477  final_strength: 1077  sample_efficiency: 1.48828e-06  training_efficiency: 3.71987e-07  stability: 0.83449
+[2025-06-26 00:08:02,505 PID:2037 INFO __init__.py log_summary] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df] epi: 0  t: 840000  wall_t: 33796  opt_step: 3.88125e+06  frame: 840000  fps: 24.855  total_reward: 1250  total_reward_ma: 485.119  loss: 0.00520725  lr: 0.0001  explore_var: 0.5  entropy_coef: nan  entropy: nan  grad_norm: nan
+[2025-06-26 00:08:02,774 PID:2037 INFO __init__.py log_metrics] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df metrics] final_return_ma: 485.119  strength: 437.119  max_strength: 1477  final_strength: 1202  sample_efficiency: 1.47853e-06  training_efficiency: 3.68244e-07  stability: 0.839509
+[2025-06-26 00:16:03,557 PID:2037 INFO __init__.py log_summary] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df] epi: 0  t: 850000  wall_t: 34277  opt_step: 3.9375e+06  frame: 850000  fps: 24.798  total_reward: 1050  total_reward_ma: 491.765  loss: 0.00222715  lr: 0.0001  explore_var: 0.5  entropy_coef: nan  entropy: nan  grad_norm: nan
+[2025-06-26 00:16:03,793 PID:2037 INFO __init__.py log_metrics] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df metrics] final_return_ma: 491.765  strength: 443.765  max_strength: 1477  final_strength: 1002  sample_efficiency: 1.47051e-06  training_efficiency: 3.65209e-07  stability: 0.839316
+[2025-06-26 00:16:03,793 PID:2037 INFO logger.py info] Running eval ckpt
+[2025-06-26 00:16:05,432 PID:2037 INFO __init__.py log_summary] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [eval_df] epi: 0  t: 0  wall_t: 34277  opt_step: 3.9375e+06  frame: 850000  fps: 24.798  total_reward: 1600  total_reward_ma: 393.75  loss: 0.00222715  lr: 0.0001  explore_var: 0.5  entropy_coef: nan  entropy: nan  grad_norm: nan
+[2025-06-26 00:16:05,453 PID:2037 INFO __init__.py log_metrics] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [eval_df metrics] final_return_ma: 393.75  strength: 345.75  max_strength: 1552  final_strength: 1552  sample_efficiency: 1.54676e-06  training_efficiency: 4.01475e-07  stability: 0.808898
+[2025-06-26 00:16:35,578 PID:2062 ERROR logger.py exception] ShmemVecEnv worker: got KeyboardInterrupt
+Traceback (most recent call last):
+  File "/mnt/d/Code/Master/Year 1/Sem 2/RL/Project/SLM-Lab/slm_lab/env/vec_env.py", line 123, in subproc_worker
+    cmd, data = pipe.recv()
+  File "/home/andrei0408/miniconda3/envs/lab/lib/python3.7/multiprocessing/connection.py", line 250, in recv
+    buf = self._recv_bytes()
+  File "/home/andrei0408/miniconda3/envs/lab/lib/python3.7/multiprocessing/connection.py", line 407, in _recv_bytes
+    buf = self._recv(4)
+  File "/home/andrei0408/miniconda3/envs/lab/lib/python3.7/multiprocessing/connection.py", line 379, in _recv
+    chunk = read(handle, remaining)
+KeyboardInterrupt
+[2025-06-26 00:16:35,570 PID:2058 ERROR logger.py exception] ShmemVecEnv worker: got KeyboardInterrupt
+Traceback (most recent call last):
+  File "/mnt/d/Code/Master/Year 1/Sem 2/RL/Project/SLM-Lab/slm_lab/env/vec_env.py", line 123, in subproc_worker
+    cmd, data = pipe.recv()
+  File "/home/andrei0408/miniconda3/envs/lab/lib/python3.7/multiprocessing/connection.py", line 250, in recv
+    buf = self._recv_bytes()
+  File "/home/andrei0408/miniconda3/envs/lab/lib/python3.7/multiprocessing/connection.py", line 407, in _recv_bytes
+    buf = self._recv(4)
+  File "/home/andrei0408/miniconda3/envs/lab/lib/python3.7/multiprocessing/connection.py", line 379, in _recv
+    chunk = read(handle, remaining)
+KeyboardInterrupt
+[2025-06-26 00:16:35,576 PID:2056 ERROR logger.py exception] ShmemVecEnv worker: got KeyboardInterrupt
+Traceback (most recent call last):
+  File "/mnt/d/Code/Master/Year 1/Sem 2/RL/Project/SLM-Lab/slm_lab/env/vec_env.py", line 123, in subproc_worker
+    cmd, data = pipe.recv()
+  File "/home/andrei0408/miniconda3/envs/lab/lib/python3.7/multiprocessing/connection.py", line 250, in recv
+    buf = self._recv_bytes()
+  File "/home/andrei0408/miniconda3/envs/lab/lib/python3.7/multiprocessing/connection.py", line 407, in _recv_bytes
+    buf = self._recv(4)
+  File "/home/andrei0408/miniconda3/envs/lab/lib/python3.7/multiprocessing/connection.py", line 379, in _recv
+    chunk = read(handle, remaining)
+KeyboardInterrupt
+[2025-06-26 00:16:35,569 PID:2060 ERROR logger.py exception] ShmemVecEnv worker: got KeyboardInterrupt
+Traceback (most recent call last):
+  File "/mnt/d/Code/Master/Year 1/Sem 2/RL/Project/SLM-Lab/slm_lab/env/vec_env.py", line 123, in subproc_worker
+    cmd, data = pipe.recv()
+  File "/home/andrei0408/miniconda3/envs/lab/lib/python3.7/multiprocessing/connection.py", line 250, in recv
+    buf = self._recv_bytes()
+  File "/home/andrei0408/miniconda3/envs/lab/lib/python3.7/multiprocessing/connection.py", line 407, in _recv_bytes
+    buf = self._recv(4)
+  File "/home/andrei0408/miniconda3/envs/lab/lib/python3.7/multiprocessing/connection.py", line 379, in _recv
+    chunk = read(handle, remaining)
+KeyboardInterrupt
+[2025-06-26 00:16:35,586 PID:2059 ERROR logger.py exception] ShmemVecEnv worker: got KeyboardInterrupt
+Traceback (most recent call last):
+  File "/mnt/d/Code/Master/Year 1/Sem 2/RL/Project/SLM-Lab/slm_lab/env/vec_env.py", line 123, in subproc_worker
+    cmd, data = pipe.recv()
+  File "/home/andrei0408/miniconda3/envs/lab/lib/python3.7/multiprocessing/connection.py", line 250, in recv
+    buf = self._recv_bytes()
+  File "/home/andrei0408/miniconda3/envs/lab/lib/python3.7/multiprocessing/connection.py", line 407, in _recv_bytes
+    buf = self._recv(4)
+  File "/home/andrei0408/miniconda3/envs/lab/lib/python3.7/multiprocessing/connection.py", line 379, in _recv
+    chunk = read(handle, remaining)
+KeyboardInterrupt
+[2025-06-26 00:16:35,582 PID:2061 ERROR logger.py exception] ShmemVecEnv worker: got KeyboardInterrupt
+Traceback (most recent call last):
+  File "/mnt/d/Code/Master/Year 1/Sem 2/RL/Project/SLM-Lab/slm_lab/env/vec_env.py", line 123, in subproc_worker
+    cmd, data = pipe.recv()
+  File "/home/andrei0408/miniconda3/envs/lab/lib/python3.7/multiprocessing/connection.py", line 250, in recv
+    buf = self._recv_bytes()
+  File "/home/andrei0408/miniconda3/envs/lab/lib/python3.7/multiprocessing/connection.py", line 407, in _recv_bytes
+    buf = self._recv(4)
+  File "/home/andrei0408/miniconda3/envs/lab/lib/python3.7/multiprocessing/connection.py", line 379, in _recv
+    chunk = read(handle, remaining)
+KeyboardInterrupt
+[2025-06-26 00:16:35,581 PID:2057 ERROR logger.py exception] ShmemVecEnv worker: got KeyboardInterrupt
+Traceback (most recent call last):
+  File "/mnt/d/Code/Master/Year 1/Sem 2/RL/Project/SLM-Lab/slm_lab/env/vec_env.py", line 123, in subproc_worker
+    cmd, data = pipe.recv()
+  File "/home/andrei0408/miniconda3/envs/lab/lib/python3.7/multiprocessing/connection.py", line 250, in recv
+    buf = self._recv_bytes()
+  File "/home/andrei0408/miniconda3/envs/lab/lib/python3.7/multiprocessing/connection.py", line 407, in _recv_bytes
+    buf = self._recv(4)
+  File "/home/andrei0408/miniconda3/envs/lab/lib/python3.7/multiprocessing/connection.py", line 379, in _recv
+    chunk = read(handle, remaining)
+KeyboardInterrupt
+[2025-06-26 00:16:35,574 PID:2055 ERROR logger.py exception] ShmemVecEnv worker: got KeyboardInterrupt
+Traceback (most recent call last):
+  File "/mnt/d/Code/Master/Year 1/Sem 2/RL/Project/SLM-Lab/slm_lab/env/vec_env.py", line 123, in subproc_worker
+    cmd, data = pipe.recv()
+  File "/home/andrei0408/miniconda3/envs/lab/lib/python3.7/multiprocessing/connection.py", line 250, in recv
+    buf = self._recv_bytes()
+  File "/home/andrei0408/miniconda3/envs/lab/lib/python3.7/multiprocessing/connection.py", line 407, in _recv_bytes
+    buf = self._recv(4)
+  File "/home/andrei0408/miniconda3/envs/lab/lib/python3.7/multiprocessing/connection.py", line 379, in _recv
+    chunk = read(handle, remaining)
+KeyboardInterrupt
+[2025-06-26 09:04:57,202 PID:498 INFO openai.py __init__] OpenAIEnv:
+- env_spec = {'frame_op': 'concat',
+ 'frame_op_len': 4,
+ 'max_frame': 1000000,
+ 'max_t': None,
+ 'name': 'Kangaroo-v0',
+ 'num_envs': 8,
+ 'reward_scale': 'sign'}
+- eval_frequency = 25000
+- log_frequency = 10000
+- frame_op = concat
+- frame_op_len = 4
+- image_downsize = (84, 84)
+- normalize_state = False
+- reward_scale = sign
+- num_envs = 8
+- name = Kangaroo-v0
+- max_t = 10000
+- max_frame = 1000000
+- to_render = False
+- is_venv = True
+- clock_speed = 8
+- clock = <slm_lab.env.base.Clock object at 0x7ec90fbb2f60>
+- done = False
+- total_reward = nan
+- u_env = <slm_lab.env.vec_env.VecFrameStack object at 0x7ec90fb771d0>
+- observation_space = Box(4, 84, 84)
+- action_space = Discrete(18)
+- observable_dim = {'state': (4, 84, 84)}
+- action_dim = 18
+- is_discrete = True
+[2025-06-26 09:04:57,694 PID:498 INFO net_util.py load_algorithm] Loading algorithm DoubleDQN nets ['net', 'target_net'] from data/ddqn_target_kangaroo_2025_06_25_142228/model/ddqn_target_kangaroo_t0_s0_*.pt
+[2025-06-26 09:04:57,852 PID:498 INFO base.py end_init_nets] Loaded algorithm models for lab_mode: train
+[2025-06-26 09:04:57,899 PID:498 INFO base.py __init__] DoubleDQN:
+- agent = <slm_lab.agent.Agent object at 0x7ec90facd9b0>
+- action_pdtype = Argmax
+- action_policy = <function boltzmann at 0x7ec910fc1d90>
+- explore_var_spec = {'end_step': 500000,
+ 'end_val': 0.5,
+ 'name': 'linear_decay',
+ 'start_step': 0,
+ 'start_val': 5.0}
+- training_start_step = 50000
+- gamma = 0.99
+- training_batch_iter = 3
+- training_iter = 3
+- training_frequency = 4
+- to_train = 0
+- explore_var_scheduler = <slm_lab.agent.algorithm.policy_util.VarScheduler object at 0x7ec90fb7e9e8>
+- net = ConvNet(
+  (conv_model): Sequential(
+    (0): Conv2d(4, 32, kernel_size=(8, 8), stride=(4, 4))
+    (1): ReLU()
+    (2): Conv2d(32, 64, kernel_size=(4, 4), stride=(2, 2))
+    (3): ReLU()
+    (4): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1))
+    (5): ReLU()
+  )
+  (fc_model): Sequential(
+    (0): Linear(in_features=3136, out_features=512, bias=True)
+    (1): ReLU()
+  )
+  (model_tail): Sequential(
+    (0): Linear(in_features=512, out_features=18, bias=True)
+  )
+  (loss_fn): SmoothL1Loss()
+)
+- target_net = ConvNet(
+  (conv_model): Sequential(
+    (0): Conv2d(4, 32, kernel_size=(8, 8), stride=(4, 4))
+    (1): ReLU()
+    (2): Conv2d(32, 64, kernel_size=(4, 4), stride=(2, 2))
+    (3): ReLU()
+    (4): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1))
+    (5): ReLU()
+  )
+  (fc_model): Sequential(
+    (0): Linear(in_features=3136, out_features=512, bias=True)
+    (1): ReLU()
+  )
+  (model_tail): Sequential(
+    (0): Linear(in_features=512, out_features=18, bias=True)
+  )
+  (loss_fn): SmoothL1Loss()
+)
+- net_names = ['net', 'target_net']
+- optim = Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.0001
+    weight_decay: 0
+)
+- lr_scheduler = <slm_lab.agent.net.net_util.NoOpLRScheduler object at 0x7ec90faa4f98>
+- global_net = None
+- global_target_net = None
+- online_net = ConvNet(
+  (conv_model): Sequential(
+    (0): Conv2d(4, 32, kernel_size=(8, 8), stride=(4, 4))
+    (1): ReLU()
+    (2): Conv2d(32, 64, kernel_size=(4, 4), stride=(2, 2))
+    (3): ReLU()
+    (4): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1))
+    (5): ReLU()
+  )
+  (fc_model): Sequential(
+    (0): Linear(in_features=3136, out_features=512, bias=True)
+    (1): ReLU()
+  )
+  (model_tail): Sequential(
+    (0): Linear(in_features=512, out_features=18, bias=True)
+  )
+  (loss_fn): SmoothL1Loss()
+)
+- eval_net = ConvNet(
+  (conv_model): Sequential(
+    (0): Conv2d(4, 32, kernel_size=(8, 8), stride=(4, 4))
+    (1): ReLU()
+    (2): Conv2d(32, 64, kernel_size=(4, 4), stride=(2, 2))
+    (3): ReLU()
+    (4): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1))
+    (5): ReLU()
+  )
+  (fc_model): Sequential(
+    (0): Linear(in_features=3136, out_features=512, bias=True)
+    (1): ReLU()
+  )
+  (model_tail): Sequential(
+    (0): Linear(in_features=512, out_features=18, bias=True)
+  )
+  (loss_fn): SmoothL1Loss()
+)
+[2025-06-26 09:04:57,943 PID:498 INFO __init__.py __init__] Agent:
+- spec = {'cuda_offset': 0,
+ 'distributed': False,
+ 'eval_frequency': 25000,
+ 'experiment': 0,
+ 'experiment_ts': '2025_06_25_142228',
+ 'git_sha': 'cae945a294cb111ee8e568bb4465ee74c501478b',
+ 'graph_prepath': 'data/ddqn_target_kangaroo_2025_06_25_142228/graph/ddqn_target_kangaroo_t0_s0',
+ 'info_prepath': 'data/ddqn_target_kangaroo_2025_06_25_142228/info/ddqn_target_kangaroo_t0_s0',
+ 'log_frequency': 10000,
+ 'log_prepath': 'data/ddqn_target_kangaroo_2025_06_25_142228/log/ddqn_target_kangaroo_t0_s0',
+ 'max_session': 1,
+ 'max_trial': 1,
+ 'model_prepath': 'data/ddqn_target_kangaroo_2025_06_25_142228/model/ddqn_target_kangaroo_t0_s0',
+ 'prepath': 'data/ddqn_target_kangaroo_2025_06_25_142228/ddqn_target_kangaroo_t0_s0',
+ 'random_seed': 1750917896,
+ 'resume': True,
+ 'rigorous_eval': 1,
+ 'session': 0,
+ 'trial': 0}
+- agent_spec = {'algorithm': {'action_pdtype': 'Argmax',
+               'action_policy': 'boltzmann',
+               'explore_var_spec': {'end_step': 500000,
+                                    'end_val': 0.5,
+                                    'name': 'linear_decay',
+                                    'start_step': 0,
+                                    'start_val': 5.0},
+               'gamma': 0.99,
+               'name': 'DoubleDQN',
+               'target_net_update_frequency': 10000,
+               'training_batch_iter': 3,
+               'training_frequency': 4,
+               'training_iter': 3,
+               'training_start_step': 50000},
+ 'memory': {'batch_size': 32,
+            'max_size': 500000,
+            'name': 'Replay',
+            'use_cer': False},
+ 'name': 'DoubleDQN',
+ 'net': {'batch_norm': False,
+         'clip_grad_val': 1.0,
+         'conv_hid_layers': [[32, 8, 4, 0, 1],
+                             [64, 4, 2, 0, 1],
+                             [64, 3, 1, 0, 1]],
+         'fc_hid_layers': [512],
+         'gpu': False,
+         'hid_layers_activation': 'relu',
+         'init_fn': 'orthogonal_',
+         'loss_spec': {'name': 'SmoothL1Loss'},
+         'lr_scheduler_spec': None,
+         'normalize': True,
+         'optim_spec': {'lr': 0.0001, 'name': 'Adam'},
+         'shared': True,
+         'type': 'ConvNet'}}
+- name = DoubleDQN
+- body = body: {
+  "agent": "<slm_lab.agent.Agent object at 0x7ec90facd9b0>",
+  "env": "<slm_lab.env.openai.OpenAIEnv object at 0x7ec978d7acf8>",
+  "a": 0,
+  "e": 0,
+  "b": 0,
+  "aeb": "(0, 0, 0)",
+  "explore_var": 0.5,
+  "entropy_coef": NaN,
+  "loss": NaN,
+  "mean_entropy": NaN,
+  "mean_grad_norm": NaN,
+  "best_total_reward_ma": -Infinity,
+  "total_reward_ma": NaN,
+  "train_df": "    epi         t   wall_t   opt_step     frame          fps  total_reward  total_reward_ma      loss      lr  explore_var  entropy_coef  entropy  grad_norm\n0   0.0       0.0      0.0        0.0       0.0     0.000000           NaN              NaN       NaN  0.0001         5.00           NaN      NaN        NaN\n1   0.0   10000.0      8.0        0.0   10000.0  1250.000000           0.0         0.000000       NaN  0.0001         4.91           NaN      NaN        NaN\n2   0.0   20000.0     15.0        0.0   20000.0  1333.333400           0.0         0.000000       NaN  0.0001         4.82           NaN      NaN        NaN\n3   0.0   30000.0     22.0        0.0   30000.0  1363.636400           0.0         0.000000       NaN  0.0001         4.73           NaN      NaN        NaN\n4   0.0   40000.0     27.0        0.0   40000.0  1481.481400           0.0         0.000000       NaN  0.0001         4.64           NaN      NaN        NaN\n5   0.0   50000.0     34.0        0.0   50000.0  1470.588300           0.0         0.000000       NaN  0.0001         4.55           NaN      NaN        NaN\n6   0.0   60000.0    454.0    56250.0   60000.0   132.158580          25.0         4.166666  0.000011  0.0001         4.46           NaN      NaN        NaN\n7   0.0   70000.0    887.0   112500.0   70000.0    78.917700          25.0         7.142857  0.000001  0.0001         4.37           NaN      NaN        NaN\n8   0.0   80000.0   1310.0   168750.0   80000.0    61.068703           0.0         6.250000  0.000005  0.0001         4.28           NaN      NaN        NaN\n9   0.0   90000.0   1725.0   225000.0   90000.0    52.173912          50.0        11.111111  0.000717  0.0001         4.19           NaN      NaN        NaN\n10  0.0  100000.0   2128.0   281250.0  100000.0    46.992480          25.0        12.500000  0.000072  0.0001         4.10           NaN      NaN        NaN\n11  0.0  110000.0   2532.0   337500.0  110000.0    43.443916          25.0        13.636364  0.000023  0.0001         4.01           NaN      NaN        NaN\n12  0.0  120000.0   2971.0   393750.0  120000.0    40.390440          50.0        16.666666  0.013758  0.0001         3.92           NaN      NaN        NaN\n13  0.0  130000.0   3415.0   450000.0  130000.0    38.067350           0.0        15.384615  0.000122  0.0001         3.83           NaN      NaN        NaN\n14  0.0  140000.0   3861.0   506250.0  140000.0    36.260036           0.0        14.285714  0.000034  0.0001         3.74           NaN      NaN        NaN\n15  0.0  150000.0   4295.0   562500.0  150000.0    34.924330           0.0        13.333333  0.000032  0.0001         3.65           NaN      NaN        NaN\n16  0.0  160000.0   4729.0   618750.0  160000.0    33.833790          50.0        15.625000  0.001087  0.0001         3.56           NaN      NaN        NaN\n17  0.0  170000.0   5161.0   675000.0  170000.0    32.939354          25.0        16.176470  0.000151  0.0001         3.47           NaN      NaN        NaN\n18  0.0  180000.0   5600.0   731250.0  180000.0    32.142857         350.0        34.722220  0.000124  0.0001         3.38           NaN      NaN        NaN\n19  0.0  190000.0   6043.0   787500.0  190000.0    31.441338          25.0        34.210526  0.001158  0.0001         3.29           NaN      NaN        NaN\n20  0.0  200000.0   6487.0   843750.0  200000.0    30.830893         237.5        44.375000  0.000047  0.0001         3.20           NaN      NaN        NaN\n21  0.0  210000.0   6934.0   900000.0  210000.0    30.285550         200.0        51.785713  0.000116  0.0001         3.11           NaN      NaN        NaN\n22  0.0  220000.0   7378.0   956250.0  220000.0    29.818378         300.0        63.068180  0.000788  0.0001         3.02           NaN      NaN        NaN\n23  0.0  230000.0   7824.0  1012500.0  230000.0    29.396729         250.0        71.195656  0.000232  0.0001         2.93           NaN      NaN        NaN\n24  0.0  240000.0   8273.0  1068750.0  240000.0    29.010033         337.5        82.291664  0.000195  0.0001         2.84           NaN      NaN        NaN\n25  0.0  250000.0   8723.0  1125000.0  250000.0    28.659864         225.0        88.000000  0.000139  0.0001         2.75           NaN      NaN        NaN\n26  0.0  260000.0   9179.0  1181250.0  260000.0    28.325525         525.0       104.807690  0.000248  0.0001         2.66           NaN      NaN        NaN\n27  0.0  270000.0   9634.0  1237500.0  270000.0    28.025742         525.0       120.370370  0.004455  0.0001         2.57           NaN      NaN        NaN\n28  0.0  280000.0  10097.0  1293750.0  280000.0    27.731009         175.0       122.321430  0.001034  0.0001         2.48           NaN      NaN        NaN\n29  0.0  290000.0  10561.0  1350000.0  290000.0    27.459520         350.0       130.172410  0.000315  0.0001         2.39           NaN      NaN        NaN\n..  ...       ...      ...        ...       ...          ...           ...              ...       ...     ...          ...           ...      ...        ...\n56  0.0  560000.0  21572.0  2587500.0  560000.0    25.959578         525.0       245.089286  0.002161  0.0001         0.50           NaN      NaN        NaN\n57  0.0  570000.0  22034.0  2643750.0  570000.0    25.869112         750.0       253.947368  0.001731  0.0001         0.50           NaN      NaN        NaN\n58  0.0  580000.0  22498.0  2700000.0  580000.0    25.780069         375.0       256.034483  0.008000  0.0001         0.50           NaN      NaN        NaN\n59  0.0  590000.0  22960.0  2756250.0  590000.0    25.696863         500.0       260.169492  0.109684  0.0001         0.50           NaN      NaN        NaN\n60  0.0  600000.0  23423.0  2812500.0  600000.0    25.615849         750.0       268.333333  0.005054  0.0001         0.50           NaN      NaN        NaN\n61  0.0  610000.0  23892.0  2868750.0  610000.0    25.531559         625.0       274.180328  0.001118  0.0001         0.50           NaN      NaN        NaN\n62  0.0  620000.0  24360.0  2925000.0  620000.0    25.451559         500.0       277.822581  0.003051  0.0001         0.50           NaN      NaN        NaN\n63  0.0  630000.0  24833.0  2981250.0  630000.0    25.369469         750.0       285.317460  0.001172  0.0001         0.50           NaN      NaN        NaN\n64  0.0  640000.0  25309.0  3037500.0  640000.0    25.287447         625.0       290.625000  0.003605  0.0001         0.50           NaN      NaN        NaN\n65  0.0  650000.0  25794.0  3093750.0  650000.0    25.199659         650.0       296.153846  0.001523  0.0001         0.50           NaN      NaN        NaN\n66  0.0  660000.0  26288.0  3150000.0  660000.0    25.106512         700.0       302.272727  0.000698  0.0001         0.50           NaN      NaN        NaN\n67  0.0  670000.0  26796.0  3206250.0  670000.0    25.003733        1125.0       314.552239  0.001549  0.0001         0.50           NaN      NaN        NaN\n68  0.0  680000.0  27430.0  3262500.0  680000.0    24.790375         950.0       323.897059  0.002388  0.0001         0.50           NaN      NaN        NaN\n69  0.0  690000.0  28033.0  3318750.0  690000.0    24.613848         900.0       332.246377  0.002025  0.0001         0.50           NaN      NaN        NaN\n70  0.0  700000.0  28763.0  3375000.0  700000.0    24.336823        1100.0       343.214286  0.001459  0.0001         0.50           NaN      NaN        NaN\n71  0.0  710000.0  28775.0  3375000.0  710000.0    24.674196        1250.0       355.985915       NaN  0.0001         0.50           NaN      NaN        NaN\n72  0.0  720000.0  28784.0  3375000.0  720000.0    25.013897        1300.0       369.097222       NaN  0.0001         0.50           NaN      NaN        NaN\n73  0.0  730000.0  28793.0  3375000.0  730000.0    25.353384        1275.0       381.506849       NaN  0.0001         0.50           NaN      NaN        NaN\n74  0.0  740000.0  28800.0  3375000.0  740000.0    25.694445        1525.0       396.959459       NaN  0.0001         0.50           NaN      NaN        NaN\n75  0.0  750000.0  28808.0  3375000.0  750000.0    26.034435        1050.0       405.666667       NaN  0.0001         0.50           NaN      NaN        NaN\n76  0.0  760000.0  29391.0  3431250.0  760000.0    25.858255        1525.0       420.394737  0.003646  0.0001         0.50           NaN      NaN        NaN\n77  0.0  770000.0  29990.0  3487500.0  770000.0    25.675224         825.0       425.649351  0.013800  0.0001         0.50           NaN      NaN        NaN\n78  0.0  780000.0  30551.0  3543750.0  780000.0    25.531078        1275.0       436.538462  0.001480  0.0001         0.50           NaN      NaN        NaN\n79  0.0  790000.0  31077.0  3600000.0  790000.0    25.420729         900.0       442.405063  0.001289  0.0001         0.50           NaN      NaN        NaN\n80  0.0  800000.0  31625.0  3656250.0  800000.0    25.296442         775.0       446.562500  0.006256  0.0001         0.50           NaN      NaN        NaN\n81  0.0  810000.0  32147.0  3712500.0  810000.0    25.196753        1400.0       458.333333  0.001543  0.0001         0.50           NaN      NaN        NaN\n82  0.0  820000.0  32719.0  3768750.0  820000.0    25.061892        1250.0       467.987805  0.002243  0.0001         0.50           NaN      NaN        NaN\n83  0.0  830000.0  33298.0  3825000.0  830000.0    24.926422        1125.0       475.903614  0.005862  0.0001         0.50           NaN      NaN        NaN\n84  0.0  840000.0  33796.0  3881250.0  840000.0    24.855013        1250.0       485.119048  0.005207  0.0001         0.50           NaN      NaN        NaN\n85  0.0  850000.0  34277.0  3937500.0  850000.0    24.797970        1050.0       491.764706  0.002227  0.0001         0.50           NaN      NaN        NaN\n\n[86 rows x 14 columns]",
+  "eval_df": "    epi         t   wall_t   opt_step     frame          fps  total_reward  total_reward_ma      loss      lr  explore_var  entropy_coef  entropy  grad_norm\n0   0.0       0.0      0.0        0.0       0.0     0.000000           NaN              NaN       NaN  0.0001         5.00           NaN      NaN        NaN\n1   0.0   10000.0      8.0        0.0   10000.0  1250.000000           0.0         0.000000       NaN  0.0001         4.91           NaN      NaN        NaN\n2   0.0   20000.0     15.0        0.0   20000.0  1333.333400           0.0         0.000000       NaN  0.0001         4.82           NaN      NaN        NaN\n3   0.0   30000.0     22.0        0.0   30000.0  1363.636400           0.0         0.000000       NaN  0.0001         4.73           NaN      NaN        NaN\n4   0.0   40000.0     27.0        0.0   40000.0  1481.481400           0.0         0.000000       NaN  0.0001         4.64           NaN      NaN        NaN\n5   0.0   50000.0     34.0        0.0   50000.0  1470.588300           0.0         0.000000       NaN  0.0001         4.55           NaN      NaN        NaN\n6   0.0   60000.0    454.0    56250.0   60000.0   132.158580          25.0         4.166666  0.000011  0.0001         4.46           NaN      NaN        NaN\n7   0.0   70000.0    887.0   112500.0   70000.0    78.917700          25.0         7.142857  0.000001  0.0001         4.37           NaN      NaN        NaN\n8   0.0   80000.0   1310.0   168750.0   80000.0    61.068703           0.0         6.250000  0.000005  0.0001         4.28           NaN      NaN        NaN\n9   0.0   90000.0   1725.0   225000.0   90000.0    52.173912          50.0        11.111111  0.000717  0.0001         4.19           NaN      NaN        NaN\n10  0.0  100000.0   2128.0   281250.0  100000.0    46.992480          25.0        12.500000  0.000072  0.0001         4.10           NaN      NaN        NaN\n11  0.0  110000.0   2532.0   337500.0  110000.0    43.443916          25.0        13.636364  0.000023  0.0001         4.01           NaN      NaN        NaN\n12  0.0  120000.0   2971.0   393750.0  120000.0    40.390440          50.0        16.666666  0.013758  0.0001         3.92           NaN      NaN        NaN\n13  0.0  130000.0   3415.0   450000.0  130000.0    38.067350           0.0        15.384615  0.000122  0.0001         3.83           NaN      NaN        NaN\n14  0.0  140000.0   3861.0   506250.0  140000.0    36.260036           0.0        14.285714  0.000034  0.0001         3.74           NaN      NaN        NaN\n15  0.0  150000.0   4295.0   562500.0  150000.0    34.924330           0.0        13.333333  0.000032  0.0001         3.65           NaN      NaN        NaN\n16  0.0  160000.0   4729.0   618750.0  160000.0    33.833790          50.0        15.625000  0.001087  0.0001         3.56           NaN      NaN        NaN\n17  0.0  170000.0   5161.0   675000.0  170000.0    32.939354          25.0        16.176470  0.000151  0.0001         3.47           NaN      NaN        NaN\n18  0.0  180000.0   5600.0   731250.0  180000.0    32.142857         350.0        34.722220  0.000124  0.0001         3.38           NaN      NaN        NaN\n19  0.0  190000.0   6043.0   787500.0  190000.0    31.441338          25.0        34.210526  0.001158  0.0001         3.29           NaN      NaN        NaN\n20  0.0  200000.0   6487.0   843750.0  200000.0    30.830893         237.5        44.375000  0.000047  0.0001         3.20           NaN      NaN        NaN\n21  0.0  210000.0   6934.0   900000.0  210000.0    30.285550         200.0        51.785713  0.000116  0.0001         3.11           NaN      NaN        NaN\n22  0.0  220000.0   7378.0   956250.0  220000.0    29.818378         300.0        63.068180  0.000788  0.0001         3.02           NaN      NaN        NaN\n23  0.0  230000.0   7824.0  1012500.0  230000.0    29.396729         250.0        71.195656  0.000232  0.0001         2.93           NaN      NaN        NaN\n24  0.0  240000.0   8273.0  1068750.0  240000.0    29.010033         337.5        82.291664  0.000195  0.0001         2.84           NaN      NaN        NaN\n25  0.0  250000.0   8723.0  1125000.0  250000.0    28.659864         225.0        88.000000  0.000139  0.0001         2.75           NaN      NaN        NaN\n26  0.0  260000.0   9179.0  1181250.0  260000.0    28.325525         525.0       104.807690  0.000248  0.0001         2.66           NaN      NaN        NaN\n27  0.0  270000.0   9634.0  1237500.0  270000.0    28.025742         525.0       120.370370  0.004455  0.0001         2.57           NaN      NaN        NaN\n28  0.0  280000.0  10097.0  1293750.0  280000.0    27.731009         175.0       122.321430  0.001034  0.0001         2.48           NaN      NaN        NaN\n29  0.0  290000.0  10561.0  1350000.0  290000.0    27.459520         350.0       130.172410  0.000315  0.0001         2.39           NaN      NaN        NaN\n..  ...       ...      ...        ...       ...          ...           ...              ...       ...     ...          ...           ...      ...        ...\n56  0.0  560000.0  21572.0  2587500.0  560000.0    25.959578         525.0       245.089286  0.002161  0.0001         0.50           NaN      NaN        NaN\n57  0.0  570000.0  22034.0  2643750.0  570000.0    25.869112         750.0       253.947368  0.001731  0.0001         0.50           NaN      NaN        NaN\n58  0.0  580000.0  22498.0  2700000.0  580000.0    25.780069         375.0       256.034483  0.008000  0.0001         0.50           NaN      NaN        NaN\n59  0.0  590000.0  22960.0  2756250.0  590000.0    25.696863         500.0       260.169492  0.109684  0.0001         0.50           NaN      NaN        NaN\n60  0.0  600000.0  23423.0  2812500.0  600000.0    25.615849         750.0       268.333333  0.005054  0.0001         0.50           NaN      NaN        NaN\n61  0.0  610000.0  23892.0  2868750.0  610000.0    25.531559         625.0       274.180328  0.001118  0.0001         0.50           NaN      NaN        NaN\n62  0.0  620000.0  24360.0  2925000.0  620000.0    25.451559         500.0       277.822581  0.003051  0.0001         0.50           NaN      NaN        NaN\n63  0.0  630000.0  24833.0  2981250.0  630000.0    25.369469         750.0       285.317460  0.001172  0.0001         0.50           NaN      NaN        NaN\n64  0.0  640000.0  25309.0  3037500.0  640000.0    25.287447         625.0       290.625000  0.003605  0.0001         0.50           NaN      NaN        NaN\n65  0.0  650000.0  25794.0  3093750.0  650000.0    25.199659         650.0       296.153846  0.001523  0.0001         0.50           NaN      NaN        NaN\n66  0.0  660000.0  26288.0  3150000.0  660000.0    25.106512         700.0       302.272727  0.000698  0.0001         0.50           NaN      NaN        NaN\n67  0.0  670000.0  26796.0  3206250.0  670000.0    25.003733        1125.0       314.552239  0.001549  0.0001         0.50           NaN      NaN        NaN\n68  0.0  680000.0  27430.0  3262500.0  680000.0    24.790375         950.0       323.897059  0.002388  0.0001         0.50           NaN      NaN        NaN\n69  0.0  690000.0  28033.0  3318750.0  690000.0    24.613848         900.0       332.246377  0.002025  0.0001         0.50           NaN      NaN        NaN\n70  0.0  700000.0  28763.0  3375000.0  700000.0    24.336823        1100.0       343.214286  0.001459  0.0001         0.50           NaN      NaN        NaN\n71  0.0  710000.0  28775.0  3375000.0  710000.0    24.674196        1250.0       355.985915       NaN  0.0001         0.50           NaN      NaN        NaN\n72  0.0  720000.0  28784.0  3375000.0  720000.0    25.013897        1300.0       369.097222       NaN  0.0001         0.50           NaN      NaN        NaN\n73  0.0  730000.0  28793.0  3375000.0  730000.0    25.353384        1275.0       381.506849       NaN  0.0001         0.50           NaN      NaN        NaN\n74  0.0  740000.0  28800.0  3375000.0  740000.0    25.694445        1525.0       396.959459       NaN  0.0001         0.50           NaN      NaN        NaN\n75  0.0  750000.0  28808.0  3375000.0  750000.0    26.034435        1050.0       405.666667       NaN  0.0001         0.50           NaN      NaN        NaN\n76  0.0  760000.0  29391.0  3431250.0  760000.0    25.858255        1525.0       420.394737  0.003646  0.0001         0.50           NaN      NaN        NaN\n77  0.0  770000.0  29990.0  3487500.0  770000.0    25.675224         825.0       425.649351  0.013800  0.0001         0.50           NaN      NaN        NaN\n78  0.0  780000.0  30551.0  3543750.0  780000.0    25.531078        1275.0       436.538462  0.001480  0.0001         0.50           NaN      NaN        NaN\n79  0.0  790000.0  31077.0  3600000.0  790000.0    25.420729         900.0       442.405063  0.001289  0.0001         0.50           NaN      NaN        NaN\n80  0.0  800000.0  31625.0  3656250.0  800000.0    25.296442         775.0       446.562500  0.006256  0.0001         0.50           NaN      NaN        NaN\n81  0.0  810000.0  32147.0  3712500.0  810000.0    25.196753        1400.0       458.333333  0.001543  0.0001         0.50           NaN      NaN        NaN\n82  0.0  820000.0  32719.0  3768750.0  820000.0    25.061892        1250.0       467.987805  0.002243  0.0001         0.50           NaN      NaN        NaN\n83  0.0  830000.0  33298.0  3825000.0  830000.0    24.926422        1125.0       475.903614  0.005862  0.0001         0.50           NaN      NaN        NaN\n84  0.0  840000.0  33796.0  3881250.0  840000.0    24.855013        1250.0       485.119048  0.005207  0.0001         0.50           NaN      NaN        NaN\n85  0.0  850000.0  34277.0  3937500.0  850000.0    24.797970        1050.0       491.764706  0.002227  0.0001         0.50           NaN      NaN        NaN\n\n[86 rows x 14 columns]",
+  "observation_space": "Box(4, 84, 84)",
+  "action_space": "Discrete(18)",
+  "observable_dim": {
+    "state": [
+      4,
+      84,
+      84
+    ]
+  },
+  "state_dim": "(4, 84, 84)",
+  "action_dim": 18,
+  "is_discrete": true,
+  "action_type": "discrete",
+  "action_pdtype": "Argmax",
+  "ActionPD": "<class 'slm_lab.lib.distribution.Argmax'>",
+  "memory": "<slm_lab.agent.memory.replay.Replay object at 0x7ec90facd780>"
+}
+- algorithm = <slm_lab.agent.algorithm.dqn.DoubleDQN object at 0x7ec90facda20>
+[2025-06-26 09:04:58,199 PID:498 INFO openai.py __init__] OpenAIEnv:
+- env_spec = {'frame_op': 'concat',
+ 'frame_op_len': 4,
+ 'max_frame': 1000000,
+ 'max_t': None,
+ 'name': 'Kangaroo-v0',
+ 'num_envs': 8,
+ 'reward_scale': 'sign'}
+- eval_frequency = 25000
+- log_frequency = 10000
+- frame_op = concat
+- frame_op_len = 4
+- image_downsize = (84, 84)
+- normalize_state = False
+- reward_scale = sign
+- num_envs = 1
+- name = Kangaroo-v0
+- max_t = 10000
+- max_frame = 1000000
+- to_render = False
+- is_venv = False
+- clock_speed = 1
+- clock = <slm_lab.env.base.Clock object at 0x7ec90c2774a8>
+- done = False
+- total_reward = nan
+- u_env = <ScaleRewardEnv<TrackReward<FrameStack<PreprocessImage<TimeLimit<AtariEnv<Kangaroo-v0>>>>>>>
+- observation_space = Box(4, 84, 84)
+- action_space = Discrete(18)
+- observable_dim = {'state': (4, 84, 84)}
+- action_dim = 18
+- is_discrete = True
+[2025-06-26 09:04:58,200 PID:498 INFO logger.py info] Session:
+- spec = {'cuda_offset': 0,
+ 'distributed': False,
+ 'eval_frequency': 25000,
+ 'experiment': 0,
+ 'experiment_ts': '2025_06_25_142228',
+ 'git_sha': 'cae945a294cb111ee8e568bb4465ee74c501478b',
+ 'graph_prepath': 'data/ddqn_target_kangaroo_2025_06_25_142228/graph/ddqn_target_kangaroo_t0_s0',
+ 'info_prepath': 'data/ddqn_target_kangaroo_2025_06_25_142228/info/ddqn_target_kangaroo_t0_s0',
+ 'log_frequency': 10000,
+ 'log_prepath': 'data/ddqn_target_kangaroo_2025_06_25_142228/log/ddqn_target_kangaroo_t0_s0',
+ 'max_session': 1,
+ 'max_trial': 1,
+ 'model_prepath': 'data/ddqn_target_kangaroo_2025_06_25_142228/model/ddqn_target_kangaroo_t0_s0',
+ 'prepath': 'data/ddqn_target_kangaroo_2025_06_25_142228/ddqn_target_kangaroo_t0_s0',
+ 'random_seed': 1750917896,
+ 'resume': True,
+ 'rigorous_eval': 1,
+ 'session': 0,
+ 'trial': 0}
+- index = 0
+- agent = <slm_lab.agent.Agent object at 0x7ec90facd9b0>
+- env = <slm_lab.env.openai.OpenAIEnv object at 0x7ec978d7acf8>
+- eval_env = <slm_lab.env.openai.OpenAIEnv object at 0x7ec90c277c50>
+[2025-06-26 09:04:58,200 PID:498 INFO logger.py info] Running RL loop for trial 0 session 0
+[2025-06-26 09:04:58,219 PID:498 INFO __init__.py log_summary] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df] epi: 0  t: 850000  wall_t: 34277  opt_step: 3.9375e+06  frame: 850000  fps: 24.798  total_reward: 1050  total_reward_ma: 491.765  loss: 0.00222715  lr: 0.0001  explore_var: 0.5  entropy_coef: nan  entropy: nan  grad_norm: nan
+[2025-06-26 09:04:58,465 PID:498 INFO __init__.py log_metrics] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df metrics] final_return_ma: 491.765  strength: 443.765  max_strength: 1477  final_strength: 1002  sample_efficiency: 1.47051e-06  training_efficiency: 3.65209e-07  stability: 0.839316
+[2025-06-26 09:04:58,465 PID:498 INFO logger.py info] Running eval ckpt
+[2025-06-26 09:04:59,987 PID:498 INFO __init__.py log_summary] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [eval_df] epi: 0  t: 850000  wall_t: 34277  opt_step: 3.9375e+06  frame: 850000  fps: 24.798  total_reward: 1050  total_reward_ma: 491.765  loss: 0.00222715  lr: 0.0001  explore_var: 0.5  entropy_coef: nan  entropy: nan  grad_norm: nan
+[2025-06-26 09:05:00,010 PID:498 INFO __init__.py log_metrics] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [eval_df metrics] final_return_ma: 491.765  strength: 443.765  max_strength: 1477  final_strength: 1002  sample_efficiency: 1.47051e-06  training_efficiency: 3.65209e-07  stability: 0.839316
+[2025-06-26 09:05:07,073 PID:498 INFO __init__.py log_summary] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df] epi: 0  t: 860000  wall_t: 34287  opt_step: 3.9375e+06  frame: 860000  fps: 25.0824  total_reward: 1000  total_reward_ma: 497.674  loss: nan  lr: 0.0001  explore_var: 0.5  entropy_coef: nan  entropy: nan  grad_norm: nan
+[2025-06-26 09:05:07,317 PID:498 INFO __init__.py log_metrics] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df metrics] final_return_ma: 497.674  strength: 449.674  max_strength: 1477  final_strength: 952  sample_efficiency: 1.46293e-06  training_efficiency: 3.6247e-07  stability: 0.842259
+[2025-06-26 09:05:14,758 PID:498 INFO __init__.py log_summary] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df] epi: 0  t: 870000  wall_t: 34294  opt_step: 3.9375e+06  frame: 870000  fps: 25.3689  total_reward: 975  total_reward_ma: 503.161  loss: nan  lr: 0.0001  explore_var: 0.5  entropy_coef: nan  entropy: nan  grad_norm: nan
+[2025-06-26 09:05:15,009 PID:498 INFO __init__.py log_metrics] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df metrics] final_return_ma: 503.161  strength: 455.161  max_strength: 1477  final_strength: 927  sample_efficiency: 1.45559e-06  training_efficiency: 3.5993e-07  stability: 0.845495
+[2025-06-26 09:05:18,740 PID:498 INFO logger.py info] Running eval ckpt
+[2025-06-26 09:05:20,203 PID:498 INFO __init__.py log_summary] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [eval_df] epi: 0  t: 0  wall_t: 34298  opt_step: 3.9375e+06  frame: 875000  fps: 25.5117  total_reward: 1400  total_reward_ma: 502.326  loss: nan  lr: 0.0001  explore_var: 0.5  entropy_coef: nan  entropy: nan  grad_norm: nan
+[2025-06-26 09:05:20,223 PID:498 INFO __init__.py log_metrics] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [eval_df metrics] final_return_ma: 502.326  strength: 454.326  max_strength: 1477  final_strength: 1352  sample_efficiency: 1.45917e-06  training_efficiency: 3.61359e-07  stability: 0.843584
+[2025-06-26 09:05:24,072 PID:498 INFO __init__.py log_summary] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df] epi: 0  t: 880000  wall_t: 34304  opt_step: 3.9375e+06  frame: 880000  fps: 25.653  total_reward: 1025  total_reward_ma: 509.091  loss: nan  lr: 0.0001  explore_var: 0.5  entropy_coef: nan  entropy: nan  grad_norm: nan
+[2025-06-26 09:05:24,334 PID:498 INFO __init__.py log_metrics] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df metrics] final_return_ma: 509.091  strength: 461.091  max_strength: 1477  final_strength: 977  sample_efficiency: 1.44791e-06  training_efficiency: 3.57379e-07  stability: 0.849112
+[2025-06-26 09:05:31,931 PID:498 INFO __init__.py log_summary] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df] epi: 0  t: 890000  wall_t: 34311  opt_step: 3.9375e+06  frame: 890000  fps: 25.9392  total_reward: 975  total_reward_ma: 514.326  loss: nan  lr: 0.0001  explore_var: 0.5  entropy_coef: nan  entropy: nan  grad_norm: nan
+[2025-06-26 09:05:32,174 PID:498 INFO __init__.py log_metrics] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df metrics] final_return_ma: 514.326  strength: 466.326  max_strength: 1477  final_strength: 927  sample_efficiency: 1.44066e-06  training_efficiency: 3.55069e-07  stability: 0.851513
+[2025-06-26 09:05:39,018 PID:498 INFO __init__.py log_summary] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df] epi: 0  t: 900000  wall_t: 34319  opt_step: 3.9375e+06  frame: 900000  fps: 26.2245  total_reward: 1050  total_reward_ma: 520.278  loss: nan  lr: 0.0001  explore_var: 0.5  entropy_coef: nan  entropy: nan  grad_norm: nan
+[2025-06-26 09:05:39,250 PID:498 INFO __init__.py log_metrics] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df metrics] final_return_ma: 520.278  strength: 472.278  max_strength: 1477  final_strength: 1002  sample_efficiency: 1.4329e-06  training_efficiency: 3.52686e-07  stability: 0.85483
+[2025-06-26 09:05:39,251 PID:498 INFO logger.py info] Running eval ckpt
+[2025-06-26 09:05:40,904 PID:498 INFO __init__.py log_summary] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [eval_df] epi: 0  t: 0  wall_t: 34319  opt_step: 3.9375e+06  frame: 900000  fps: 26.2245  total_reward: 1200  total_reward_ma: 510.345  loss: nan  lr: 0.0001  explore_var: 0.5  entropy_coef: nan  entropy: nan  grad_norm: nan
+[2025-06-26 09:05:40,924 PID:498 INFO __init__.py log_metrics] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [eval_df metrics] final_return_ma: 510.345  strength: 462.345  max_strength: 1477  final_strength: 1152  sample_efficiency: 1.4492e-06  training_efficiency: 3.58284e-07  stability: 0.843878
+[2025-06-26 09:15:30,611 PID:498 INFO __init__.py log_summary] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df] epi: 0  t: 910000  wall_t: 34910  opt_step: 3.99375e+06  frame: 910000  fps: 26.067  total_reward: 700  total_reward_ma: 522.253  loss: 0.00169989  lr: 0.0001  explore_var: 0.5  entropy_coef: nan  entropy: nan  grad_norm: nan
+[2025-06-26 09:15:30,854 PID:498 INFO __init__.py log_metrics] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df metrics] final_return_ma: 522.253  strength: 474.253  max_strength: 1477  final_strength: 652  sample_efficiency: 1.42785e-06  training_efficiency: 3.5114e-07  stability: 0.850018
+[2025-06-26 09:24:42,584 PID:498 INFO __init__.py log_summary] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df] epi: 0  t: 920000  wall_t: 35462  opt_step: 4.05e+06  frame: 920000  fps: 25.9433  total_reward: 975  total_reward_ma: 527.174  loss: 0.000723466  lr: 0.0001  explore_var: 0.5  entropy_coef: nan  entropy: nan  grad_norm: nan
+[2025-06-26 09:24:42,832 PID:498 INFO __init__.py log_metrics] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df metrics] final_return_ma: 527.174  strength: 479.174  max_strength: 1477  final_strength: 927  sample_efficiency: 1.42068e-06  training_efficiency: 3.48949e-07  stability: 0.852284
+[2025-06-26 09:29:10,096 PID:498 INFO logger.py info] Running eval ckpt
+[2025-06-26 09:29:11,469 PID:498 INFO __init__.py log_summary] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [eval_df] epi: 0  t: 0  wall_t: 35729  opt_step: 4.07812e+06  frame: 925000  fps: 25.8893  total_reward: 800  total_reward_ma: 513.636  loss: 0.000672801  lr: 0.0001  explore_var: 0.5  entropy_coef: nan  entropy: nan  grad_norm: nan
+[2025-06-26 09:29:11,490 PID:498 INFO __init__.py log_metrics] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [eval_df metrics] final_return_ma: 513.636  strength: 465.636  max_strength: 1477  final_strength: 752  sample_efficiency: 1.44245e-06  training_efficiency: 3.56209e-07  stability: 0.838405
+[2025-06-26 09:33:31,970 PID:498 INFO __init__.py log_summary] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df] epi: 0  t: 930000  wall_t: 35991  opt_step: 4.10625e+06  frame: 930000  fps: 25.8398  total_reward: 1125  total_reward_ma: 533.602  loss: 0.00298146  lr: 0.0001  explore_var: 0.5  entropy_coef: nan  entropy: nan  grad_norm: nan
+[2025-06-26 09:33:32,185 PID:498 INFO __init__.py log_metrics] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df metrics] final_return_ma: 533.602  strength: 485.602  max_strength: 1477  final_strength: 1077  sample_efficiency: 1.41244e-06  training_efficiency: 3.46435e-07  stability: 0.85539
+[2025-06-26 09:42:15,243 PID:498 INFO __init__.py log_summary] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df] epi: 0  t: 940000  wall_t: 36514  opt_step: 4.1625e+06  frame: 940000  fps: 25.7436  total_reward: 950  total_reward_ma: 538.032  loss: 0.00255553  lr: 0.0001  explore_var: 0.5  entropy_coef: nan  entropy: nan  grad_norm: nan
+[2025-06-26 09:42:15,487 PID:498 INFO __init__.py log_metrics] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df metrics] final_return_ma: 538.032  strength: 490.032  max_strength: 1477  final_strength: 902  sample_efficiency: 1.40562e-06  training_efficiency: 3.44355e-07  stability: 0.854963
+[2025-06-26 09:50:41,072 PID:498 INFO __init__.py log_summary] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df] epi: 0  t: 950000  wall_t: 37020  opt_step: 4.21875e+06  frame: 950000  fps: 25.6618  total_reward: 400  total_reward_ma: 536.579  loss: 0.0010544  lr: 0.0001  explore_var: 0.5  entropy_coef: nan  entropy: nan  grad_norm: nan
+[2025-06-26 09:50:41,208 PID:498 INFO __init__.py log_metrics] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df metrics] final_return_ma: 536.579  strength: 488.579  max_strength: 1477  final_strength: 352  sample_efficiency: 1.40294e-06  training_efficiency: 3.43541e-07  stability: 0.845863
+[2025-06-26 09:50:41,208 PID:498 INFO logger.py info] Running eval ckpt
+[2025-06-26 09:50:42,191 PID:498 INFO __init__.py log_summary] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [eval_df] epi: 0  t: 0  wall_t: 37020  opt_step: 4.21875e+06  frame: 950000  fps: 25.6618  total_reward: 0  total_reward_ma: 507.865  loss: 0.0010544  lr: 0.0001  explore_var: 0.5  entropy_coef: nan  entropy: nan  grad_norm: nan
+[2025-06-26 09:50:42,213 PID:498 INFO __init__.py log_metrics] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [eval_df metrics] final_return_ma: 507.865  strength: 459.865  max_strength: 1477  final_strength: -48  sample_efficiency: 1.4429e-06  training_efficiency: 3.56348e-07  stability: 0.821847
+[2025-06-26 09:58:48,129 PID:498 INFO __init__.py log_summary] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df] epi: 0  t: 960000  wall_t: 37507  opt_step: 4.275e+06  frame: 960000  fps: 25.5952  total_reward: 525  total_reward_ma: 536.458  loss: 0.00241649  lr: 0.0001  explore_var: 0.5  entropy_coef: nan  entropy: nan  grad_norm: nan
+[2025-06-26 09:58:48,248 PID:498 INFO __init__.py log_metrics] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df metrics] final_return_ma: 536.458  strength: 488.458  max_strength: 1477  final_strength: 477  sample_efficiency: 1.39927e-06  training_efficiency: 3.42426e-07  stability: 0.847032
+[2025-06-26 10:06:56,173 PID:498 INFO __init__.py log_summary] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df] epi: 0  t: 970000  wall_t: 37995  opt_step: 4.33125e+06  frame: 970000  fps: 25.5297  total_reward: 775  total_reward_ma: 538.918  loss: 0.00579525  lr: 0.0001  explore_var: 0.5  entropy_coef: nan  entropy: nan  grad_norm: nan
+[2025-06-26 10:06:56,402 PID:498 INFO __init__.py log_metrics] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df metrics] final_return_ma: 538.918  strength: 490.918  max_strength: 1477  final_strength: 727  sample_efficiency: 1.39364e-06  training_efficiency: 3.40723e-07  stability: 0.848588
+[2025-06-26 10:10:59,712 PID:498 INFO logger.py info] Running eval ckpt
+[2025-06-26 10:11:00,776 PID:498 INFO __init__.py log_summary] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [eval_df] epi: 0  t: 0  wall_t: 38239  opt_step: 4.35938e+06  frame: 975000  fps: 25.4975  total_reward: 600  total_reward_ma: 508.889  loss: 0.00186522  lr: 0.0001  explore_var: 0.5  entropy_coef: nan  entropy: nan  grad_norm: nan
+[2025-06-26 10:11:00,798 PID:498 INFO __init__.py log_metrics] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [eval_df metrics] final_return_ma: 508.889  strength: 460.889  max_strength: 1477  final_strength: 552  sample_efficiency: 1.43735e-06  training_efficiency: 3.54659e-07  stability: 0.821638
+[2025-06-26 10:15:03,277 PID:498 INFO __init__.py log_summary] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df] epi: 0  t: 980000  wall_t: 38482  opt_step: 4.3875e+06  frame: 980000  fps: 25.4665  total_reward: 975  total_reward_ma: 543.367  loss: 0.0014427  lr: 0.0001  explore_var: 0.5  entropy_coef: nan  entropy: nan  grad_norm: nan
+[2025-06-26 10:15:03,522 PID:498 INFO __init__.py log_metrics] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df metrics] final_return_ma: 543.367  strength: 495.367  max_strength: 1477  final_strength: 927  sample_efficiency: 1.38651e-06  training_efficiency: 3.38569e-07  stability: 0.8509
+[2025-06-26 10:23:09,227 PID:498 INFO __init__.py log_summary] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df] epi: 0  t: 990000  wall_t: 38968  opt_step: 4.44375e+06  frame: 990000  fps: 25.4055  total_reward: 1075  total_reward_ma: 548.737  loss: 0.0208958  lr: 0.0001  explore_var: 0.5  entropy_coef: nan  entropy: nan  grad_norm: nan
+[2025-06-26 10:23:09,479 PID:498 INFO __init__.py log_metrics] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df metrics] final_return_ma: 548.737  strength: 500.737  max_strength: 1477  final_strength: 1027  sample_efficiency: 1.37872e-06  training_efficiency: 3.36217e-07  stability: 0.853747
+[2025-06-26 10:31:09,522 PID:498 INFO __init__.py log_summary] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df] epi: 0  t: 1e+06  wall_t: 39449  opt_step: 4.5e+06  frame: 1e+06  fps: 25.3492  total_reward: 800  total_reward_ma: 551.25  loss: 0.0383437  lr: 0.0001  explore_var: 0.5  entropy_coef: nan  entropy: nan  grad_norm: nan
+[2025-06-26 10:31:09,743 PID:498 INFO __init__.py log_metrics] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [train_df metrics] final_return_ma: 551.25  strength: 503.25  max_strength: 1477  final_strength: 752  sample_efficiency: 1.37306e-06  training_efficiency: 3.34514e-07  stability: 0.851229
+[2025-06-26 10:31:09,744 PID:498 INFO logger.py info] Running eval ckpt
+[2025-06-26 10:31:11,076 PID:498 INFO __init__.py log_summary] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [eval_df] epi: 0  t: 0  wall_t: 39449  opt_step: 4.5e+06  frame: 1e+06  fps: 25.3492  total_reward: 1000  total_reward_ma: 514.286  loss: 0.0383437  lr: 0.0001  explore_var: 0.5  entropy_coef: nan  entropy: nan  grad_norm: nan
+[2025-06-26 10:31:11,105 PID:498 INFO __init__.py log_metrics] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [eval_df metrics] final_return_ma: 514.286  strength: 466.286  max_strength: 1477  final_strength: 952  sample_efficiency: 1.42754e-06  training_efficiency: 3.51688e-07  stability: 0.824012
+[2025-06-26 10:31:11,264 PID:498 INFO __init__.py log_metrics] Trial 0 session 0 ddqn_target_kangaroo_t0_s0 [eval_df metrics] final_return_ma: 514.286  strength: 466.286  max_strength: 1477  final_strength: 952  sample_efficiency: 1.42754e-06  training_efficiency: 3.51688e-07  stability: 0.824012
+[2025-06-26 10:31:11,376 PID:498 INFO logger.py info] Session 0 done
+[2025-06-26 10:31:14,724 PID:498 INFO analysis.py analyze_trial] All trial data zipped to data/ddqn_target_kangaroo_2025_06_25_142228.zip
+[2025-06-26 10:31:14,724 PID:498 INFO logger.py info] Trial 0 done
